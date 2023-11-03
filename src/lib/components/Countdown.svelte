@@ -36,7 +36,7 @@
 
 <div
 	class="h-80 flex flex-col items-center justify-center text-white p-4 rounded-lg shadow-md
-	 countdown"
+	 countdown bg-[url('villaCantonCountdown.jpeg')]"
 >
 	<div class="bg-gray-600 bg-opacity-50 px-5 py-4 rounded-xl w-2/3">
 		<h1 class="text-4xl font-bold mb-2 text-center">Quanto manca?</h1>
@@ -64,7 +64,6 @@
 
 <style>
 	.countdown {
-		background-image: url('villaCantonCountdown.jpeg');
 		background-size: cover;
 		background-position: center;
 	}
