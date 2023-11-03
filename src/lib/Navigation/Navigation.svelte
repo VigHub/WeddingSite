@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 	import { drawerStore } from '@skeletonlabs/skeleton';
 
 	function drawerClose(): void {
@@ -9,18 +10,26 @@
 	const activeClass = 'underline underline-offset-4 decoration-1';
 
 	$: items = [
-		{ text: 'BENVENUTI!', url: '/', color: $page.url.pathname === '/' ? activeClass : '' },
+		{
+			text: 'BENVENUTI!',
+			url: `${base}/`,
+			color: $page.url.pathname === `${base}/` ? activeClass : ''
+		},
 		{
 			text: 'LISTA NOZZE',
-			url: '/gift-list',
-			color: $page.url.pathname === '/gift-list' ? activeClass : ''
+			url: `${base}/gift-list`,
+			color: $page.url.pathname === `${base}/gift-list` ? activeClass : ''
 		},
 		{
 			text: 'CONFERMA LA TUA PRESENZA',
-			url: '/confirm-presence',
-			color: $page.url.pathname === '/confirm-presence' ? activeClass : ''
+			url: `${base}/confirm-presence`,
+			color: $page.url.pathname === `${base}/confirm-presence` ? activeClass : ''
 		},
-		{ text: 'INFORMAZIONI', url: '/info', color: $page.url.pathname === '/info' ? activeClass : '' }
+		{
+			text: 'INFORMAZIONI',
+			url: `${base}/info`,
+			color: $page.url.pathname === `${base}/info` ? activeClass : ''
+		}
 	];
 </script>
 
