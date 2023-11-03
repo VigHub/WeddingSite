@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-
+	import { base } from '$app/paths';
 	const activeClass = 'underline underline-offset-4 decoration-1';
 
 	interface itemURL {
@@ -10,21 +10,25 @@
 	}
 
 	$: items = [
-		{ text: 'BENVENUTI!', url: '/', itemActive: $page.url.pathname === '/' ? activeClass : '' },
+		{
+			text: 'BENVENUTI!',
+			url: `${base}/`,
+			itemActive: $page.url.pathname === `${base}/` ? activeClass : ''
+		},
 		{
 			text: 'LISTA NOZZE',
-			url: '/gift-list',
-			itemActive: $page.url.pathname === '/gift-list' ? activeClass : ''
+			url: `${base}/gift-list`,
+			itemActive: $page.url.pathname === `${base}/gift-list` ? activeClass : ''
 		},
 		{
 			text: 'CONFERMA LA TUA PRESENZA',
-			url: '/confirm-presence',
-			itemActive: $page.url.pathname === '/confirm-presence' ? activeClass : ''
+			url: `${base}/confirm-presence`,
+			itemActive: $page.url.pathname === `${base}/confirm-presence` ? activeClass : ''
 		},
 		{
 			text: 'INFORMAZIONI',
-			url: '/info',
-			itemActive: $page.url.pathname === '/info' ? activeClass : ''
+			url: `${base}/info`,
+			itemActive: $page.url.pathname === `${base}/info` ? activeClass : ''
 		}
 	] as itemURL[];
 </script>
