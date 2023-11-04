@@ -19,22 +19,22 @@
 		}
 	};
 
-	const modalComponent: ModalComponent = {
-		// Pass a reference to your custom component
-		ref: ModalConfirmPresence,
-		// Add the component properties as key/value pairs
-		props: { name: 'name', surname: 'surname' },
-		// Provide a template literal for the default component slot
-		slot: '<p>Skeleton</p>'
-	};
+	const openModal = (guestName: string, guestSurname: string) => {
+		const modalComponent: ModalComponent = {
+			// Pass a reference to your custom component
+			ref: ModalConfirmPresence,
+			// Add the component properties as key/value pairs
+			props: { name: guestName, surname: guestSurname },
+			// Provide a template literal for the default component slot
+			slot: '<p>Skeleton</p>'
+		};
+		const modal: ModalSettings = {
+			type: 'component',
+			component: modalComponent,
+			// Returns the updated response value
+			response: (r: string) => console.log('response:', r)
+		};
 
-	const modal: ModalSettings = {
-		type: 'component',
-		component: modalComponent,
-		// Returns the updated response value
-		response: (r: string) => console.log('response:', r)
-	};
-	const openModal = () => {
 		modalStore.trigger(modal);
 	};
 </script>
@@ -78,7 +78,7 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<li
 				class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto text-center border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900"
-				on:click={openModal}
+				on:click={() => openModal(guest.name, guest.surname)}
 			>
 				{guest.name}
 				{guest.surname}

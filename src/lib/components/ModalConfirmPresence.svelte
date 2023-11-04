@@ -13,26 +13,28 @@
 
 	<RadioGroup>
 		<RadioItem bind:group={presence} name="justify" value={0}>In attesa</RadioItem>
-		<RadioItem bind:group={presence} name="justify" value={1}>Accetto</RadioItem>
-		<RadioItem bind:group={presence} name="justify" value={2}>Non accetto</RadioItem>
+		<RadioItem bind:group={presence} name="justify" value={1}>Ci sono</RadioItem>
+		<RadioItem bind:group={presence} name="justify" value={2}>Non ci sono</RadioItem>
 	</RadioGroup>
 
-	<div class="mt-4 grid space-y-2 relative">
-		<label for="message" class="block">Il tuo messaggio (opzionale, solo se vuoi)</label>
-		<input
-			type="mail"
-			id="mail"
-			class="w-full p-2 block rounded-lg focus:ring-blue-500 focus:border-blue-500"
-			placeholder="mail@esempio.com"
-			bind:value={mail}
-		/>
-		<textarea
-			id="message"
-			rows="4"
-			class="block p-2.5 w-full rounded-lg
-         focus:ring-blue-500 focus:border-blue-500"
-			placeholder="Scrivi qui il tuo messaggio"
-		/>
-		<button type="submit" class="btn w-1/6 variant-filled align-baseline">Invia</button>
+	<div class="container h-full mx-auto flex justify-center items-center">
+		<form class="w-full space-y-2 mt-4">
+			<label for="message" class="block">Il tuo messaggio (opzionale, solo se vuoi)</label>
+			<input
+				type="mail"
+				id="mail"
+				class="w-full p-2 block rounded-lg focus:ring-blue-500 focus:border-blue-500"
+				placeholder="mail@esempio.com"
+				bind:value={mail}
+			/>
+			<textarea
+				id="message"
+				rows="4"
+				class="block p-2.5 w-full rounded-lg
+			focus:ring-blue-500 focus:border-blue-500"
+				placeholder="Scrivi qui il tuo messaggio"
+			/>
+			<button type="submit" class="btn variant-filled align-baseline float-right">Invia</button>
+		</form>
 	</div>
 </div>
