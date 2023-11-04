@@ -1,5 +1,7 @@
 <script lang="ts">
+	import ModalConfirmPresence from '$lib/components/ModalConfirmPresence.svelte';
 	import { searchGuest, type Guest } from '$lib/utils/searchGuests';
+	import { modalStore, type ModalSettings, type ModalComponent } from '@skeletonlabs/skeleton';
 	import { fade } from 'svelte/transition';
 
 	let name = '';
@@ -15,6 +17,25 @@
 				showNoGuest = false;
 			}, 1000);
 		}
+	};
+
+	const modalComponent: ModalComponent = {
+		// Pass a reference to your custom component
+		ref: ModalConfirmPresence,
+		// Add the component properties as key/value pairs
+		props: { name: 'name', surname: 'surname' },
+		// Provide a template literal for the default component slot
+		slot: '<p>Skeleton</p>'
+	};
+
+	const modal: ModalSettings = {
+		type: 'component',
+		component: modalComponent,
+		// Returns the updated response value
+		response: (r: string) => console.log('response:', r)
+	};
+	const openModal = () => {
+		modalStore.trigger(modal);
 	};
 </script>
 
@@ -54,8 +75,10 @@
 <div class="mt-5">
 	<ul class="bg-white w-screen flex flex-col space-y-3">
 		{#each guests as guest}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<li
 				class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto text-center border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900"
+				on:click={openModal}
 			>
 				{guest.name}
 				{guest.surname}
