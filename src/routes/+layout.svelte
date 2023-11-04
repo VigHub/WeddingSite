@@ -16,6 +16,8 @@
 	function drawerOpen(): void {
 		drawerStore.open({});
 	}
+
+	import { Modal } from '@skeletonlabs/skeleton';
 </script>
 
 <svelte:head>
@@ -26,6 +28,8 @@
 <Drawer bgBackdrop="none" bgDrawer="bg-white" duration={300}>
 	<Navigation />
 </Drawer>
+
+<Modal />
 
 <!-- App Shell -->
 <AppShell slotSidebarLeft="w-0 lg:w-64">
