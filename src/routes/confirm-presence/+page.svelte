@@ -1,21 +1,28 @@
 <script lang="ts">
 	import ModalConfirmPresence from '$lib/components/ModalConfirmPresence.svelte';
 	import { searchGuest, type Guest } from '$lib/utils/searchGuests';
-	import { modalStore, type ModalSettings, type ModalComponent } from '@skeletonlabs/skeleton';
-	import { fade } from 'svelte/transition';
+	import {
+		modalStore,
+		type ModalSettings,
+		type ModalComponent,
+		type ToastSettings
+	} from '@skeletonlabs/skeleton';
+	import { toastStore } from '@skeletonlabs/skeleton';
 
 	let name = '';
 	let surname = '';
 	let guests: Guest[] = [];
-	let showNoGuest = false;
+	const t: ToastSettings = {
+		message: 'Nessun invitato trovato con questo nome e/o cognome',
+		background: 'bg-red-600 text-white bg-opacity-90',
+		timeout: 5000
+	};
 
 	const onClick = () => {
 		guests = searchGuest(name, surname);
 		if (guests.length == 0 && (name !== '' || surname !== '')) {
-			showNoGuest = true;
-			setTimeout(() => {
-				showNoGuest = false;
-			}, 1000);
+			toastStore.clear();
+			toastStore.trigger(t);
 		}
 	};
 
@@ -84,14 +91,5 @@
 				{guest.surname}
 			</li>
 		{/each}
-		{#if showNoGuest}
-			<li
-				out:fade={{ duration: 500 }}
-				class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto
-				text-center border rounded-md border-black relative variant-ghost-error"
-			>
-				Nessun invitato trovato con questo <br />nome e/o cognome
-			</li>
-		{/if}
 	</ul>
 </div>
