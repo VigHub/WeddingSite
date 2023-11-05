@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import carouselIndex from '../../../stores/carousel';
-	import { text } from '@sveltejs/kit';
 
 	export let image: CarouselImage;
 	export let index: number;
 </script>
 
-<!--First item-->
 {#if $carouselIndex === index}
 	<div
 		class="relative float-left -mr-[100%] w-full transition-transform
@@ -25,9 +23,7 @@
 				{#if image.title}
 					<h5 class="text-xl">{image.title}</h5>
 				{/if}
-				<!-- {#if image.text} -->
 				<p>{image.text ?? ''}</p>
-				<!-- {/if} -->
 			</div>
 		{/if}
 	</div>
