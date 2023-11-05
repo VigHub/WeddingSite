@@ -7,7 +7,7 @@
 	import '../app.postcss';
 	import '@fontsource-variable/montserrat';
 	import '@fontsource-variable/manrope';
-	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar, Toast } from '@skeletonlabs/skeleton';
 	let screenSize = 0;
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/Navigation/Navigation.svelte';
@@ -30,6 +30,7 @@
 </Drawer>
 
 <Modal />
+<Toast />
 
 <!-- App Shell -->
 <AppShell slotSidebarLeft="w-0 lg:w-64">
