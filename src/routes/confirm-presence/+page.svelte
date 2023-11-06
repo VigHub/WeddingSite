@@ -14,8 +14,8 @@
 	let guests: Guest[] = [];
 	const t: ToastSettings = {
 		message: 'Nessun invitato trovato con questo nome e/o cognome',
-		background: 'bg-red-600 text-white bg-opacity-90',
-		timeout: 5000
+		background: 'variant-filled-error',
+		timeout: 3000
 	};
 
 	const onClick = () => {

@@ -3,13 +3,10 @@
 	import carouselIndex from '../../../stores/carousel';
 	import CarouselIndicator from './CarouselIndicator.svelte';
 	import CarouselItem from './CarouselItem.svelte';
+	import type { CarouselImage } from '$lib/utils/interfaces';
 
-	let images: CarouselImage[] = [
-		{ src: 'carousel/test.jpg', title: 'First Title', text: 'First Text' },
-		{ src: 'carousel/test2.jpg', title: 'Second Title' },
-		{ src: 'carousel/test3.jpg', title: 'Third Title', text: 'This is a long third text' }
-	];
-	let interval: number;
+	export let images: CarouselImage[];
+	let interval: NodeJS.Timeout;
 	const timerCarouselSeconds = 10 * 1000;
 
 	const handleInterval = () => {
@@ -57,7 +54,7 @@
 		data-te-carousel-indicators
 	>
 		{#each images as image, index}
-			<CarouselIndicator {index} />
+			<CarouselIndicator {index} {handleInterval} />
 		{/each}
 	</div>
 

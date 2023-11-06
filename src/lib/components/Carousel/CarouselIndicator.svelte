@@ -2,8 +2,10 @@
 	import carouselIndex from '../../../stores/carousel';
 
 	export let index: number;
+	export let handleInterval: () => void;
 
 	const onClick = () => {
+		handleInterval();
 		carouselIndex.set(index);
 	};
 </script>

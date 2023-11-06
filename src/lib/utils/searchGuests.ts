@@ -12,7 +12,9 @@ export interface Guest {
 
 
 export function searchGuest(name: string, surname: string) {
-    if (name === "" && surname === "")
+    name = name.trim();
+    surname = surname.trim();
+    if (name === '' && surname === '')
         return []
     const guestFound = (guests as GuestFile).guests.filter(guest => {
         const guestName = guest.name.toLowerCase().startsWith(name.toLowerCase())
