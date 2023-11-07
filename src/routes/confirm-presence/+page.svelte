@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { goto, invalidate, invalidateAll } from '$app/navigation';
 	import ModalConfirmPresence from '$lib/components/ModalConfirmPresence.svelte';
-	import { searchGuest, type Guest } from '$lib/utils/searchGuests';
 	import {
 		modalStore,
 		type ModalSettings,
@@ -8,30 +8,34 @@
 		type ToastSettings
 	} from '@skeletonlabs/skeleton';
 	import { toastStore } from '@skeletonlabs/skeleton';
+	import type { PageData } from './$types';
+	import { searchGuest, type Guest } from '$lib/utils/searchGuests';
 
+	export let data: PageData;
+
+	let guests: Guest[] = [];
 	let name = '';
 	let surname = '';
-	let guests: Guest[] = [];
 	const t: ToastSettings = {
 		message: 'Nessun invitato trovato con questo nome e/o cognome',
 		background: 'variant-filled-error',
 		timeout: 3000
 	};
 
-	const onClick = () => {
-		guests = searchGuest(name, surname);
+	const onClick = async () => {
+		guests = searchGuest(data.guests, name, surname);
 		if (guests.length == 0 && (name !== '' || surname !== '')) {
 			toastStore.clear();
 			toastStore.trigger(t);
 		}
 	};
 
-	const openModal = (guestName: string, guestSurname: string) => {
+	const openModal = (guest: Guest) => {
 		const modalComponent: ModalComponent = {
 			// Pass a reference to your custom component
 			ref: ModalConfirmPresence,
 			// Add the component properties as key/value pairs
-			props: { name: guestName, surname: guestSurname },
+			props: { guest },
 			// Provide a template literal for the default component slot
 			slot: '<p>Skeleton</p>'
 		};
@@ -81,11 +85,11 @@
 
 <div class="mt-5">
 	<ul class="bg-white w-screen flex flex-col space-y-3">
-		{#each guests as guest}
+		{#each guests ?? [] as guest}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<li
 				class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto text-center border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900"
-				on:click={() => openModal(guest.name, guest.surname)}
+				on:click={() => openModal(guest)}
 			>
 				{guest.name}
 				{guest.surname}

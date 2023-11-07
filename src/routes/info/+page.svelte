@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Carousel from '$lib/components/Carousel/Carousel.svelte';
 	import Countdown from '$lib/components/Countdown.svelte';
-	import type { CarouselImage } from '$lib/utils/interfaces';
 
 	const images: CarouselImage[] = [
 		{ src: 'carousel/test.jpg', title: 'First Title', text: 'First Text' },
