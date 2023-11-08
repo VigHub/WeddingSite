@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto, invalidate, invalidateAll } from '$app/navigation';
 	import ModalConfirmPresence from '$lib/components/ModalConfirmPresence.svelte';
 	import {
 		modalStore,
@@ -9,14 +8,15 @@
 	} from '@skeletonlabs/skeleton';
 	import { toastStore } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
-	import { searchGuest, type Guest } from '$lib/utils/searchGuests';
+	import { searchGuest } from '$lib/utils/guests';
+	import type { GuestAttendance } from '$lib/db/db';
 
 	export let data: PageData;
 
-	let guests: Guest[] = [];
+	let guests: GuestAttendance[] = [];
 	let name = '';
 	let surname = '';
-	const t: ToastSettings = {
+	const toastGuestNotFound: ToastSettings = {
 		message: 'Nessun invitato trovato con questo nome e/o cognome',
 		background: 'variant-filled-error',
 		timeout: 3000
@@ -26,16 +26,22 @@
 		guests = searchGuest(data.guests, name, surname);
 		if (guests.length == 0 && (name !== '' || surname !== '')) {
 			toastStore.clear();
-			toastStore.trigger(t);
+			toastStore.trigger(toastGuestNotFound);
 		}
 	};
 
-	const openModal = (guest: Guest) => {
+	const resetParameters = () => {
+		name = '';
+		surname = '';
+		guests = [];
+	};
+
+	const openModal = (guest: GuestAttendance) => {
 		const modalComponent: ModalComponent = {
 			// Pass a reference to your custom component
 			ref: ModalConfirmPresence,
 			// Add the component properties as key/value pairs
-			props: { guest },
+			props: { guest, resetParameters },
 			// Provide a template literal for the default component slot
 			slot: '<p>Skeleton</p>'
 		};
@@ -43,7 +49,7 @@
 			type: 'component',
 			component: modalComponent,
 			// Returns the updated response value
-			response: (r: string) => console.log('response:', r)
+			response: () => resetParameters()
 		};
 
 		modalStore.trigger(modal);
@@ -88,11 +94,12 @@
 		{#each guests ?? [] as guest}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<li
-				class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto text-center border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900"
+				class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto text-center
+				border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900"
 				on:click={() => openModal(guest)}
 			>
-				{guest.name}
-				{guest.surname}
+				{guest.guest.name}
+				{guest.guest.surname}
 			</li>
 		{/each}
 	</ul>

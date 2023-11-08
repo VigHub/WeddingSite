@@ -1,6 +1,11 @@
 <script lang="ts">
-	import { insertGuestMessage, type GuestMessage } from '$lib/db/db';
-	import type { Guest } from '$lib/utils/searchGuests';
+	import {
+		insertGuestMessage,
+		type GuestMessage,
+		type GuestAttendance,
+		updateGuestAttendance
+	} from '$lib/db/db';
+	import { getAttendance } from '$lib/utils/guests';
 	import {
 		RadioGroup,
 		RadioItem,
@@ -11,7 +16,8 @@
 		AccordionItem
 	} from '@skeletonlabs/skeleton';
 
-	export let guest: Guest;
+	export let guest: GuestAttendance;
+	export let resetParameters: () => void;
 	let mail: string = '';
 	let message: string = '';
 
@@ -28,44 +34,37 @@
 	};
 
 	const onClick = async () => {
-		const guestMessage: GuestMessage = {
-			guest_id: guest.id,
-			message,
-			mail,
-			confirmation: guest.confirmation
-		};
-		let toast = toastError;
-		if (await insertGuestMessage(guestMessage)) {
-			toast = toastOK;
+		let toast = toastOK;
+		const attendanceUpserted = await updateGuestAttendance(guest.guest.id, guest.attendance);
+		if (!attendanceUpserted) {
+			toast = toastError;
+		} else if (message !== '') {
+			const guestMessage: GuestMessage = {
+				guest_id: guest.guest.id,
+				message,
+				mail,
+				attendance: guest.attendance
+			};
+			if (await !insertGuestMessage(guestMessage)) {
+				toast = toastError;
+			}
 		}
 		modalStore.clear();
+		resetParameters();
 		toastStore.trigger(toast);
-	};
-
-	const getConfirmation = (confirmation: number) => {
-		switch (confirmation) {
-			case 0:
-				return 'In attesa 🤔';
-			case 1:
-				return 'Ci sono 🥳';
-			case 2:
-				return 'Non ci sono 😣';
-			default:
-				return 'In attesa';
-		}
 	};
 </script>
 
 <div class="p-4 md:flex md:flex-col lg:w-1/2 w-full md:max-w-[500px] bg-white rounded-2xl">
 	<Accordion>
-		<p class="mb-4">{guest.name} {guest.surname}</p>
+		<p class="mb-4">{guest.guest.name} {guest.guest.surname}</p>
 		<RadioGroup background="bg-white">
-			{#each [0, 1, 2] as confirmation}
+			{#each [0, 1, 2] as attendanceItem}
 				<RadioItem
-					bind:group={guest.confirmation}
+					bind:group={guest.attendance}
 					padding="py-2 px-2"
 					name="justify"
-					value={confirmation}>{getConfirmation(confirmation)}</RadioItem
+					value={attendanceItem}>{getAttendance(attendanceItem)}</RadioItem
 				>
 			{/each}
 		</RadioGroup>
