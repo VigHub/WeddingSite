@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Carousel from '$lib/components/Carousel/Carousel.svelte';
 	import type { PageData } from './$types';
 	import moment from 'moment';
 	import 'moment/locale/it';
