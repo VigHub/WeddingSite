@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { getAttendance } from '$lib/utils/guests';
 	import type { PageData } from './$types';
-	import { formatDistanceToNow } from 'date-fns';
-	import { it } from 'date-fns/locale';
+	import { format } from 'date-fns';
 	export let data: PageData;
 	let page: number = 0;
 	const messagesPerPage = 5;
@@ -14,8 +13,8 @@
 	const onPrev = () => {
 		if (page > 0) page -= 1;
 	};
-	const getStringTimeAgo = (created: Date) => {
-		return formatDistanceToNow(new Date(created), { locale: it, addSuffix: true });
+	const getStringTime = (created: Date) => {
+		return format(new Date(created), 'dd/MM/yyyy HH:mm');
 	};
 </script>
 
@@ -28,12 +27,12 @@
 				</p>
 				<p>{guestMessage.message}</p>
 				<div class="flex">
-					<p class="text-sm text-gray-500 me-auto left-0">
+					<p class="truncate hover:text-clip w-1/2 md:w-3/5 text-sm text-gray-500 me-auto left-0">
 						{guestMessage.guest.name}
 						{guestMessage.guest.surname}
 					</p>
 					<p class="text-sm text-gray-500 ms-auto right-0">
-						{getStringTimeAgo(guestMessage.created)}
+						{getStringTime(guestMessage.created)}
 					</p>
 				</div>
 			</div>
