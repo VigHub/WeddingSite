@@ -46,6 +46,7 @@ jobs:
         env:
           PUBLIC_SUPABASE_PROJECT_URL: ${{ secrets.PUBLIC_SUPABASE_PROJECT_URL }}
           PUBLIC_SUPABASE_KEY: ${{ secrets.PUBLIC_SUPABASE_KEY }}
+          PUBLIC_HASH_RESERVED: ${{ secrets.PUBLIC_HASH_RESERVED }}
         uses: actions/configure-pages@v3
         with:
           static_site_generator: "sveltekit"
@@ -54,6 +55,7 @@ jobs:
         env:
           PUBLIC_SUPABASE_PROJECT_URL: ${{ secrets.PUBLIC_SUPABASE_PROJECT_URL }}
           PUBLIC_SUPABASE_KEY: ${{ secrets.PUBLIC_SUPABASE_KEY }}
+          PUBLIC_HASH_RESERVED: ${{ secrets.PUBLIC_HASH_RESERVED }}
         run: pnpm run build
           
       - name: Upload artifact
@@ -74,5 +76,6 @@ jobs:
         env:
           PUBLIC_SUPABASE_PROJECT_URL: ${{ secrets.PUBLIC_SUPABASE_PROJECT_URL }}
           PUBLIC_SUPABASE_KEY: ${{ secrets.PUBLIC_SUPABASE_KEY }}
+          PUBLIC_HASH_RESERVED: ${{ secrets.PUBLIC_HASH_RESERVED }}
         id: deployment
         uses: actions/deploy-pages@v2
