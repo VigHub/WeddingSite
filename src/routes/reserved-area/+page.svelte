@@ -1,7 +1,15 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { PUBLIC_HASH_RESERVED } from '$env/static/public';
+	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 
 	let password = '';
+	const toastPasswordWrong: ToastSettings = {
+		message: 'Password errata, non so se riesci ad indovinarla... 😏',
+		background: 'variant-filled-error',
+		timeout: 3000
+	};
 
 	function sha512(str: string) {
 		return crypto.subtle.digest('SHA-512', new TextEncoder().encode(str)).then((buf) => {
@@ -14,17 +22,18 @@
 	const onClick = async () => {
 		const hashed = await sha512(password);
 		if (hashed === PUBLIC_HASH_RESERVED) {
-			console.log('PASSED');
+			goto(`${base}/guest-messages`);
 		} else {
-			console.log('NOT PASSED');
+			toastStore.trigger(toastPasswordWrong);
+			password = '';
 		}
 	};
 </script>
 
 <div class="container h-[600px] mx-auto my-auto flex justify-center items-center align-middle">
 	<form class="w-full md:w-1/4 space-y-2">
-		<label for="password" class="text-lg"
-			>Password dell'area riservata: <br /> solo per gli sposi! 🤵🏻‍♂️👰🏻‍♀️</label
+		<label for="password" class="text-base"
+			>Inserisci la password dell'area riservata: <br /> solo per gli sposi! 🤵🏻‍♂️👰🏻‍♀️</label
 		>
 		<input
 			id="password"
