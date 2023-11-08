@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { getAttendance } from '$lib/utils/guests';
 	import type { PageData } from './$types';
-	import moment from 'moment';
-	import 'moment/locale/it';
+	import { formatDistanceToNow } from 'date-fns';
+	import { it } from 'date-fns/locale';
 	export let data: PageData;
 	let page: number = 0;
 	const messagesPerPage = 5;
@@ -14,17 +15,17 @@
 		if (page > 0) page -= 1;
 	};
 	const getStringTimeAgo = (created: Date) => {
-		const createdMoment = moment(created);
-		return createdMoment.fromNow();
+		return formatDistanceToNow(new Date(created), { locale: it, addSuffix: true });
 	};
 </script>
 
-<div class="flex flex-col">
-	<div class="min-h-[500px] space-y-2">
+<div class="relative min-h-[680px]">
+	<div class="flex flex-col space-y-2">
 		{#each guestMessages as guestMessage}
-			<div
-				class="flex flex-col p-5 border border-black rounded-xl hover:bg-gray-100 hover:border-2"
-			>
+			<div class="flex flex-col p-5 pt-3 border border-black rounded-xl hover:bg-slate-100">
+				<p class="text-sm text-gray-500 ms-auto mt-auto right-0 top-0 pb-1">
+					{getAttendance(guestMessage.attendance)}
+				</p>
 				<p>{guestMessage.message}</p>
 				<div class="flex">
 					<p class="text-sm text-gray-500 me-auto left-0">
@@ -38,7 +39,7 @@
 			</div>
 		{/each}
 	</div>
-	<div class="flex">
+	<div class="flex absolute inset-x-0 bottom-0">
 		<div class="flex mx-auto">
 			<!-- Previous Button -->
 			<button

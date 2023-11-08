@@ -45,6 +45,6 @@
 		"@fontsource-variable/montserrat": "^5.0.6",
 		"@fontsource/amatic-sc": "^5.0.5",
 		"@supabase/supabase-js": "^2.38.4",
-		"moment": "^2.29.4"
+		"date-fns": "^2.30.0"
 	}
 }

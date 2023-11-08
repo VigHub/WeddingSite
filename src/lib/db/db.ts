@@ -8,23 +8,29 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 
 const GuestTable = 'Guest';
 const GuestMessageTable = 'GuestMessage';
+const GuestAttendanceTable = 'GuestAttendance';
 
 export interface Guest {
 	id: number;
 	name: string;
 	surname: string;
-	confirmation: number;
+}
+
+export interface GuestAttendance {
+	attendance: number;
+	guest: Guest;
 }
 
 export interface GuestMessage {
 	guest_id: number;
 	message: string;
 	mail: string;
-	confirmation?: number;
+	attendance: number;
 }
 
 interface GuestMessageWithGuest {
 	message: string;
+	attendance: number;
 	created: Date;
 	guest: Guest;
 }
@@ -40,8 +46,11 @@ export const getGuestsbyNameSurname = async (name: string, surname: string) => {
 };
 
 export const getAllGuests = async () => {
-	const { data } = await supabase.from(GuestTable).select();
-	const guests: Guest[] = data ?? [];
+	const { data } = await supabase
+		.from(GuestAttendanceTable)
+		.select('attendance, guest:Guest (id, name, surname)')
+		.returns<GuestAttendance[]>();
+	const guests = data ?? [];
 	return guests;
 };
 
@@ -51,8 +60,20 @@ export const insertGuestMessage = async (guestMessage: GuestMessage) => {
 };
 
 export const getAllGuestMessages = async () => {
-	const { data } = await supabase.from(GuestMessageTable)
-		.select('message, created:created_at, guest:Guest (id, name, surname)').returns<GuestMessageWithGuest[]>();
+	const { data } = await supabase
+		.from(GuestMessageTable)
+		.select('message, attendance, created:created_at, guest:Guest (id, name, surname)')
+		.returns<GuestMessageWithGuest[]>();
 	const guestMessages = data ?? [];
 	return guestMessages;
-}
+};
+
+export const updateGuestAttendance = async (guest_id: number, attendance: number) => {
+	const guestAttendance = { guest_id, attendance };
+	const { status } = await supabase
+		.from(GuestAttendanceTable)
+		.update(guestAttendance)
+		.eq('guest_id', guest_id);
+	console.log(status);
+	return status === 201 || status === 204;
+};

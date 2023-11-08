@@ -29,6 +29,11 @@
 			text: 'INFORMAZIONI',
 			url: `${base}/info`,
 			color: $page.url.pathname === `${base}/info` ? activeClass : ''
+		},
+		{
+			text: 'AREA RISERVATA',
+			url: `${base}/reserved-area`,
+			color: $page.url.pathname === `${base}/reserved-area` ? activeClass : ''
 		}
 	];
 </script>
