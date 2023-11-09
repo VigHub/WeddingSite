@@ -4,16 +4,17 @@
 		modalStore,
 		type ModalSettings,
 		type ModalComponent,
-		type ToastSettings
+		type ToastSettings,
+		ProgressRadial
 	} from '@skeletonlabs/skeleton';
 	import { toastStore } from '@skeletonlabs/skeleton';
-	import type { PageData } from './$types';
-	import { searchGuest } from '$lib/utils/guests';
-	import type { GuestAttendance } from '$lib/db/db';
+	import { getGuestsbyNameSurname, type GuestAttendance } from '$lib/db/db';
+	import canAccessReservedArea from '../../stores/reserved';
 
-	export let data: PageData;
+	canAccessReservedArea.set(false);
 
 	let guests: GuestAttendance[] = [];
+	let loadingGuest = false;
 	let name = '';
 	let surname = '';
 	const toastGuestNotFound: ToastSettings = {
@@ -23,7 +24,9 @@
 	};
 
 	const onClick = async () => {
-		guests = searchGuest(data.guests, name, surname);
+		loadingGuest = true;
+		guests = await getGuestsbyNameSurname(name, surname);
+		loadingGuest = false;
 		if (guests.length == 0 && (name !== '' || surname !== '')) {
 			toastStore.clear();
 			toastStore.trigger(toastGuestNotFound);
@@ -90,17 +93,21 @@
 <button type="button" class="btn variant-filled" on:click={onClick}>Cerca</button>
 
 <div class="mt-5">
-	<ul class="bg-white w-screen flex flex-col space-y-3">
-		{#each guests ?? [] as guest}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<li
-				class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto text-center
+	{#if loadingGuest}
+		<ProgressRadial width={'w-12 md:w-20'} />
+	{:else}
+		<ul class="bg-white w-screen flex flex-col space-y-3">
+			{#each guests ?? [] as guest}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<li
+					class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto text-center
 				border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900"
-				on:click={() => openModal(guest)}
-			>
-				{guest.guest.name}
-				{guest.guest.surname}
-			</li>
-		{/each}
-	</ul>
+					on:click={() => openModal(guest)}
+				>
+					{guest.guest.name}
+					{guest.guest.surname}
+				</li>
+			{/each}
+		</ul>
+	{/if}
 </div>

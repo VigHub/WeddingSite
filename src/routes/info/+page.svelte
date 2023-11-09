@@ -1,12 +1,25 @@
 <script lang="ts">
 	import Carousel from '$lib/components/Carousel/Carousel.svelte';
 	import Countdown from '$lib/components/Countdown.svelte';
+	import type { CarouselImage } from '$lib/utils/interfaces';
+	import canAccessReservedArea from '../../stores/reserved';
 
 	const images: CarouselImage[] = [
-		{ src: 'carousel/test.jpg', title: 'First Title', text: 'First Text' },
-		{ src: 'carousel/test2.jpg', title: 'Second Title' },
-		{ src: 'carousel/test3.jpg', title: 'Third Title', text: 'This is a long third text' }
+		{ src: 'japan/tokyo-tower.jpg', title: 'Tokyo Tower', text: '東京タワー' },
+		{ src: 'japan/tokyo-streets.jpg', title: 'Strade di Tokyo', text: '東京の街並み' },
+		{ src: 'japan/mount-fuji.jpg', title: 'Mount Fuji', text: '富士山' },
+		{
+			src: 'japan/kyoto-torii.jpg',
+			title: 'Santuari a Kyoto',
+			text: '伏見稲荷大社'
+		},
+		{
+			src: 'japan/kyoto-kinkakuji.jpg',
+			title: "Pagoda d'oro a Kyoto",
+			text: '鹿苑寺'
+		}
 	];
+	canAccessReservedArea.set(false);
 </script>
 
 <h1 class="text-center text-4xl mb-8">Informazioni</h1>

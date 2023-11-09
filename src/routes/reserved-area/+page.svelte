@@ -3,6 +3,7 @@
 	import { base } from '$app/paths';
 	import { PUBLIC_HASH_RESERVED } from '$env/static/public';
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+	import canAccessReservedArea from '../../stores/reserved';
 
 	let password = '';
 	const toastPasswordWrong: ToastSettings = {
@@ -22,6 +23,7 @@
 	const onClick = async () => {
 		const hashed = await sha512(password);
 		if (hashed === PUBLIC_HASH_RESERVED) {
+			canAccessReservedArea.set(true);
 			goto(`${base}/guest-messages`);
 		} else {
 			toastStore.trigger(toastPasswordWrong);

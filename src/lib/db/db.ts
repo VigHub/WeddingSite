@@ -36,12 +36,14 @@ interface GuestMessageWithGuest {
 }
 
 export const getGuestsbyNameSurname = async (name: string, surname: string) => {
+	if (name === '' && surname === '') return [];
 	const { data } = await supabase
-		.from(GuestTable)
-		.select()
-		.ilike('name', `${name}%`)
-		.ilike('surname', `${surname}%`);
-	const guests: Guest[] = data ?? [];
+		.from(GuestAttendanceTable)
+		.select('attendance, guest:Guest!inner(id, name, surname)')
+		.ilike('guest.name', `${name}%`)
+		.ilike('guest.surname', `${surname}%`)
+		.returns<GuestAttendance[]>();
+	const guests = data ?? [];
 	return guests;
 };
 
@@ -63,6 +65,7 @@ export const getAllGuestMessages = async () => {
 	const { data } = await supabase
 		.from(GuestMessageTable)
 		.select('message, attendance, created:created_at, guest:Guest (id, name, surname)')
+		.order('created_at', { ascending: false })
 		.returns<GuestMessageWithGuest[]>();
 	const guestMessages = data ?? [];
 	return guestMessages;

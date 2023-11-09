@@ -33,14 +33,14 @@
 		{
 			text: 'AREA RISERVATA',
 			url: `${base}/reserved-area`,
-			color: $page.url.pathname === `${base}/reserved-area` ? activeClass : ''
+			itemActive: $page.url.pathname === `${base}/reserved-area` ? activeClass : ''
 		}
 	] as itemURL[];
 </script>
 
 <nav class="flex fixed w-screen">
 	<!-- Left Navigation -->
-	<div class="flex-1 flex justify-center mr-auto">
+	<div class="flex-1 flex justify-center mx-auto">
 		{#each items as item (item.url)}
 			<a
 				class={`${item.itemActive} mx-6 hover:underline hover:underline-offset-4 hover:decoration-1`}

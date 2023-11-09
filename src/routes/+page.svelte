@@ -1,3 +1,9 @@
+<script lang="ts">
+	import canAccessReservedArea from '../stores/reserved';
+
+	canAccessReservedArea.set(false);
+</script>
+
 <div data-aos="fade-up">
 	<img src="churros.jpg" alt="churros" width="200" height="100" />
 </div>
