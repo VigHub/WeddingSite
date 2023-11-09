@@ -65,6 +65,7 @@ export const getAllGuestMessages = async () => {
 	const { data } = await supabase
 		.from(GuestMessageTable)
 		.select('message, attendance, created:created_at, guest:Guest (id, name, surname)')
+		.order('created_at', { ascending: false })
 		.returns<GuestMessageWithGuest[]>();
 	const guestMessages = data ?? [];
 	return guestMessages;
