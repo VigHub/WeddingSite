@@ -20,11 +20,16 @@
 			alt="..."
 		/>
 		{#if image.title || image.text}
-			<div class="absolute inset-x-[15%] bottom-5 py-5 text-center text-white md:block">
-				{#if image.title}
-					<h5 class="text-xl">{image.title}</h5>
-				{/if}
-				<p>{image.text ?? ''}</p>
+			<div
+				class="absolute inset-x-[10%] md:inset-x-[40%]
+			 bottom-5 pb-5 pt-2 text-center text-white md:block"
+			>
+				<div class="bg-gray-700 bg-opacity-50">
+					{#if image.title}
+						<h5 class="text-xl">{image.title}</h5>
+					{/if}
+					<p>{image.text ?? ''}</p>
+				</div>
 			</div>
 		{/if}
 	</div>
