@@ -1,12 +1,14 @@
 <script lang="ts">
 	import Carousel from '$lib/components/Carousel/Carousel.svelte';
 	import Countdown from '$lib/components/Countdown.svelte';
+	import canAccessReservedArea from '../../stores/reserved';
 
 	const images: CarouselImage[] = [
 		{ src: 'carousel/test.jpg', title: 'First Title', text: 'First Text' },
 		{ src: 'carousel/test2.jpg', title: 'Second Title' },
 		{ src: 'carousel/test3.jpg', title: 'Third Title', text: 'This is a long third text' }
 	];
+	canAccessReservedArea.set(false);
 </script>
 
 <h1 class="text-center text-4xl mb-8">Informazioni</h1>
