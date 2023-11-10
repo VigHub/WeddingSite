@@ -1,7 +1,9 @@
-import { getAllGuestMessages } from '$lib/db/db';
+import { getAllGuestMessages, getAllGuests, getSizeGuestMessages } from '$lib/db/db';
 import type { PageServerLoad } from './$types';
 
-export const load = (async () => {
-    const guestMessages = await getAllGuestMessages();
-    return { guestMessages };
-}) satisfies PageServerLoad;
+export const load: PageServerLoad = async () => {
+	const guestMessages = getAllGuestMessages();
+	const guests = getAllGuests();
+	const size = await getSizeGuestMessages();
+	return { data: { guestMessages, guests }, size };
+};

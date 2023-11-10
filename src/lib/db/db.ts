@@ -27,7 +27,7 @@ export interface GuestMessage {
 	attendance: number;
 }
 
-interface GuestMessageWithGuest {
+export interface GuestMessageWithGuest {
 	message: string;
 	attendance: number;
 	created: Date;
@@ -68,6 +68,13 @@ export const getAllGuestMessages = async () => {
 		.returns<GuestMessageWithGuest[]>();
 	const guestMessages = data ?? [];
 	return guestMessages;
+};
+
+export const getSizeGuestMessages = async () => {
+	const { status, count } = await supabase
+		.from(GuestMessageTable)
+		.select('*', { count: 'exact', head: true });
+	return status === 200 ? count : 0;
 };
 
 export const updateGuestAttendance = async (guest_id: number, attendance: number) => {
