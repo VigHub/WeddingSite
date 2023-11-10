@@ -18,7 +18,6 @@
 
 	export let guest: GuestAttendance;
 	export let resetParameters: () => void;
-	let mail: string = '';
 	let message: string = '';
 
 	const toastOK: ToastSettings = {
@@ -42,7 +41,6 @@
 			const guestMessage: GuestMessage = {
 				guest_id: guest.guest.id,
 				message,
-				mail,
 				attendance: guest.attendance
 			};
 			if (await !insertGuestMessage(guestMessage)) {
@@ -72,13 +70,7 @@
 			<svelte:fragment slot="summary">Vuoi mandarci anche un messaggio?</svelte:fragment>
 			<svelte:fragment slot="content"
 				><div class="container h-full mx-auto flex justify-center items-center">
-					<form class="w-full space-y-2">
-						<input
-							id="mail"
-							class="w-full p-2 block rounded-lg focus:ring-blue-500 focus:border-blue-500"
-							placeholder="mail@esempio.com"
-							bind:value={mail}
-						/>
+					<form class="w-full">
 						<textarea
 							id="message"
 							rows="4"
