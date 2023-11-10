@@ -24,7 +24,6 @@ export interface GuestAttendance {
 export interface GuestMessage {
 	guest_id: number;
 	message: string;
-	mail: string;
 	attendance: number;
 }
 
