@@ -5,8 +5,8 @@
 	canAccessReservedArea.set(false);
 </script>
 
-<h1>Lista nozze</h1>
+<h1 class="text-center text-4xl">Lista Nozze</h1>
 
-<div class="pt-10">
+<div class="pt-10 text-center">
 	<Iban />
 </div>

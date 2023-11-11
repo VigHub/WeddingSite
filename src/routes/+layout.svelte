@@ -67,6 +67,12 @@
 	</div>
 	<!-- Footer -->
 	<svelte:fragment slot="pageFooter">
+		<img
+			alt="flowers"
+			class="flex flex-col items-center justify-center
+		mx-auto max-w-[200px] md:max-w-[300px]"
+			src="flow.png"
+		/>
 		<hr class="flex flex-col items-center justify-center mx-auto max-w-[100px] mb-5" />
 		<div class="text-right text-xs pe-4 pb-4">
 			<div class="flex justify-end">

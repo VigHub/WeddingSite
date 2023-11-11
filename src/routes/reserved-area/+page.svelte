@@ -32,7 +32,11 @@
 	};
 </script>
 
-<div class="container h-[600px] mx-auto my-auto flex justify-center items-center align-middle">
+<div class="text-center text-4xl">
+	<h1>Area Riservata <span class="invisible md:visible">🔐</span></h1>
+	<h1 class="visible md:invisible -mt-9">🔐</h1>
+</div>
+<div class="container h-[450px] mx-auto my-auto flex justify-center items-center align-middle">
 	<form class="w-full md:w-1/4 space-y-2">
 		<label for="password" class="text-base"
 			>Inserisci la password dell'area riservata: <br /> solo per gli sposi! 🤵🏻‍♂️👰🏻‍♀️</label

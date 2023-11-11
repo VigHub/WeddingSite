@@ -9,7 +9,7 @@
 	export let guestMessage: GuestMessageWithGuest;
 	export let inModal = false;
 	const messageClass = inModal
-		? 'max-h-52 min-h-[200px] overflow-auto my-3'
+		? 'max-h-52 min-h-[200px] overflow-auto my-3 max-w-[800px] md:px-3 '
 		: 'max-h-12 overflow-hidden';
 </script>
 

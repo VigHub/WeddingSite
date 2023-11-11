@@ -50,7 +50,7 @@
 	};
 </script>
 
-<div class="relative min-h-[420px]">
+<div class="relative min-h-[380px]">
 	<Table {source} regionBody="bg-gray-50" regionHeadCell="bg-surface-200" />
 	<div class="absolute bottom-0 right-0">
 		<Paginator
