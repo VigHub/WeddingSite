@@ -1,7 +1,7 @@
 <script lang="ts">
 	import canAccessReservedArea from '../../stores/reserved';
 	import type { PageData } from './$types';
-	import GuestMessagesList from '$lib/components/GuestMessagesList.svelte';
+	import GuestMessagesList from '$lib/components/GuestMessage/GuestMessagesList.svelte';
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import GuestsPresence from '$lib/components/GuestsPresence.svelte';
 	export let data: PageData;
