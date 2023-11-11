@@ -8,17 +8,10 @@
 		Table,
 		tableMapperValues
 	} from '@skeletonlabs/skeleton';
+	import GuestsTable from './GuestsTable.svelte';
 
 	export let guestsPromise: Promise<GuestAttendance[]>;
 	let attendance = 0;
-
-	const getGuestsGroupByAttendance = (guests: GuestAttendance[], attend: number) => {
-		return guests
-			.filter((guest) => guest.attendance === attend)
-			.map((guest) => {
-				return { name: guest.guest.name, surname: guest.guest.surname };
-			});
-	};
 </script>
 
 {#await guestsPromise}
@@ -37,11 +30,6 @@
 		{/each}
 	</ListBox>
 	<div class="mt-5">
-		<Table
-			source={{
-				head: ['Nome', 'Cognome'],
-				body: tableMapperValues(getGuestsGroupByAttendance(guests, attendance), ['name', 'surname'])
-			}}
-		/>
+		<GuestsTable {guests} {attendance} />
 	</div>
 {/await}
