@@ -4,8 +4,7 @@
 		Paginator,
 		Table,
 		tableMapperValues,
-		type PaginationSettings,
-		type TableSource
+		type PaginationSettings
 	} from '@skeletonlabs/skeleton';
 
 	export let guests: GuestAttendance[];
