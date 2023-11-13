@@ -12,8 +12,8 @@
 		toastStore,
 		type ToastSettings,
 		modalStore,
-		Accordion,
-		AccordionItem
+		Stepper,
+		Step
 	} from '@skeletonlabs/skeleton';
 
 	export let guest: GuestAttendance;
@@ -32,7 +32,7 @@
 		timeout: 3000
 	};
 
-	const onClick = async () => {
+	const sendAttendanceAndMessage = async () => {
 		let toast = toastOK;
 		const attendanceUpserted = await updateGuestAttendance(guest.guest.id, guest.attendance);
 		if (!attendanceUpserted) {
@@ -43,7 +43,8 @@
 				message,
 				attendance: guest.attendance
 			};
-			if (await !insertGuestMessage(guestMessage)) {
+			const inserted = await insertGuestMessage(guestMessage);
+			if (!inserted) {
 				toast = toastError;
 			}
 		}
@@ -54,36 +55,65 @@
 </script>
 
 <div class="p-4 md:flex md:flex-col lg:w-1/2 w-full md:max-w-[500px] bg-white rounded-2xl">
-	<Accordion>
-		<p class="mb-4">{guest.guest.name} {guest.guest.surname}</p>
-		<RadioGroup background="bg-white">
-			{#each [0, 1, 2] as attendanceItem}
-				<RadioItem
-					bind:group={guest.attendance}
-					padding="py-2 px-2"
-					name="justify"
-					value={attendanceItem}>{getAttendance(attendanceItem)}</RadioItem
-				>
-			{/each}
-		</RadioGroup>
-		<AccordionItem>
-			<svelte:fragment slot="summary">Vuoi mandarci anche un messaggio?</svelte:fragment>
-			<svelte:fragment slot="content"
-				><div class="container h-full mx-auto flex justify-center items-center">
-					<form class="w-full">
-						<textarea
-							id="message"
-							rows="4"
-							class="block p-2.5 w-full rounded-lg focus:ring-blue-500 focus:border-blue-500"
-							placeholder="Scrivi qui il tuo messaggio"
-							bind:value={message}
-						/>
-					</form>
+	<Stepper
+		buttonBackLabel="← Indietro"
+		buttonNextLabel="Successivo →"
+		buttonCompleteLabel="Invia"
+		buttonComplete="variant-filled"
+		on:complete={sendAttendanceAndMessage}
+	>
+		<Step>
+			<svelte:fragment slot="header">Partecipazione</svelte:fragment>
+			<p class="font-semibold">{guest.guest.name} {guest.guest.surname}</p>
+			<RadioGroup background="bg-white">
+				{#each [0, 1, 2] as attendanceItem}
+					<RadioItem
+						bind:group={guest.attendance}
+						padding="py-2 px-2"
+						name="justify"
+						value={attendanceItem}>{getAttendance(attendanceItem)}</RadioItem
+					>
+				{/each}
+			</RadioGroup>
+		</Step>
+		<Step>
+			<svelte:fragment slot="header">Vuoi mandarci anche un messaggio?</svelte:fragment>
+			<div class="container h-full mx-auto flex justify-center items-center">
+				<form class="w-full">
+					<textarea
+						id="message1"
+						rows="4"
+						class="block p-2.5 w-full rounded-lg focus:ring-blue-500 focus:border-blue-500"
+						placeholder="Scrivi qui il tuo messaggio (opzionale)"
+						bind:value={message}
+					/>
+				</form>
+			</div>
+		</Step>
+		<Step>
+			<svelte:fragment slot="header">Conferma</svelte:fragment>
+			<div class="h-full">
+				<div class="flex items-center">
+					<p class="font-semibold w-full">
+						{guest.guest.name}
+						{guest.guest.surname}:
+						<span class="font-medium ms-5">
+							{getAttendance(guest.attendance)}
+						</span>
+					</p>
 				</div>
-			</svelte:fragment>
-		</AccordionItem>
-		<button type="submit" class="btn variant-filled align-baseline float-right" on:click={onClick}
-			>Invia</button
-		>
-	</Accordion>
+				{#if message !== ''}
+					<label class="font-semibold" for="message2">Messaggio:</label>
+					<textarea
+						id="message2"
+						rows="4"
+						class="block p-2.5 w-full rounded-lg focus:ring-blue-500 focus:border-blue-500"
+						placeholder="Scrivi qui il tuo messaggio (opzionale)"
+						bind:value={message}
+						disabled
+					/>
+				{/if}
+			</div>
+		</Step>
+	</Stepper>
 </div>
