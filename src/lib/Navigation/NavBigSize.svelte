@@ -33,7 +33,9 @@
 		{
 			text: 'AREA RISERVATA',
 			url: `${base}/reserved-area`,
-			itemActive: $page.url.pathname === `${base}/reserved-area` ? activeClass : ''
+			itemActive: [`${base}/reserved-area`, `${base}/guest-messages`].includes($page.url.pathname)
+				? activeClass
+				: ''
 		}
 	] as itemURL[];
 </script>

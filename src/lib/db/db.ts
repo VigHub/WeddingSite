@@ -83,6 +83,5 @@ export const updateGuestAttendance = async (guest_id: number, attendance: number
 		.from(GuestAttendanceTable)
 		.update(guestAttendance)
 		.eq('guest_id', guest_id);
-	console.log(status);
 	return status === 201 || status === 204;
 };

@@ -33,7 +33,9 @@
 		{
 			text: 'AREA RISERVATA',
 			url: `${base}/reserved-area`,
-			color: $page.url.pathname === `${base}/reserved-area` ? activeClass : ''
+			color: [`${base}/reserved-area`, `${base}/guest-messages`].includes($page.url.pathname)
+				? activeClass
+				: ''
 		}
 	];
 </script>
