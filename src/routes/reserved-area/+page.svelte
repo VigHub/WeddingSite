@@ -34,7 +34,7 @@
 
 <div class="text-center text-4xl">
 	<h1>Area Riservata <span class="invisible md:visible">🔐</span></h1>
-	<h1 class="visible md:invisible -mt-4">🔐</h1>
+	<h1 class="visible md:invisible">🔐</h1>
 </div>
 <div class="container h-[450px] mx-auto my-auto flex justify-center items-center align-middle">
 	<form class="w-full md:w-1/4 space-y-2">

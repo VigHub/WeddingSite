@@ -18,6 +18,7 @@
 	}
 
 	import { Modal } from '@skeletonlabs/skeleton';
+	import { base } from '$app/paths';
 </script>
 
 <svelte:head>
@@ -38,9 +39,8 @@
 		<!-- App Bar -->
 		<AppBar background="bg-surface-100/20">
 			<svelte:fragment slot="lead">
-				<!-- <div> -->
 				<div class="flex items-center">
-					<button class="lg:hidden btn btn-sm mr-4" on:click={drawerOpen}>
+					<button class="md:hidden btn btn-sm mr-4" on:click={drawerOpen}>
 						<span>
 							<svg viewBox="0 0 100 80" class="fill-token w-4 h-4">
 								<rect width="100" height="20" />
@@ -49,14 +49,15 @@
 							</svg>
 						</span>
 					</button>
-					<strong class="text-xl uppercase"
-						>{screenSize > 768 ? 'Elisa e Gianluca' : 'E + G'}</strong
-					>
+					<div>
+						<a href="{base}/" class="text-xl uppercase"
+							>{screenSize > 768 ? 'Elisa e Gianluca' : 'E + G'}</a
+						>
+					</div>
 				</div>
 				{#if screenSize > 768}
 					<NavBigSize />
 				{/if}
-				<!-- </div> -->
 			</svelte:fragment>
 			<svelte:fragment slot="trail" />
 		</AppBar>
@@ -71,7 +72,7 @@
 			alt="flowers"
 			class="flex flex-col items-center justify-center
 		mx-auto max-w-[200px] md:max-w-[300px]"
-			src="flow.png"
+			src="{base}/flow.png"
 		/>
 		<hr class="flex flex-col items-center justify-center mx-auto max-w-[100px] mb-5" />
 		<div class="text-right text-xs pe-4 pb-4">
