@@ -3,9 +3,9 @@
 
 	export let title: string;
 	export let src: string;
-	export let mapClass: string;
-	export let classStr: string;
-	export let style: string;
+	export let mapClass: string = '';
+	export let classStr: string = '';
+	export let style: string = '';
 	let loaded = false;
 </script>
 
