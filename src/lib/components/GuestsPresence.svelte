@@ -13,7 +13,7 @@
 		<ProgressRadial width={'w-12 md:w-20'} />
 	</div>
 {:then guests}
-	<RadioGroup>
+	<RadioGroup background="bg-white">
 		{#each [0, 1, 2] as attendanceItem}
 			<RadioItem
 				bind:group={attendance}
