@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { _ } from 'svelte-i18n';
 	import { base } from '$app/paths';
 	import { drawerStore } from '@skeletonlabs/skeleton';
 
@@ -11,27 +12,27 @@
 
 	$: items = [
 		{
-			text: 'BENVENUTI!',
+			text: $_('navbar.welcome'),
 			url: `${base}/`,
 			color: $page.url.pathname === `${base}/` ? activeClass : ''
 		},
 		{
-			text: 'LISTA NOZZE',
+			text: $_('navbar.gift-list'),
 			url: `${base}/gift-list`,
 			color: $page.url.pathname === `${base}/gift-list` ? activeClass : ''
 		},
 		{
-			text: 'CONFERMA LA TUA PRESENZA',
+			text: $_('navbar.confirm-presence'),
 			url: `${base}/confirm-presence`,
 			color: $page.url.pathname === `${base}/confirm-presence` ? activeClass : ''
 		},
 		{
-			text: 'INFORMAZIONI',
+			text: $_('navbar.info'),
 			url: `${base}/info`,
 			color: $page.url.pathname === `${base}/info` ? activeClass : ''
 		},
 		{
-			text: 'AREA RISERVATA',
+			text: $_('navbar.reserved-area'),
 			url: `${base}/reserved-area`,
 			color: [`${base}/reserved-area`, `${base}/guest-messages`].includes($page.url.pathname)
 				? activeClass

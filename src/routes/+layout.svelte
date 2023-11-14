@@ -8,6 +8,7 @@
 	import '@fontsource-variable/montserrat';
 	import '@fontsource-variable/manrope';
 	import { AppShell, AppBar, Toast } from '@skeletonlabs/skeleton';
+	import { _ } from 'svelte-i18n';
 	let screenSize = 0;
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/Navigation/Navigation.svelte';
@@ -19,6 +20,7 @@
 
 	import { Modal } from '@skeletonlabs/skeleton';
 	import { base } from '$app/paths';
+	import LanguageSelector from '$lib/components/LanguageSelector.svelte';
 </script>
 
 <svelte:head>
@@ -37,29 +39,37 @@
 <AppShell slotSidebarLeft="w-0 lg:w-64">
 	<svelte:fragment slot="header">
 		<!-- App Bar -->
-		<AppBar background="bg-surface-100/20">
+		<AppBar background="bg-surface-100/20" slotDefault="mx-auto" slotTrail="place-content-end">
 			<svelte:fragment slot="lead">
-				<div class="flex items-center">
-					<button class="md:hidden btn btn-sm mr-4" on:click={drawerOpen}>
-						<span>
-							<svg viewBox="0 0 100 80" class="fill-token w-4 h-4">
-								<rect width="100" height="20" />
-								<rect y="30" width="100" height="20" />
-								<rect y="60" width="100" height="20" />
-							</svg>
-						</span>
-					</button>
-					<div>
-						<a href="{base}/" class="text-xl uppercase"
-							>{screenSize > 768 ? 'Elisa e Gianluca' : 'E + G'}</a
-						>
+				{#if screenSize <= 768}
+					<div class="flex items-center">
+						<button class="md:hidden btn btn-sm mr-4" on:click={drawerOpen}>
+							<span>
+								<svg viewBox="0 0 100 80" class="fill-token w-4 h-4">
+									<rect width="100" height="20" />
+									<rect y="30" width="100" height="20" />
+									<rect y="60" width="100" height="20" />
+								</svg>
+							</span>
+						</button>
+						<div>
+							<a href="{base}/" class="text-xl uppercase">E + G</a>
+						</div>
 					</div>
-				</div>
-				{#if screenSize > 768}
-					<NavBigSize />
+				{:else}
+					<div class="flex items-center">
+						<a href="{base}/" class="text-xl uppercase w-[200px]">ELISA & GIANLUCA</a>
+					</div>
 				{/if}
 			</svelte:fragment>
-			<svelte:fragment slot="trail" />
+			{#if screenSize > 768}
+				<div class="">
+					<NavBigSize />
+				</div>
+			{/if}
+			<svelte:fragment slot="trail">
+				<div class="md:w-[200px] text-right"><LanguageSelector /></div>
+			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
 	<!-- Page Route Content -->
@@ -78,7 +88,7 @@
 		<div class="text-right text-xs pe-4 pb-4">
 			<div class="flex justify-end">
 				<span class="inline-flex items-baseline">
-					Fatto con il
+					{$_('footer.start')}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
@@ -90,7 +100,7 @@
 							d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z"
 						/>
 					</svg>
-					da Elisa, Gianluca e&nbsp;<a class="text-primary-700" href="https://kit.svelte.dev/"
+					{$_('footer.end')}&nbsp;<a class="text-primary-700" href="https://kit.svelte.dev/"
 						>SvelteKit</a
 					>.
 				</span>

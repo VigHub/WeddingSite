@@ -68,29 +68,33 @@
 		potete lasciare un messaggio. È opzionale, ma ci farebbe tanto piacere leggerlo!). :)
 	</p>
 </div>
-<div class="mb-4 mt-4 md:flex md:space-x-4 lg:w-1/2 w-full">
-	<div class="md:w-1/2">
-		<!-- <label for="name" class="block text-gray-700 font-semibold">Nome:</label> -->
-		<input
-			type="text"
-			id="name"
-			class="w-full p-2 mt-5 border rounded-md"
-			placeholder="Nome"
-			bind:value={name}
-		/>
+<form class="lg:w-1/2 w-full">
+	<div class="mb-4 mt-4 md:flex md:space-x-4 w-full">
+		<div class="md:w-1/2">
+			<!-- <label for="name" class="block text-gray-700 font-semibold">Nome:</label> -->
+			<input
+				type="text"
+				id="name"
+				class="w-full p-2 mt-5 border rounded-md"
+				placeholder="Nome"
+				bind:value={name}
+			/>
+		</div>
+		<div class="md:w-1/2">
+			<!-- <label for="surname" class="block text-gray-700 font-semibold">Cognome:</label> -->
+			<input
+				type="text"
+				id="surname"
+				class="w-full p-2 mt-5 border rounded-md"
+				placeholder="Cognome"
+				bind:value={surname}
+			/>
+		</div>
 	</div>
-	<div class="md:w-1/2">
-		<!-- <label for="surname" class="block text-gray-700 font-semibold">Cognome:</label> -->
-		<input
-			type="text"
-			id="surname"
-			class="w-full p-2 mt-5 border rounded-md"
-			placeholder="Cognome"
-			bind:value={surname}
-		/>
+	<div class="flex justify-center">
+		<button type="submit" class="btn variant-filled" on:click={onClick}>Cerca</button>
 	</div>
-</div>
-<button type="button" class="btn variant-filled" on:click={onClick}>Cerca</button>
+</form>
 
 <div class="mt-5">
 	{#if loadingGuest}
@@ -101,7 +105,9 @@
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<li
 					class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto text-center
-				border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900"
+				border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900
+				hover:scale-110 transition duration-300 ease-in-out cursor-pointer
+				"
 					on:click={() => openModal(guest)}
 				>
 					{guest.guest.name}

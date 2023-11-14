@@ -1,38 +1,42 @@
 <script lang="ts">
 	import Carousel from '$lib/components/Carousel/Carousel.svelte';
 	import Countdown from '$lib/components/Countdown.svelte';
-	import type { CarouselImage } from '$lib/utils/interfaces';
 	import canAccessReservedArea from '../../stores/reserved';
 	import MapFrame from '$lib/components/MapFrame.svelte';
+	import { _ } from 'svelte-i18n';
 
-	const images: CarouselImage[] = [
-		{ src: 'japan/tokyo-tower.jpg', title: 'Tokyo Tower', text: '東京タワー' },
-		{ src: 'japan/tokyo-streets.jpg', title: 'Strade di Tokyo', text: '東京の街並み' },
-		{ src: 'japan/mount-fuji.jpg', title: 'Mount Fuji', text: '富士山' },
+	$: images = [
+		{ src: 'japan/tokyo-tower.jpg', title: $_('pages.info.japan.tokyo-tower'), text: '東京タワー' },
+		{
+			src: 'japan/tokyo-streets.jpg',
+			title: $_('pages.info.japan.tokyo-streets'),
+			text: '東京の街並み'
+		},
+		{ src: 'japan/mount-fuji.jpg', title: $_('pages.info.japan.mount-fuji'), text: '富士山' },
 		{
 			src: 'japan/kyoto-torii.jpg',
-			title: 'Santuari a Kyoto',
+			title: $_('pages.info.japan.kyoto-shrines'),
 			text: '伏見稲荷大社'
 		},
 		{
 			src: 'japan/kyoto-kinkakuji.jpg',
-			title: "Pagoda d'oro a Kyoto",
+			title: $_('pages.info.japan.kinkaku-ji'),
 			text: '鹿苑寺'
 		}
 	];
 	canAccessReservedArea.set(false);
 </script>
 
-<h1 class="text-center text-4xl mb-8">Informazioni</h1>
+<h1 class="text-center text-4xl mb-8">{$_('pages.info.title')}</h1>
 
 <div class="flex items-center mb-10">
 	<div class="grid grid-cols-2">
 		<div class="p-2 rounded-l-md md:h-[300px]">
 			<div class="flex flex-col w-full justify-center text-right text-2xl pe-2 h-full">
-				<p>Dove ci sposiamo?</p>
+				<p>{$_('pages.info.church.where')}</p>
 				<a class="mt-3" href="https://maps.app.goo.gl/Aevxp2VcpnHTZrPN8"
-					><p class="md:text-lg text-sm">Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,</p>
-					<p class="md:text-lg text-sm">Ponteranica (BG)</p>
+					><p class="md:text-lg text-sm">{$_('pages.info.church.whereAddress')}</p>
+					<p class="md:text-lg text-sm">{$_('pages.info.church.whereAddressPlace')}</p>
 				</a>
 			</div>
 		</div>
@@ -56,9 +60,12 @@
 		/>
 		<div class="p-2 rounded-l-md md:h-[300px]">
 			<div class="flex flex-col w-full justify-center text-2xl text-left h-full">
-				<p class="justify-center">Dove è la festa?</p>
+				<p class="justify-center">{$_('pages.info.celebration.where')}</p>
 				<a class="mt-3" href="https://maps.app.goo.gl/fYrECf2Ud594fw2L6"
-					><p class="md:text-lg text-sm">Villa Canton, Trescore (BG)</p>
+					><p class="md:text-lg text-sm">
+						{$_('pages.info.celebration.whereAddress')}
+						{$_('pages.info.celebration.whereAddressPlace')}
+					</p>
 				</a>
 			</div>
 		</div>
@@ -69,6 +76,8 @@
 	<Countdown target={'2024-07-20T15:00:00'} />
 </div>
 <div class="md:w-2/3 w-full mt-10">
-	<p class="justify-center text-2xl">Dove andremo <br class="md:hidden" />in luna di miele?</p>
+	<p class="justify-center text-2xl">
+		{$_('pages.info.japan.where1')} <br class="md:hidden" />{$_('pages.info.japan.where2')}
+	</p>
 	<Carousel {images} />
 </div>

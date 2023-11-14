@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
+	import { _ } from 'svelte-i18n';
 	export let target: string;
 	let targetDate = new Date(target).getTime();
 	let countdown: NodeJS.Timeout;
@@ -39,30 +39,30 @@
 	 countdown bg-[url('/villaCantonCountdown.jpeg')]"
 >
 	<div class="bg-gray-600 bg-opacity-50 px-5 py-4 rounded-xl md:w-2/3 w-full">
-		<h1 class="text-4xl font-bold mb-2 text-center">Quanto manca?</h1>
+		<h1 class="text-4xl font-bold mb-2 text-center">{$_('pages.info.countdown.time')}</h1>
 		<div class="flex items-center justify-center p-5">
 			<div class="text-3xl font-semibold m-2 w-1/4">
 				{time.days}
 				<br />
-				<span class="text-sm">Giorni</span>
+				<span class="text-sm">{$_('pages.info.countdown.days')}</span>
 			</div>
 			<div class="text-3xl font-semibold m-2 w-1/4">
 				{time.hours}
 				<br />
-				<span class="text-sm">Ore</span>
+				<span class="text-sm">{$_('pages.info.countdown.hours')}</span>
 			</div>
 			<div class="text-3xl font-semibold m-2 w-1/4">
 				{time.minutes}
 				<br />
-				<span class="text-sm">Minuti</span>
+				<span class="text-sm">{$_('pages.info.countdown.minutes')}</span>
 			</div>
 			<div class="text-3xl font-semibold m-2 w-1/4">
 				{time.seconds}
 				<br />
-				<span class="text-sm">Secondi</span>
+				<span class="text-sm">{$_('pages.info.countdown.seconds')}</span>
 			</div>
 		</div>
-		<p class="text-xs mt-2 text-center">Noi contiamo proprio i secondi... 😍</p>
+		<p class="text-xs mt-2 text-center">{$_('pages.info.countdown.message')}</p>
 	</div>
 </div>
 

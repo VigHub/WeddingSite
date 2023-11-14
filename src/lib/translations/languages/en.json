@@ -1,0 +1,49 @@
+{
+	"navbar": {
+		"welcome": "WELCOME!",
+		"gift-list": "GIFT LIST",
+		"confirm-presence": "CONFIRM YOUR PRESENCE",
+		"info": "INFO",
+		"reserved-area": "RESERVED AREA"
+	},
+	"footer": {
+		"start": "Made with",
+		"end": "by Elisa, Gianluca and"
+	},
+	"pages": {
+		"welcome": {},
+		"gift-list": {},
+		"confirm-presence": {},
+		"info": {
+			"title": "Information",
+			"church": {
+				"where": "Where are we getting married?",
+				"whereAddress": "Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,",
+				"whereAddressPlace": "Ponteranica (BG)"
+			},
+			"celebration": {
+				"where": "Where is the party?",
+				"whereAddress": "Villa Canton,",
+				"whereAddressPlace": "Trescore (BG)"
+			},
+			"countdown": {
+				"time": "How much time is missing?",
+				"days": "Days",
+				"hours": "Hours",
+				"minutes": "Minutes",
+				"seconds": "Seconds",
+				"message": "We really count the seconds 😍"
+			},
+			"japan": {
+				"where1": "Where will we go",
+				"where2": "in our honeymoon?",
+				"tokyo-tower": "Tokyo Tower",
+				"tokyo-streets": "Streets of Tokyo",
+				"mount-fuji": "Mount Fuji",
+				"kyoto-shrines": "Kyoto Shrines",
+				"kinkaku-ji": "Kyoto Kinkaku-ji"
+			}
+		},
+		"reserved-area": {}
+	}
+}
