@@ -45,6 +45,7 @@
 		"@fontsource-variable/montserrat": "^5.0.6",
 		"@fontsource/amatic-sc": "^5.0.5",
 		"@supabase/supabase-js": "^2.38.4",
-		"date-fns": "^2.30.0"
+		"date-fns": "^2.30.0",
+		"svelte-i18n": "^4.0.0"
 	}
 }
