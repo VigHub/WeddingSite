@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { PUBLIC_HASH_RESERVED } from '$env/static/public';
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import canAccessReservedArea from '../../stores/reserved';
 
@@ -22,7 +21,15 @@
 
 	const onClick = async () => {
 		const hashed = await sha512(password);
-		if (hashed === PUBLIC_HASH_RESERVED) {
+		const response = await fetch('/api/auth', {
+			method: 'POST',
+			body: JSON.stringify({ hashed }),
+			headers: {
+				'content-type': 'application/json'
+			}
+		});
+		const { authenticated } = await response.json();
+		if (authenticated) {
 			canAccessReservedArea.set(true);
 			goto(`${base}/guest-messages`);
 		} else {
