@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GuestAttendance } from '$lib/db/db';
+	import type { GuestAttendance } from '$lib/utils/interfaces';
 	import {
 		Paginator,
 		Table,

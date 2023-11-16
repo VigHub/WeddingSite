@@ -8,8 +8,10 @@
 		ProgressRadial
 	} from '@skeletonlabs/skeleton';
 	import { toastStore } from '@skeletonlabs/skeleton';
-	import { getGuestsbyNameSurname, type GuestAttendance } from '$lib/db/db';
 	import canAccessReservedArea from '../../stores/reserved';
+	import { base } from '$app/paths';
+	import type { GuestAttendance } from '$lib/utils/interfaces';
+	import { fetchPost } from '$lib/utils/api';
 
 	canAccessReservedArea.set(false);
 
@@ -25,7 +27,11 @@
 
 	const onClick = async () => {
 		loadingGuest = true;
-		guests = await getGuestsbyNameSurname(name, surname);
+		const res = await fetchPost('guestsByNameSurname', {
+			name,
+			surname
+		});
+		guests = res.guests;
 		loadingGuest = false;
 		if (guests.length == 0 && (name !== '' || surname !== '')) {
 			toastStore.clear();

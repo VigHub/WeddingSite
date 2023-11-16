@@ -3,6 +3,7 @@
 	import { base } from '$app/paths';
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import canAccessReservedArea from '../../stores/reserved';
+	import { fetchPost } from '$lib/utils/api';
 
 	let password = '';
 	const toastPasswordWrong: ToastSettings = {
@@ -21,14 +22,7 @@
 
 	const onClick = async () => {
 		const hashed = await sha512(password);
-		const response = await fetch(`${base}/api/auth`, {
-			method: 'POST',
-			body: JSON.stringify({ hashed }),
-			headers: {
-				'content-type': 'application/json'
-			}
-		});
-		const { authenticated } = await response.json();
+		const { authenticated } = await fetchPost('auth', { hashed });
 		if (authenticated) {
 			canAccessReservedArea.set(true);
 			goto(`${base}/guest-messages`);

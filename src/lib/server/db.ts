@@ -1,38 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 
-import { PUBLIC_SUPABASE_PROJECT_URL, PUBLIC_SUPABASE_KEY } from '$env/static/public';
+import { SUPABASE_PROJECT_URL, SUPABASE_KEY } from '$env/static/private';
+import type { GuestAttendance, GuestMessage, GuestMessageWithGuest } from '$lib/utils/interfaces';
 
-const supabaseUrl = PUBLIC_SUPABASE_PROJECT_URL;
-const supabaseKey = PUBLIC_SUPABASE_KEY;
+const supabaseUrl = SUPABASE_PROJECT_URL;
+const supabaseKey = SUPABASE_KEY;
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 const GuestTable = 'Guest';
 const GuestMessageTable = 'GuestMessage';
 const GuestAttendanceTable = 'GuestAttendance';
-
-export interface Guest {
-	id: number;
-	name: string;
-	surname: string;
-}
-
-export interface GuestAttendance {
-	attendance: number;
-	guest: Guest;
-}
-
-export interface GuestMessage {
-	guest_id: number;
-	message: string;
-	attendance: number;
-}
-
-export interface GuestMessageWithGuest {
-	message: string;
-	attendance: number;
-	created: Date;
-	guest: Guest;
-}
 
 export const getGuestsbyNameSurname = async (name: string, surname: string) => {
 	if (name === '' && surname === '') return [];

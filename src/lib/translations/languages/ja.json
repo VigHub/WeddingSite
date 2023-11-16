@@ -1,0 +1,49 @@
+{
+	"navbar": {
+		"welcome": "いらっしゃいませ！",
+		"gift-list": "結婚式のリスト",
+		"confirm-presence": "あなたの存在を確認してください",
+		"info": "情報",
+		"reserved-area": "予約エリア"
+	},
+	"footer": {
+		"start": "Elisa と Gianluca が",
+		"end": "で作りました"
+	},
+	"pages": {
+		"welcome": {},
+		"gift-list": {},
+		"confirm-presence": {},
+		"info": {
+			"title": "Informazioni",
+			"church": {
+				"where": "Dove ci sposiamo?",
+				"whereAddress": "Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,",
+				"whereAddressPlace": "Ponteranica (BG)"
+			},
+			"celebration": {
+				"where": "Dove è la festa?",
+				"whereAddress": "Villa Canton,",
+				"whereAddressPlace": "Trescore (BG)"
+			},
+			"countdown": {
+				"time": "Quanto manca?",
+				"days": "Giorni",
+				"hours": "Ore",
+				"minutes": "Minuti",
+				"seconds": "Secondi",
+				"message": "Noi contiamo proprio i secondi 😍"
+			},
+			"japan": {
+				"where1": "Dove andremo",
+				"where2": "in luna di miele?",
+				"tokyo-tower": "Tokyo Tower",
+				"tokyo-streets": "Strade di Tokyo",
+				"mount-fuji": "Monte Fuji",
+				"kyoto-shrines": "Santuari a Kyoto",
+				"kinkaku-ji": "Pagoda d'oro a Kyoto"
+			}
+		},
+		"reserved-area": {}
+	}
+}
