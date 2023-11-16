@@ -21,7 +21,7 @@
 
 	const onClick = async () => {
 		const hashed = await sha512(password);
-		const response = await fetch('/api/auth', {
+		const response = await fetch(`${base}/api/auth`, {
 			method: 'POST',
 			body: JSON.stringify({ hashed }),
 			headers: {
