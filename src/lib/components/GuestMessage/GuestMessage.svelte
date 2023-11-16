@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { GuestMessageWithGuest } from '$lib/db/db';
 	import { getAttendance } from '$lib/utils/guests';
+	import type { GuestMessageWithGuest } from '$lib/utils/interfaces';
 	import { format } from 'date-fns';
 
 	const getStringTime = (created: Date) => {

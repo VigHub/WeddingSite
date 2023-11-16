@@ -1,4 +1,4 @@
-import type { GuestAttendance } from '$lib/db/db';
+import type { GuestAttendance } from './interfaces';
 
 export function searchGuest(
 	guests: GuestAttendance[],

@@ -1,11 +1,8 @@
 <script lang="ts">
-	import {
-		insertGuestMessage,
-		type GuestMessage,
-		type GuestAttendance,
-		updateGuestAttendance
-	} from '$lib/db/db';
+	import { base } from '$app/paths';
+	import { fetchPost } from '$lib/utils/api';
 	import { getAttendance } from '$lib/utils/guests';
+	import type { GuestAttendance, GuestMessage } from '$lib/utils/interfaces';
 	import {
 		RadioGroup,
 		RadioItem,
@@ -34,7 +31,11 @@
 
 	const sendAttendanceAndMessage = async () => {
 		let toast = toastOK;
-		const attendanceUpserted = await updateGuestAttendance(guest.guest.id, guest.attendance);
+		let res = await fetchPost('updateGuestAttendance', {
+			id: guest.guest.id,
+			attendance: guest.attendance
+		});
+		const attendanceUpserted = res.ok;
 		if (!attendanceUpserted) {
 			toast = toastError;
 		} else if (message !== '') {
@@ -43,7 +44,10 @@
 				message,
 				attendance: guest.attendance
 			};
-			const inserted = await insertGuestMessage(guestMessage);
+			res = await fetchPost('insertGuestMessage', {
+				guestMessage
+			});
+			const inserted = res.ok;
 			if (!inserted) {
 				toast = toastError;
 			}

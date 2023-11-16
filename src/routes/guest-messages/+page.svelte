@@ -1,12 +1,24 @@
 <script lang="ts">
 	import canAccessReservedArea from '../../stores/reserved';
-	import type { PageData } from './$types';
 	import GuestMessagesList from '$lib/components/GuestMessage/GuestMessagesList.svelte';
-	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
+	import { ProgressRadial, Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import GuestsPresence from '$lib/components/GuestsPresence.svelte';
-	export let data: PageData;
+	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
+	import type { GuestAttendance, GuestMessageWithGuest } from '$lib/utils/interfaces';
+	import { fetchPost } from '$lib/utils/api';
 	const messagesPerPage = 4;
 	let tabSet = 0;
+	let loaded = false;
+	let guestMessages: GuestMessageWithGuest[] = [];
+	let guests: GuestAttendance[] = [];
+
+	onMount(async () => {
+		const res = await fetchPost('guestMessages');
+		loaded = true;
+		guestMessages = res.guestMessages;
+		guests = res.guests;
+	});
 </script>
 
 {#if !$canAccessReservedArea}
@@ -29,14 +41,14 @@
 		</Tab>
 		<svelte:fragment slot="panel">
 			<div class="w-[300px] md:w-[500px]">
-				{#if tabSet === 0}
-					<GuestMessagesList
-						data={data.data.guestMessages}
-						size={data.size ?? 0}
-						{messagesPerPage}
-					/>
+				{#if !loaded}
+					<div class="flex items-center justify-center min-h-[580px]">
+						<ProgressRadial width={'w-12 md:w-20'} />
+					</div>
+				{:else if tabSet === 0}
+					<GuestMessagesList {messagesPerPage} {guestMessages} />
 				{:else if tabSet === 1}
-					<GuestsPresence guestsPromise={data.data.guests} />
+					<GuestsPresence {guests} />
 				{/if}
 			</div>
 		</svelte:fragment>
