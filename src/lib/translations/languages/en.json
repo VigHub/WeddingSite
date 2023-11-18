@@ -12,7 +12,9 @@
 	},
 	"pages": {
 		"welcome": {},
-		"gift-list": {},
+		"gift-list": {
+			"thankyou": "Thank You!"
+		},
 		"confirm-presence": {},
 		"info": {
 			"title": "Information",

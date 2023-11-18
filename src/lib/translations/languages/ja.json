@@ -12,36 +12,38 @@
 	},
 	"pages": {
 		"welcome": {},
-		"gift-list": {},
+		"gift-list": {
+			"thankyou": "ありがとう ございます!"
+		},
 		"confirm-presence": {},
 		"info": {
-			"title": "Informazioni",
+			"title": "情報",
 			"church": {
-				"where": "Dove ci sposiamo?",
-				"whereAddress": "Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,",
-				"whereAddressPlace": "Ponteranica (BG)"
+				"where": "私たちはどこで結婚しますか",
+				"whereAddress": "聖アレクサンダーとヴィンセント教区教会、",
+				"whereAddressPlace": "ポンテラニカ (BG)"
 			},
 			"celebration": {
-				"where": "Dove è la festa?",
-				"whereAddress": "Villa Canton,",
-				"whereAddressPlace": "Trescore (BG)"
+				"where": "パーティーはどこですか",
+				"whereAddress": "ヴィラ カントン、",
+				"whereAddressPlace": "トレススコア(BG)"
 			},
 			"countdown": {
-				"time": "Quanto manca?",
-				"days": "Giorni",
-				"hours": "Ore",
-				"minutes": "Minuti",
-				"seconds": "Secondi",
-				"message": "Noi contiamo proprio i secondi 😍"
+				"time": "どれくらい足りないのか",
+				"days": "日々",
+				"hours": "時間",
+				"minutes": "分",
+				"seconds": "秒",
+				"message": "本当に秒数を数えています 😍"
 			},
 			"japan": {
-				"where1": "Dove andremo",
-				"where2": "in luna di miele?",
-				"tokyo-tower": "Tokyo Tower",
-				"tokyo-streets": "Strade di Tokyo",
-				"mount-fuji": "Monte Fuji",
-				"kyoto-shrines": "Santuari a Kyoto",
-				"kinkaku-ji": "Pagoda d'oro a Kyoto"
+				"where1": "私たちは新婚旅行で",
+				"where2": "どこに行きますか",
+				"tokyo-tower": "東京タワーモニュメント",
+				"tokyo-streets": "秋葉原",
+				"mount-fuji": "富士山",
+				"kyoto-shrines": "京都の神社",
+				"kinkaku-ji": "京都の金塔"
 			}
 		},
 		"reserved-area": {}
