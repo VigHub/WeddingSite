@@ -1,10 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 
-import { SUPABASE_PROJECT_URL, SUPABASE_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import type { GuestAttendance, GuestMessage, GuestMessageWithGuest } from '$lib/utils/interfaces';
 
-const supabaseUrl = SUPABASE_PROJECT_URL;
-const supabaseKey = SUPABASE_KEY;
+const supabaseUrl = env.SUPABASE_PROJECT_URL;
+const supabaseKey = env.SUPABASE_KEY;
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 const GuestTable = 'Guest';

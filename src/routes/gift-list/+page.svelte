@@ -3,6 +3,7 @@
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import canAccessReservedArea from '../../stores/reserved';
 	import MapFrame from '$lib/components/MapFrame.svelte';
+	import { _ } from 'svelte-i18n';
 
 	let tabSet = 0;
 	canAccessReservedArea.set(false);
@@ -88,7 +89,7 @@
 				<h2 class="h2 text-center mt-4">
 					<span
 						class="bg-gradient-to-br from-pink-500 to-violet-800
-						bg-clip-text text-transparent box-decoration-clone">Grazie!</span
+						bg-clip-text text-transparent box-decoration-clone">{$_('pages.gift-list.thankyou')}</span
 					>
 				</h2>
 			</div>
