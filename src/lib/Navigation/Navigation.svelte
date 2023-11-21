@@ -62,7 +62,7 @@
 	</button>
 </div>
 <hr />
-<nav class="ps-6">
+<nav class="ps-6 uppercase">
 	<ul>
 		{#each items as item (item.url)}
 			<li class={`pt-8 rounded-xl  ${item.color}`}>
