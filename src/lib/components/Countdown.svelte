@@ -38,31 +38,30 @@
 	class="h-80 flex flex-col items-center justify-center text-white p-4 rounded-lg shadow-md
 	 countdown bg-[url('/villaCantonCountdown.jpeg')]"
 >
-	<div class="bg-gray-600 bg-opacity-50 px-5 py-4 rounded-xl md:w-2/3 w-full">
-		<h1 class="text-4xl font-bold mb-2 text-center">{$_('pages.info.countdown.time')}</h1>
-		<div class="flex items-center justify-center p-5">
-			<div class="text-3xl font-semibold m-2 w-1/4">
+	<div class="bg-gray-600 bg-opacity-50 px-5 py-4 rounded-xl md:w-5/12 w-full">
+		<div class="grid grid-cols-4 justify-center p-5">
+			<div class="text-2xl md:text-3xl font-semibold m-2 w-full text-center">
 				{time.days}
 				<br />
 				<span class="text-sm">{$_('pages.info.countdown.days')}</span>
 			</div>
-			<div class="text-3xl font-semibold m-2 w-1/4">
+			<div class="text-2xl md:text-3xl font-semibold m-2 w-full text-center">
 				{time.hours}
 				<br />
 				<span class="text-sm">{$_('pages.info.countdown.hours')}</span>
 			</div>
-			<div class="text-3xl font-semibold m-2 w-1/4">
+			<div class="text-2xl md:text-3xl font-semibold m-2 w-full text-center">
 				{time.minutes}
 				<br />
 				<span class="text-sm">{$_('pages.info.countdown.minutes')}</span>
 			</div>
-			<div class="text-3xl font-semibold m-2 w-1/4">
+			<div class="text-2xl md:text-3xl font-semibold m-2 w-full text-center">
 				{time.seconds}
 				<br />
 				<span class="text-sm">{$_('pages.info.countdown.seconds')}</span>
 			</div>
 		</div>
-		<p class="text-xs mt-2 text-center">{$_('pages.info.countdown.message')}</p>
+		<p class="text-xs md:text-lg mt-2 text-center">{$_('pages.info.countdown.message')}</p>
 	</div>
 </div>
 
