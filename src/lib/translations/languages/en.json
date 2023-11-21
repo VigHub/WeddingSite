@@ -1,10 +1,10 @@
 {
 	"navbar": {
-		"welcome": "WELCOME!",
-		"gift-list": "GIFT LIST",
-		"confirm-presence": "CONFIRM YOUR PRESENCE",
-		"info": "INFO",
-		"reserved-area": "RESERVED AREA"
+		"welcome": "Welcome!",
+		"gift-list": "Gift List",
+		"confirm-presence": "Confirm your presence",
+		"info": "Info",
+		"reserved-area": "Reserved Area"
 	},
 	"footer": {
 		"start": "Made with",
@@ -13,7 +13,15 @@
 	"pages": {
 		"welcome": {},
 		"gift-list": {
-			"thankyou": "Thank You!"
+			"title": "Gift List",
+			"thankyou": "Thank You!",
+			"question-japan": "Some of the places we will visit",
+			"japan-tab": {
+				"title": "Travel to Japan"
+			},
+			"cultery-tab": {
+				"title": "Household items"
+			}
 		},
 		"confirm-presence": {},
 		"info": {
@@ -30,15 +38,13 @@
 			},
 			"countdown": {
 				"time": "How much time is missing?",
-				"days": "Days",
-				"hours": "Hours",
-				"minutes": "Minutes",
-				"seconds": "Seconds",
+				"days": "days",
+				"hours": "hh",
+				"minutes": "min",
+				"seconds": "s",
 				"message": "We really count the seconds 😍"
 			},
 			"japan": {
-				"where1": "Where will we go",
-				"where2": "in our honeymoon?",
 				"tokyo-tower": "Tokyo Tower",
 				"tokyo-streets": "Streets of Tokyo",
 				"mount-fuji": "Mount Fuji",
