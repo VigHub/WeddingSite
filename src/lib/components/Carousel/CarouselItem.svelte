@@ -21,10 +21,10 @@
 		/>
 		{#if image.title || image.text}
 			<div
-				class="absolute inset-x-[10%] md:inset-x-[40%]
+				class="absolute inset-x-[10%] md:inset-x-[20%]
 			 bottom-5 pb-5 pt-2 text-center text-white md:block"
 			>
-				<div class="bg-gray-700 bg-opacity-50">
+				<div class="bg-gray-700 bg-opacity-50 rounded-lg">
 					{#if image.title}
 						<h5 class="text-xl">{image.title}</h5>
 					{/if}
