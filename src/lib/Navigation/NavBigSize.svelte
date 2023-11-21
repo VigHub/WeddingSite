@@ -41,7 +41,7 @@
 	] as itemURL[];
 </script>
 
-<nav class="flex">
+<nav class="flex uppercase">
 	{#each items as item (item.url)}
 		<a
 			class={`${item.itemActive} mx-6 hover:underline hover:underline-offset-4 hover:decoration-1`}

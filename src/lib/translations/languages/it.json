@@ -1,10 +1,10 @@
 {
 	"navbar": {
-		"welcome": "BENVENUTI!",
-		"gift-list": "LISTA NOZZE",
-		"confirm-presence": "CONFERMA LA TUA PRESENZA",
-		"info": "INFORMAZIONI",
-		"reserved-area": "AREA RISERVATA"
+		"welcome": "Benvenuti!",
+		"gift-list": "Lista Nozze",
+		"confirm-presence": "Conferma la tua presenza",
+		"info": "Informazioni",
+		"reserved-area": "Area Riservata"
 	},
 	"footer": {
 		"start": "Fatto con il",
@@ -13,7 +13,15 @@
 	"pages": {
 		"welcome": {},
 		"gift-list": {
-			"thankyou": "Grazie!"
+			"title": "Lista Nozze",
+			"thankyou": "Grazie!",
+			"question-japan": "Alcuni dei posti che visiteremo",
+			"japan-tab": {
+				"title": "Viaggio in Giappone"
+			},
+			"cultery-tab": {
+				"title": "Cose per la casa"
+			}
 		},
 		"confirm-presence": {},
 		"info": {
@@ -30,15 +38,13 @@
 			},
 			"countdown": {
 				"time": "Quanto manca?",
-				"days": "Giorni",
-				"hours": "Ore",
-				"minutes": "Minuti",
-				"seconds": "Secondi",
+				"days": "giorni",
+				"hours": "hh",
+				"minutes": "min",
+				"seconds": "s",
 				"message": "Noi contiamo proprio i secondi 😍"
 			},
 			"japan": {
-				"where1": "Dove andremo",
-				"where2": "in luna di miele?",
 				"tokyo-tower": "Tokyo Tower",
 				"tokyo-streets": "Strade di Tokyo",
 				"mount-fuji": "Monte Fuji",
