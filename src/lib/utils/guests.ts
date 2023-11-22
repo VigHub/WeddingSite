@@ -1,7 +1,7 @@
-import type { GuestAttendance } from './interfaces';
+import type { Guest } from './interfaces';
 
 export function searchGuest(
-	guests: GuestAttendance[],
+	guests: Guest[],
 	name: string,
 	surname: string,
 	limit: number = 5
@@ -10,8 +10,8 @@ export function searchGuest(
 	surname = surname.trim();
 	if (name === '' && surname === '') return [];
 	const guestFiltered = guests.filter((guest) => {
-		const guestName = guest.guest.name.toLowerCase().startsWith(name.toLowerCase());
-		const guestSurname = guest.guest.surname.toLowerCase().startsWith(surname.toLowerCase());
+		const guestName = guest.name.toLowerCase().startsWith(name.toLowerCase());
+		const guestSurname = guest.surname.toLowerCase().startsWith(surname.toLowerCase());
 		return guestName && guestSurname;
 	});
 	return guestFiltered.slice(0, limit);

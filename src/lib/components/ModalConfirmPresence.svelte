@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fetchPost } from '$lib/utils/api';
 	import { getAttendance } from '$lib/utils/guests';
-	import type { GuestAttendance, GuestMessage } from '$lib/utils/interfaces';
+	import type { Guest, GuestMessage } from '$lib/utils/interfaces';
 	import {
 		toastStore,
 		type ToastSettings,
@@ -11,7 +11,7 @@
 	} from '@skeletonlabs/skeleton';
 	import GuestConfirm from './GuestConfirm.svelte';
 
-	export let guest: GuestAttendance;
+	export let guest: Guest;
 	export let resetParameters: () => void;
 	let message: string = '';
 
@@ -26,11 +26,11 @@
 		background: 'variant-filled-error',
 		timeout: 3000
 	};
-	export let guestsGroup: GuestAttendance[] = [];
+	export let guestsGroup: Guest[] = [];
 	let showGroup = false;
-	const sendAttendance = async (gst: GuestAttendance) => {
+	const sendAttendance = async (gst: Guest) => {
 		let res = await fetchPost('updateGuestAttendance', {
-			id: gst.guest.id,
+			id: gst.id,
 			attendance: gst.attendance
 		});
 		return res.ok ?? false;
@@ -59,7 +59,7 @@
 		}
 		if (message !== '') {
 			const guestMessage: GuestMessage = {
-				guest_id: guest.guest.id,
+				guest_id: guest.id,
 				message,
 				attendance: guest.attendance
 			};
@@ -95,7 +95,8 @@
 			/>
 			{#if showGroup}
 				<div
-					class="py-4 px-2 space-y-6 max-h-[300px] overflow-y-scroll border-2 border-gray-300 rounded-xl"
+					class="py-4 px-2 space-y-6 max-h-[300px]
+					overflow-y-auto border-2 border-gray-300 rounded-l-xl"
 				>
 					{#each guestsGroup as guestGroup}
 						<GuestConfirm guest={guestGroup} />
@@ -122,8 +123,8 @@
 			<div class="h-full">
 				<div class="flex relative w-full">
 					<p class="font-semibold w-3/5 truncate">
-						{guest.guest.name}
-						{guest.guest.surname}:
+						{guest.name}
+						{guest.surname}:
 					</p>
 					<p class="font-medium text-right absolute right-0">
 						{getAttendance(guest.attendance)}
@@ -133,8 +134,8 @@
 					{#each guestsGroup as guestGroup}
 						<div class="flex relative w-full">
 							<p class="font-semibold w-3/5 truncate">
-								{guestGroup.guest.name}
-								{guestGroup.guest.surname}:
+								{guestGroup.name}
+								{guestGroup.surname}:
 							</p>
 							<p class="font-medium text-right absolute right-0">
 								{getAttendance(guestGroup.attendance)}

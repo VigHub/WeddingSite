@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { getAttendance } from '$lib/utils/guests';
-	import type { GuestAttendance } from '$lib/utils/interfaces';
+	import type { Guest } from '$lib/utils/interfaces';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
-	export let guest: GuestAttendance;
+	export let guest: Guest;
 	export let isParent = false;
 	export let isClickable = true;
 	export let onClick = () => {};
@@ -16,7 +16,7 @@
 
 <div class="space-y-2">
 	<div>
-		<p class="font-semibold truncate">{guest.guest.name} {guest.guest.surname}</p>
+		<p class="font-semibold truncate">{guest.name} {guest.surname}</p>
 		<div />
 	</div>
 	<RadioGroup background="bg-white">

@@ -2,9 +2,9 @@
 	import { getAttendance } from '$lib/utils/guests';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 	import GuestsTable from './GuestsTable.svelte';
-	import type { GuestAttendance } from '$lib/utils/interfaces';
+	import type { Guest } from '$lib/utils/interfaces';
 
-	export let guests: GuestAttendance[];
+	export let guests: Guest[];
 	let attendance = 0;
 </script>
 

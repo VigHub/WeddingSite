@@ -4,14 +4,13 @@
 	import { ProgressRadial, Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import GuestsPresence from '$lib/components/GuestsPresence.svelte';
 	import { onMount } from 'svelte';
-	import { base } from '$app/paths';
-	import type { GuestAttendance, GuestMessageWithGuest } from '$lib/utils/interfaces';
+	import type { Guest, GuestMessageWithGuest } from '$lib/utils/interfaces';
 	import { fetchPost } from '$lib/utils/api';
 	const messagesPerPage = 4;
 	let tabSet = 0;
 	let loaded = false;
 	let guestMessages: GuestMessageWithGuest[] = [];
-	let guests: GuestAttendance[] = [];
+	let guests: Guest[] = [];
 
 	onMount(async () => {
 		const res = await fetchPost('guestMessages');
