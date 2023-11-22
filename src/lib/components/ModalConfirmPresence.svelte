@@ -1,17 +1,15 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { fetchPost } from '$lib/utils/api';
 	import { getAttendance } from '$lib/utils/guests';
 	import type { GuestAttendance, GuestMessage } from '$lib/utils/interfaces';
 	import {
-		RadioGroup,
-		RadioItem,
 		toastStore,
 		type ToastSettings,
 		modalStore,
 		Stepper,
 		Step
 	} from '@skeletonlabs/skeleton';
+	import GuestConfirm from './GuestConfirm.svelte';
 
 	export let guest: GuestAttendance;
 	export let resetParameters: () => void;
@@ -28,33 +26,52 @@
 		background: 'variant-filled-error',
 		timeout: 3000
 	};
+	export let guestsGroup: GuestAttendance[] = [];
+	let showGroup = false;
+	const sendAttendance = async (gst: GuestAttendance) => {
+		let res = await fetchPost('updateGuestAttendance', {
+			id: gst.guest.id,
+			attendance: gst.attendance
+		});
+		return res.ok ?? false;
+	};
+	const close = (isOk: boolean) => {
+		const toast = isOk ? toastOK : toastError;
+		modalStore.clear();
+		resetParameters();
+		toastStore.trigger(toast);
+	};
 
 	const sendAttendanceAndMessage = async () => {
-		let toast = toastOK;
-		let res = await fetchPost('updateGuestAttendance', {
-			id: guest.guest.id,
-			attendance: guest.attendance
-		});
-		const attendanceUpserted = res.ok;
-		if (!attendanceUpserted) {
-			toast = toastError;
-		} else if (message !== '') {
+		let isOk = await sendAttendance(guest);
+		if (!isOk) {
+			close(false);
+			return;
+		}
+		if (showGroup) {
+			for (const gst of guestsGroup) {
+				isOk = await sendAttendance(gst);
+				if (!isOk) {
+					close(false);
+					return;
+				}
+			}
+		}
+		if (message !== '') {
 			const guestMessage: GuestMessage = {
 				guest_id: guest.guest.id,
 				message,
 				attendance: guest.attendance
 			};
-			res = await fetchPost('insertGuestMessage', {
+			isOk = await fetchPost('insertGuestMessage', {
 				guestMessage
 			});
-			const inserted = res.ok;
-			if (!inserted) {
-				toast = toastError;
+			if (!isOk) {
+				close(false);
+				return;
 			}
 		}
-		modalStore.clear();
-		resetParameters();
-		toastStore.trigger(toast);
+		close(true);
 	};
 </script>
 
@@ -68,17 +85,23 @@
 	>
 		<Step>
 			<svelte:fragment slot="header">Partecipazione</svelte:fragment>
-			<p class="font-semibold">{guest.guest.name} {guest.guest.surname}</p>
-			<RadioGroup background="bg-white">
-				{#each [0, 1, 2] as attendanceItem}
-					<RadioItem
-						bind:group={guest.attendance}
-						padding="py-2 px-2"
-						name="justify"
-						value={attendanceItem}>{getAttendance(attendanceItem)}</RadioItem
-					>
-				{/each}
-			</RadioGroup>
+			<GuestConfirm
+				{guest}
+				isParent={true}
+				onClick={() => {
+					showGroup = !showGroup;
+				}}
+				isClickable={guestsGroup.length > 0}
+			/>
+			{#if showGroup}
+				<div
+					class="py-4 px-2 space-y-6 max-h-[300px] overflow-y-scroll border-2 border-gray-300 rounded-xl"
+				>
+					{#each guestsGroup as guestGroup}
+						<GuestConfirm guest={guestGroup} />
+					{/each}
+				</div>
+			{/if}
 		</Step>
 		<Step>
 			<svelte:fragment slot="header">Vuoi mandarci anche un messaggio?</svelte:fragment>
@@ -97,15 +120,28 @@
 		<Step>
 			<svelte:fragment slot="header">Conferma</svelte:fragment>
 			<div class="h-full">
-				<div class="flex items-center">
-					<p class="font-semibold w-full">
+				<div class="flex relative w-full">
+					<p class="font-semibold w-3/5 truncate">
 						{guest.guest.name}
 						{guest.guest.surname}:
-						<span class="font-medium ms-5">
-							{getAttendance(guest.attendance)}
-						</span>
+					</p>
+					<p class="font-medium text-right absolute right-0">
+						{getAttendance(guest.attendance)}
 					</p>
 				</div>
+				{#if showGroup}
+					{#each guestsGroup as guestGroup}
+						<div class="flex relative w-full">
+							<p class="font-semibold w-3/5 truncate">
+								{guestGroup.guest.name}
+								{guestGroup.guest.surname}:
+							</p>
+							<p class="font-medium text-right absolute right-0">
+								{getAttendance(guestGroup.attendance)}
+							</p>
+						</div>
+					{/each}
+				{/if}
 				{#if message !== ''}
 					<label class="font-semibold" for="message2">Messaggio:</label>
 					<textarea

@@ -9,7 +9,6 @@
 	} from '@skeletonlabs/skeleton';
 	import { toastStore } from '@skeletonlabs/skeleton';
 	import canAccessReservedArea from '../../stores/reserved';
-	import { base } from '$app/paths';
 	import type { GuestAttendance } from '$lib/utils/interfaces';
 	import { fetchPost } from '$lib/utils/api';
 
@@ -45,12 +44,13 @@
 		guests = [];
 	};
 
-	const openModal = (guest: GuestAttendance) => {
+	const openModal = async (guest: GuestAttendance) => {
+		const guestsGroup = await fetchPost('guestsSameGroup', { guest });
 		const modalComponent: ModalComponent = {
 			// Pass a reference to your custom component
 			ref: ModalConfirmPresence,
 			// Add the component properties as key/value pairs
-			props: { guest, resetParameters },
+			props: { guest, resetParameters, guestsGroup },
 			// Provide a template literal for the default component slot
 			slot: '<p>Skeleton</p>'
 		};
@@ -114,7 +114,7 @@
 				border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900
 				hover:scale-110 transition duration-300 ease-in-out cursor-pointer
 				"
-					on:click={() => openModal(guest)}
+					on:click={async () => await openModal(guest)}
 				>
 					{guest.guest.name}
 					{guest.guest.surname}

@@ -15,7 +15,7 @@ export const getGuestsbyNameSurname = async (name: string, surname: string) => {
 	if (name === '' && surname === '') return [];
 	const { data } = await supabase
 		.from(GuestAttendanceTable)
-		.select('attendance, guest:Guest!inner(id, name, surname)')
+		.select('attendance, guest:Guest!inner(id, name, surname, groupId)')
 		.ilike('guest.name', `${name}%`)
 		.ilike('guest.surname', `${surname}%`)
 		.returns<GuestAttendance[]>();
@@ -26,9 +26,21 @@ export const getGuestsbyNameSurname = async (name: string, surname: string) => {
 export const getAllGuests = async () => {
 	const { data } = await supabase
 		.from(GuestAttendanceTable)
-		.select('attendance, guest:Guest (id, name, surname)')
+		.select('attendance, guest:Guest (id, name, surname, groupId)')
 		.returns<GuestAttendance[]>();
 	const guests = data ?? [];
+	return guests;
+};
+
+export const getSameGroupGuests = async (guest: GuestAttendance) => {
+	const { data } = await supabase
+		.from(GuestAttendanceTable)
+		.select('attendance, guest:Guest (id, name, surname, groupId)')
+		.filter('guest.groupId', 'eq', guest.guest.groupId)
+		.filter('guest.id', 'neq', guest.guest.id)
+		.returns<GuestAttendance[]>();
+	const guests = data ?? [];
+	console.log(guests);
 	return guests;
 };
 
