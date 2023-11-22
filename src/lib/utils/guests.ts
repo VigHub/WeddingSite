@@ -1,4 +1,5 @@
 import type { Guest } from './interfaces';
+import { _ } from 'svelte-i18n'
 
 export function searchGuest(
 	guests: Guest[],
@@ -20,12 +21,12 @@ export function searchGuest(
 export const getAttendance = (attendance: number) => {
 	switch (attendance) {
 		case 0:
-			return 'In attesa 🤔';
+			return "attendance.wait";
 		case 1:
-			return 'Ci sono 🥳';
+			return 'attendance.present';
 		case 2:
-			return 'Non ci sono 😣';
+			return 'attendance.deny';
 		default:
-			return 'In attesa';
+			return 'attendance.wait';
 	}
 };

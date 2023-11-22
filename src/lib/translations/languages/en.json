@@ -23,7 +23,13 @@
 				"title": "Household items"
 			}
 		},
-		"confirm-presence": {},
+		"confirm-presence": {
+			"participation": "Participation",
+			"sendMessageQuestion": "Do you also want to send us a message?",
+			"sendMessagePlaceHolder": "Write your message here (optional)",
+			"msg": "Message:",
+			"set-others": "Also indicates for others"
+		},
 		"info": {
 			"title": "Information",
 			"church": {
@@ -52,6 +58,25 @@
 				"kinkaku-ji": "Kyoto Kinkaku-ji"
 			}
 		},
-		"reserved-area": {}
+		"reserved-area": {
+			"title": "Reserved Area",
+			"msg1": "Enter the reserved area password:",
+			"msg2": "only for newlyweds!"
+		}
+	},
+	"general": {
+		"name": "Name",
+		"surname": "Surname",
+		"search": "Search",
+		"send": "Send",
+		"back": "Back",
+		"next": "Next",
+		"confirm": "Confirm",
+		"step": "Step"
+	},
+	"attendance": {
+		"wait": "Not sure yet 🤔",
+		"present": "Count me in! 🥳",
+		"deny": "I'm out 😣"
 	}
 }

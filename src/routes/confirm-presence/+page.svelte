@@ -11,6 +11,7 @@
 	import canAccessReservedArea from '../../stores/reserved';
 	import type { Guest } from '$lib/utils/interfaces';
 	import { fetchPost } from '$lib/utils/api';
+	import { _ } from 'svelte-i18n';
 
 	canAccessReservedArea.set(false);
 
@@ -82,7 +83,7 @@
 				type="text"
 				id="name"
 				class="w-full p-2 mt-5 border rounded-md"
-				placeholder="Nome"
+				placeholder={$_('general.name')}
 				bind:value={name}
 			/>
 		</div>
@@ -92,13 +93,15 @@
 				type="text"
 				id="surname"
 				class="w-full p-2 mt-5 border rounded-md"
-				placeholder="Cognome"
+				placeholder={$_('general.surname')}
 				bind:value={surname}
 			/>
 		</div>
 	</div>
 	<div class="flex justify-center">
-		<button type="submit" class="btn variant-filled" on:click={onClick}>Cerca</button>
+		<button type="submit" class="btn variant-filled" on:click={onClick}
+			>{$_('general.search')}</button
+		>
 	</div>
 </form>
 

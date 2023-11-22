@@ -4,6 +4,7 @@
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import canAccessReservedArea from '../../stores/reserved';
 	import { fetchPost } from '$lib/utils/api';
+	import { _ } from 'svelte-i18n';
 
 	let password = '';
 	const toastPasswordWrong: ToastSettings = {
@@ -34,13 +35,15 @@
 </script>
 
 <div class="text-center text-4xl">
-	<h1>Area Riservata <span class="invisible md:visible">🔐</span></h1>
+	<h1 class="">
+		{$_('pages.reserved-area.title')} <span class="invisible md:visible">🔐</span>
+	</h1>
 	<h1 class="visible md:invisible">🔐</h1>
 </div>
-<div class="container h-[450px] mx-auto my-auto flex justify-center items-center align-middle">
+<div class="container h-[300px] mx-auto my-auto flex justify-center items-center align-middle">
 	<form class="w-full md:w-1/4 space-y-2">
 		<label for="password" class="text-base"
-			>Inserisci la password dell'area riservata: <br /> solo per gli sposi! 🤵🏻‍♂️👰🏻‍♀️</label
+			>{$_('pages.reserved-area.msg1')} <br /> {$_('pages.reserved-area.msg2')} 🤵🏻‍♂️👰🏻‍♀️</label
 		>
 		<input
 			id="password"
@@ -51,7 +54,7 @@
 		<button
 			type="submit"
 			class="btn variant-filled align-baseline float-right ms-4"
-			on:click={onClick}>Invia</button
+			on:click={onClick}>{$_('general.send')}</button
 		>
 	</form>
 </div>

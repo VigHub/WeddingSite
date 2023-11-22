@@ -2,6 +2,7 @@
 	import { fetchPost } from '$lib/utils/api';
 	import { getAttendance } from '$lib/utils/guests';
 	import type { Guest, GuestMessage } from '$lib/utils/interfaces';
+	import { _ } from 'svelte-i18n';
 	import {
 		toastStore,
 		type ToastSettings,
@@ -77,14 +78,15 @@
 
 <div class="p-4 md:flex md:flex-col lg:w-1/2 w-full md:max-w-[500px] bg-white rounded-2xl">
 	<Stepper
-		buttonBackLabel="← Indietro"
-		buttonNextLabel="Successivo →"
-		buttonCompleteLabel="Invia"
+		buttonBackLabel={`← ${$_('general.back')}`}
+		buttonNextLabel={`${$_('general.next')} →`}
+		buttonCompleteLabel={$_('general.send')}
 		buttonComplete="variant-filled"
+		stepTerm={$_('general.step')}
 		on:complete={sendAttendanceAndMessage}
 	>
 		<Step>
-			<svelte:fragment slot="header">Partecipazione</svelte:fragment>
+			<svelte:fragment slot="header">{$_('pages.confirm-presence.participation')}</svelte:fragment>
 			<GuestConfirm
 				{guest}
 				isParent={true}
@@ -105,21 +107,23 @@
 			{/if}
 		</Step>
 		<Step>
-			<svelte:fragment slot="header">Vuoi mandarci anche un messaggio?</svelte:fragment>
+			<svelte:fragment slot="header"
+				>{$_('pages.confirm-presence.sendMessageQuestion')}</svelte:fragment
+			>
 			<div class="container h-full mx-auto flex justify-center items-center">
 				<form class="w-full">
 					<textarea
 						id="message1"
 						rows="4"
 						class="block p-2.5 w-full rounded-lg focus:ring-blue-500 focus:border-blue-500"
-						placeholder="Scrivi qui il tuo messaggio (opzionale)"
+						placeholder={$_('pages.confirm-presence.sendMessagePlaceHolder')}
 						bind:value={message}
 					/>
 				</form>
 			</div>
 		</Step>
 		<Step>
-			<svelte:fragment slot="header">Conferma</svelte:fragment>
+			<svelte:fragment slot="header">{$_('general.confirm')}</svelte:fragment>
 			<div class="h-full">
 				<div class="flex relative w-full">
 					<p class="font-semibold w-3/5 truncate">
@@ -127,7 +131,7 @@
 						{guest.surname}:
 					</p>
 					<p class="font-medium text-right absolute right-0">
-						{getAttendance(guest.attendance)}
+						{$_(getAttendance(guest.attendance))}
 					</p>
 				</div>
 				{#if showGroup}
@@ -138,13 +142,13 @@
 								{guestGroup.surname}:
 							</p>
 							<p class="font-medium text-right absolute right-0">
-								{getAttendance(guestGroup.attendance)}
+								{$_(getAttendance(guestGroup.attendance))}
 							</p>
 						</div>
 					{/each}
 				{/if}
 				{#if message !== ''}
-					<label class="font-semibold" for="message2">Messaggio:</label>
+					<label class="font-semibold" for="message2">{$_('pages.confirm-presence.msg')}</label>
 					<textarea
 						id="message2"
 						rows="4"

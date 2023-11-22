@@ -2,7 +2,7 @@
 	import { getAttendance } from '$lib/utils/guests';
 	import type { Guest } from '$lib/utils/interfaces';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-
+	import { _ } from 'svelte-i18n';
 	export let guest: Guest;
 	export let isParent = false;
 	export let isClickable = true;
@@ -22,7 +22,7 @@
 	<RadioGroup background="bg-white">
 		{#each [0, 1, 2] as attendance}
 			<RadioItem bind:group={guest.attendance} padding="py-2 px-2" name="justify" value={attendance}
-				>{getAttendance(attendance)}</RadioItem
+				>{$_(getAttendance(attendance))}</RadioItem
 			>
 		{/each}
 	</RadioGroup>
@@ -35,7 +35,7 @@
 				}}
 				class={buttonClass}
 			>
-				Indica anche per altri
+				{$_('pages.confirm-presence.set-others')}
 			</button>
 		</div>
 	{/if}
