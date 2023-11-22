@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { getAttendance } from '$lib/utils/guests';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+	import { _ } from 'svelte-i18n';
 	import GuestsTable from './GuestsTable.svelte';
-	import type { GuestAttendance } from '$lib/utils/interfaces';
+	import type { Guest } from '$lib/utils/interfaces';
 
-	export let guests: GuestAttendance[];
+	export let guests: Guest[];
 	let attendance = 0;
 </script>
 
@@ -15,7 +16,7 @@
 			name="attendance"
 			padding="py-2 px-2"
 			value={attendanceItem}
-			active={'variant-filled'}>{getAttendance(attendanceItem)}</RadioItem
+			active={'variant-filled'}>{$_(getAttendance(attendanceItem))}</RadioItem
 		>
 	{/each}
 </RadioGroup>

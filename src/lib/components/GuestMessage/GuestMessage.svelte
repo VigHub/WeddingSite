@@ -2,6 +2,7 @@
 	import { getAttendance } from '$lib/utils/guests';
 	import type { GuestMessageWithGuest } from '$lib/utils/interfaces';
 	import { format } from 'date-fns';
+	import { _ } from 'svelte-i18n';
 
 	const getStringTime = (created: Date) => {
 		return format(new Date(created), 'dd/MM/yyyy HH:mm');
@@ -18,7 +19,7 @@
 				 rounded-xl hover:bg-slate-100 bg-white"
 >
 	<p class="text-sm text-gray-500 ms-auto mt-auto right-0 top-0 pb-1">
-		{getAttendance(guestMessage.attendance)}
+		{$_(getAttendance(guestMessage.attendance))}
 	</p>
 	<p class={messageClass}>{guestMessage.message}</p>
 	<div class="flex">

@@ -23,7 +23,13 @@
 				"title": "Cose per la casa"
 			}
 		},
-		"confirm-presence": {},
+		"confirm-presence": {
+			"participation": "Partecipazione",
+			"sendMessageQuestion": "Vuoi mandarci anche un messaggio?",
+			"sendMessagePlaceHolder": "Scrivi qui il tuo messaggio (opzionale)",
+			"msg": "Messaggio:",
+			"set-others": "Indica anche per altri"
+		},
 		"info": {
 			"title": "Informazioni",
 			"church": {
@@ -52,6 +58,25 @@
 				"kinkaku-ji": "Pagoda d'oro a Kyoto"
 			}
 		},
-		"reserved-area": {}
+		"reserved-area": {
+			"title": "Area Riservata",
+			"msg1": "Inserisci la password dell'area riservata:",
+			"msg2": "solo per gli sposi!"
+		}
+	},
+	"general": {
+		"name": "Nome",
+		"surname": "Cognome",
+		"search": "Cerca",
+		"send": "Invia",
+		"back": "Indietro",
+		"next": "Successivo",
+		"confirm": "Conferma",
+		"step": "Step"
+	},
+	"attendance": {
+		"wait": "In attesa 🤔",
+		"present": "Ci sono 🥳",
+		"deny": "Non ci sono 😣"
 	}
 }

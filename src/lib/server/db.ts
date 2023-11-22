@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
 import { env } from '$env/dynamic/private';
-import type { GuestAttendance, GuestMessage, GuestMessageWithGuest } from '$lib/utils/interfaces';
+import type { Guest, GuestMessage, GuestMessageWithGuest } from '$lib/utils/interfaces';
 
 const supabaseUrl = env.SUPABASE_PROJECT_URL;
 const supabaseKey = env.SUPABASE_KEY;
@@ -9,25 +9,38 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 
 const GuestTable = 'Guest';
 const GuestMessageTable = 'GuestMessage';
-const GuestAttendanceTable = 'GuestAttendance';
 
 export const getGuestsbyNameSurname = async (name: string, surname: string) => {
 	if (name === '' && surname === '') return [];
 	const { data } = await supabase
-		.from(GuestAttendanceTable)
-		.select('attendance, guest:Guest!inner(id, name, surname)')
-		.ilike('guest.name', `${name}%`)
-		.ilike('guest.surname', `${surname}%`)
-		.returns<GuestAttendance[]>();
+		.from(GuestTable)
+		.select('attendance, id, name, surname, groupId')
+		.ilike('name', `${name}%`)
+		.ilike('surname', `${surname}%`)
+		.order('surname')
+		.order('name')
+		.limit(5)
+		.returns<Guest[]>();
 	const guests = data ?? [];
 	return guests;
 };
 
 export const getAllGuests = async () => {
 	const { data } = await supabase
-		.from(GuestAttendanceTable)
-		.select('attendance, guest:Guest (id, name, surname)')
-		.returns<GuestAttendance[]>();
+		.from(GuestTable)
+		.select('attendance, id, name, surname, groupId')
+		.returns<Guest[]>();
+	const guests = data ?? [];
+	return guests;
+};
+
+export const getSameGroupGuests = async (guest: Guest) => {
+	const { data } = await supabase
+		.from(GuestTable)
+		.select('attendance, id, name, surname, groupId')
+		.eq('groupId', guest.groupId)
+		.neq('id', guest.id)
+		.returns<Guest[]>();
 	const guests = data ?? [];
 	return guests;
 };
@@ -55,10 +68,9 @@ export const getSizeGuestMessages = async () => {
 };
 
 export const updateGuestAttendance = async (guest_id: number, attendance: number) => {
-	const guestAttendance = { guest_id, attendance };
 	const { status } = await supabase
-		.from(GuestAttendanceTable)
-		.update(guestAttendance)
-		.eq('guest_id', guest_id);
+		.from(GuestTable)
+		.update({ attendance })
+		.eq('id', guest_id);
 	return status === 201 || status === 204;
 };

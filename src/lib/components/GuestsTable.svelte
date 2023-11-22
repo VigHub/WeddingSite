@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GuestAttendance } from '$lib/utils/interfaces';
+	import type { Guest } from '$lib/utils/interfaces';
 	import {
 		Paginator,
 		Table,
@@ -7,14 +7,14 @@
 		type PaginationSettings
 	} from '@skeletonlabs/skeleton';
 
-	export let guests: GuestAttendance[];
+	export let guests: Guest[];
 	export let attendance: number;
 
 	const guestsByAttendance = [0, 1, 2].map((att) => {
 		return guests
 			.filter((g) => g.attendance === att)
 			.map((g) => {
-				return { name: g.guest.name, surname: g.guest.surname };
+				return { name: g.name, surname: g.surname };
 			});
 	});
 	const messagesPerPage = 5;

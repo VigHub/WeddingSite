@@ -9,13 +9,13 @@
 	} from '@skeletonlabs/skeleton';
 	import { toastStore } from '@skeletonlabs/skeleton';
 	import canAccessReservedArea from '../../stores/reserved';
-	import { base } from '$app/paths';
-	import type { GuestAttendance } from '$lib/utils/interfaces';
+	import type { Guest } from '$lib/utils/interfaces';
 	import { fetchPost } from '$lib/utils/api';
+	import { _ } from 'svelte-i18n';
 
 	canAccessReservedArea.set(false);
 
-	let guests: GuestAttendance[] = [];
+	let guests: Guest[] = [];
 	let loadingGuest = false;
 	let name = '';
 	let surname = '';
@@ -45,12 +45,13 @@
 		guests = [];
 	};
 
-	const openModal = (guest: GuestAttendance) => {
+	const openModal = async (guest: Guest) => {
+		const guestsGroup = await fetchPost('guestsSameGroup', { guest });
 		const modalComponent: ModalComponent = {
 			// Pass a reference to your custom component
 			ref: ModalConfirmPresence,
 			// Add the component properties as key/value pairs
-			props: { guest, resetParameters },
+			props: { guest, resetParameters, guestsGroup: guestsGroup.guests },
 			// Provide a template literal for the default component slot
 			slot: '<p>Skeleton</p>'
 		};
@@ -82,7 +83,7 @@
 				type="text"
 				id="name"
 				class="w-full p-2 mt-5 border rounded-md"
-				placeholder="Nome"
+				placeholder={$_('general.name')}
 				bind:value={name}
 			/>
 		</div>
@@ -92,13 +93,15 @@
 				type="text"
 				id="surname"
 				class="w-full p-2 mt-5 border rounded-md"
-				placeholder="Cognome"
+				placeholder={$_('general.surname')}
 				bind:value={surname}
 			/>
 		</div>
 	</div>
 	<div class="flex justify-center">
-		<button type="submit" class="btn variant-filled" on:click={onClick}>Cerca</button>
+		<button type="submit" class="btn variant-filled" on:click={onClick}
+			>{$_('general.search')}</button
+		>
 	</div>
 </form>
 
@@ -110,14 +113,14 @@
 			{#each guests ?? [] as guest}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<li
-					class="text-lg p-3 items-center md:w-1/3 sm:w-4/5 mx-auto text-center
+					class="text-lg p-3 items-center md:w-1/3 w-4/5 mx-auto text-center
 				border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900
 				hover:scale-110 transition duration-300 ease-in-out cursor-pointer
 				"
-					on:click={() => openModal(guest)}
+					on:click={async () => await openModal(guest)}
 				>
-					{guest.guest.name}
-					{guest.guest.surname}
+					{guest.name}
+					{guest.surname}
 				</li>
 			{/each}
 		</ul>

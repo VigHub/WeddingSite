@@ -8,11 +8,8 @@ export interface Guest {
 	id: number;
 	name: string;
 	surname: string;
-}
-
-export interface GuestAttendance {
 	attendance: number;
-	guest: Guest;
+	groupId?: number;
 }
 
 export interface GuestMessage {
