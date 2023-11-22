@@ -1,0 +1,12 @@
+version: '2'
+services:
+  wedding-site:
+    image: gcr.io/wedding-site-cloudrun/wedding-site-image:cloudrun
+    environment: 
+      - SUPABASE_PROJECT_URL=${SUPABASE_PROJECT_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - SERVICE_KEY=${SERVICE_KEY}
+      - HASH_RESERVED=${HASH_RESERVED}
+    ports:
+      - 3000:3000
+    restart: always
