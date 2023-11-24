@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ImageLayout from '$lib/components/ImageLayout.svelte';
 	import canAccessReservedArea from '../stores/reserved';
 
 	canAccessReservedArea.set(false);
@@ -26,4 +27,5 @@
 		l'organizzazione dei preparativi.
 	</p>
 	<p>Goditi il sito e ci vediamo presto! Un abbraccione!</p>
+	<ImageLayout />
 </div>
