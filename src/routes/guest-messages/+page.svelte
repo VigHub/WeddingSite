@@ -4,19 +4,22 @@
 	import { ProgressRadial, Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import GuestsPresence from '$lib/components/GuestsPresence.svelte';
 	import { onMount } from 'svelte';
-	import type { Guest, GuestMessageWithGuest } from '$lib/utils/interfaces';
+	import type { Guest, GuestGroup, GuestMessageWithGuest } from '$lib/utils/interfaces';
 	import { fetchPost } from '$lib/utils/api';
+	import GroupsList from '$lib/components/GroupList/GroupsList.svelte';
 	const messagesPerPage = 4;
 	let tabSet = 0;
 	let loaded = false;
 	let guestMessages: GuestMessageWithGuest[] = [];
 	let guests: Guest[] = [];
+	let groups: GuestGroup[] = [];
 
 	onMount(async () => {
 		const res = await fetchPost('guestMessages');
 		loaded = true;
 		guestMessages = res.guestMessages;
 		guests = res.guests;
+		groups = res.groups;
 	});
 </script>
 
@@ -35,8 +38,11 @@
 		<Tab bind:group={tabSet} name="tab1" value={0}>
 			<svelte:fragment slot="lead">Tutti i messaggi</svelte:fragment>
 		</Tab>
-		<Tab bind:group={tabSet} name="tab1" value={1}>
+		<Tab bind:group={tabSet} name="tab2" value={1}>
 			<svelte:fragment slot="lead">Presenze</svelte:fragment>
+		</Tab>
+		<Tab bind:group={tabSet} name="tab3" value={2}>
+			<svelte:fragment slot="lead">Gruppi</svelte:fragment>
 		</Tab>
 		<svelte:fragment slot="panel">
 			<div class="w-[300px] md:w-[500px]">
@@ -48,6 +54,8 @@
 					<GuestMessagesList {messagesPerPage} {guestMessages} />
 				{:else if tabSet === 1}
 					<GuestsPresence {guests} />
+				{:else if tabSet === 2}
+					<GroupsList {groups} groupPerPage={4} />
 				{/if}
 			</div>
 		</svelte:fragment>

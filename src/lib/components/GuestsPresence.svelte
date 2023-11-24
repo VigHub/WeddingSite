@@ -2,8 +2,8 @@
 	import { getAttendance } from '$lib/utils/guests';
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 	import { _ } from 'svelte-i18n';
-	import GuestsTable from './GuestsTable.svelte';
 	import type { Guest } from '$lib/utils/interfaces';
+	import GuestsByAttendanceTable from './GuestsByAttendanceTable.svelte';
 
 	export let guests: Guest[];
 	let attendance = 0;
@@ -21,5 +21,5 @@
 	{/each}
 </RadioGroup>
 <div class="mt-5">
-	<GuestsTable {guests} {attendance} />
+	<GuestsByAttendanceTable {guests} {attendance} />
 </div>
