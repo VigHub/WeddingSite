@@ -1,39 +1,47 @@
 <script lang="ts">
+	import { fetchPost } from '$lib/utils/api';
 	import type { Guest } from '$lib/utils/interfaces';
-	import { tableMapperValues, Table, Paginator, ProgressRadial } from '@skeletonlabs/skeleton';
+	import { tableMapperValues, Table, ProgressRadial } from '@skeletonlabs/skeleton';
+	import guestsForGroup from '../../stores/guestsGroupReserved';
 
-	export let guests: Guest[];
-	export let guestsPerPage: number = 5;
 	export let loaded: boolean;
-
-	$: page = {
-		offset: 0,
-		limit: guestsPerPage,
-		size: guests.length,
-		amounts: []
-	};
+	export let offset: number;
+	export let limit: number;
 
 	$: source = {
-		head: ['Nome', 'Cognome'],
-		body: tableMapperValues(
-			guests.slice(page.offset * page.limit, (page.offset + 1) * page.limit),
-			['name', 'surname']
-		)
+		head: ['Nome', 'Cognome', 'Id'],
+		body: tableMapperValues($guestsForGroup.slice(offset * limit, (offset + 1) * limit), [
+			'name',
+			'surname',
+			'id'
+		])
+	};
+
+	const onRowSelected = async (row: CustomEvent<any[]>) => {
+		const { ok, data } = await fetchPost('updateGuestInGroup', {
+			guestId: row.detail[2],
+			groupId: null
+		});
+		if (ok) {
+			$guestsForGroup = $guestsForGroup.filter((g) => {
+				return g.id !== (data as Guest[])[0].id;
+			});
+		}
 	};
 </script>
 
-<div class="relative min-h-[380px] min-w-[300px]">
+<div>
 	{#if !loaded}
 		<div class="flex items-center justify-center align-middle min-h-[300px]">
 			<ProgressRadial width={'w-12 md:w-20'} />
 		</div>
 	{:else}
-		<Table {source} regionBody="bg-gray-50" regionHeadCell="bg-surface-200" interactive={true} />
-		<div class="absolute bottom-0 right-0">
-			<Paginator bind:settings={page} showPreviousNextButtons={true} separatorText={'di'} />
-		</div>
-		<div class="absolute bottom-0 left-0">
-			<button class="btn btn-sm variant-filled">Aggiungi invitato</button>
-		</div>
+		<Table
+			{source}
+			regionBody="bg-gray-50"
+			regionHeadCell="bg-surface-200"
+			interactive={true}
+			on:selected={onRowSelected}
+		/>
 	{/if}
 </div>
