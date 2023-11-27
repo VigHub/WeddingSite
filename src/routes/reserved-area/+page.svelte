@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import canAccessReservedArea from '../../stores/reserved';
 	import { fetchPost } from '$lib/utils/api';
 	import { _ } from 'svelte-i18n';
@@ -18,13 +17,14 @@
 	}
 
 	const onClick = async () => {
+		if (password === '') return;
 		const hashed = await sha512(password);
 		const { authenticated } = await fetchPost('auth', { hashed });
 		if (authenticated) {
 			canAccessReservedArea.set(true);
 			goto(`${base}/guest-messages`);
 		} else {
-			sendToastError('Password errata, non so se riesci ad indovinarla... 😏');
+			sendToastError($_('pages.reserved-area.wrongPwd'));
 			password = '';
 		}
 	};

@@ -3,13 +3,14 @@
 	import type { Guest } from '$lib/utils/interfaces';
 	import { tableMapperValues, Table, ProgressRadial } from '@skeletonlabs/skeleton';
 	import { guestsForGroup } from '../../stores/guestsGroupReserved';
+	import { _ } from 'svelte-i18n';
 
 	export let loaded: boolean;
 	export let offset: number;
 	export let limit: number;
 
 	$: source = {
-		head: ['Nome', 'Cognome', 'ID'],
+		head: [$_('general.name'), $_('general.surname'), 'ID'],
 		body: tableMapperValues($guestsForGroup.slice(offset * limit, (offset + 1) * limit), [
 			'name',
 			'surname',

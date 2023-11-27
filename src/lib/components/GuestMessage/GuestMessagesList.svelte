@@ -11,6 +11,7 @@
 	import type { GuestMessageWithGuest } from '$lib/utils/interfaces';
 	import { onMount } from 'svelte';
 	import { fetchPost } from '$lib/utils/api';
+	import { _ } from 'svelte-i18n';
 
 	export let messagesPerPage: number = 3;
 	let loading = true;
@@ -63,7 +64,11 @@
 			{/each}
 		</div>
 		<div class="flex absolute bottom-0 right-0">
-			<Paginator bind:settings={page} showPreviousNextButtons={true} separatorText={'di'} />
+			<Paginator
+				bind:settings={page}
+				showPreviousNextButtons={true}
+				separatorText={$_('general.of')}
+			/>
 		</div>
 	{/if}
 </div>

@@ -41,7 +41,11 @@
 		$guestsForGroup.push((data as Guest[])[0]);
 		page.size = $guestsForGroup.length;
 		pageView = PageViewType.List;
-		handleToast(ok, 'Invitato inserito in gruppo', 'Invitato non inserito in gruppo');
+		handleToast(
+			ok,
+			$_('pages.reserved-area.group.guestAdded'),
+			$_('pages.reserved-area.group.guestNotAdded')
+		);
 	};
 
 	const guestsPerPage: number = 5;
@@ -58,12 +62,16 @@
 	class="p-5 pt-3 border border-black
 rounded-xl hover:bg-slate-100 bg-white"
 >
-	<h1 class="mb-4">Gruppo {group.name}</h1>
+	<h1 class="mb-4">{group.name}</h1>
 	<div class="relative min-h-[380px] min-w-[300px]">
 		{#if pageView === PageViewType.List}
 			<GuestTable {loaded} limit={page.limit} offset={page.offset} />
 			<div class="absolute bottom-0 right-0">
-				<Paginator bind:settings={page} showPreviousNextButtons={true} separatorText={'di'} />
+				<Paginator
+					bind:settings={page}
+					showPreviousNextButtons={true}
+					separatorText={$_('general.of')}
+				/>
 			</div>
 			<div class="absolute left-0 bottom-0 inline-flex rounded-full space-x-[1px] variant-filled">
 				<button

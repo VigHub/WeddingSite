@@ -64,7 +64,27 @@
 		"reserved-area": {
 			"title": "Reserved Area",
 			"msg1": "Enter the reserved area password:",
-			"msg2": "only for newlyweds!"
+			"msg2": "only for newlyweds!",
+			"wrongPwd": "Wrong password, I don't know if you can guess it... 😏",
+			"allMessages": "All messages",
+			"attendance": "Attendance",
+			"groups": "Groups",
+			"group": {
+				"delete": "Are you sure you want to delete this group?",
+				"canceled": "Group canceled",
+				"notCanceled": "Group not canceled",
+				"newName": "New group name",
+				"updated": "Group name updated",
+				"notUpdated": "Group name not updated",
+				"add": "Add group",
+				"addQuestion": "What name do you want to give to the new group?",
+				"added": "Group added",
+				"notAdded": "Group not added",
+				"guestAdded": "Guest added to the group",
+				"guestNotAdded": "Guest not added to the group"
+			},
+			"denied": "Access denied! ❌",
+			"deniedMessage": "You do not have access to this screen, it is only for the bride and groom!"
 		}
 	},
 	"general": {
@@ -74,8 +94,10 @@
 		"send": "Send",
 		"back": "Back",
 		"next": "Next",
+		"update": "Update",
 		"confirm": "Confirm",
-		"step": "Step"
+		"step": "Step",
+		"of": "of"
 	},
 	"attendance": {
 		"wait": "Not sure yet 🤔",

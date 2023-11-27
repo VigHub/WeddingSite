@@ -13,6 +13,7 @@
 	import { handleToast } from '$lib/utils/toast';
 	import { onMount } from 'svelte';
 	import { groups } from '../../../stores/guestsGroupReserved';
+	import { _ } from 'svelte-i18n';
 
 	export let groupPerPage: number = 5;
 
@@ -48,7 +49,11 @@
 	const addGroup = async (groupName: string) => {
 		if (groupName === undefined || groupName === '') return;
 		const ok = await fetchPost('group/add', { groupName });
-		handleToast(ok, 'Gruppo aggiunto', 'Gruppo non aggiunto');
+		handleToast(
+			ok,
+			$_('pages.reserved-area.group.added'),
+			$_('pages.reserved-area.group.notAdded')
+		);
 		if (ok) {
 			$groups.push({ id: $groups.length, name: groupName });
 			page.size = $groups.length;
@@ -58,13 +63,13 @@
 	const addGroupModal = () => {
 		const modal: ModalSettings = {
 			type: 'prompt',
-			title: 'Aggiungi Gruppo',
-			body: 'Che nome vuoi dare al nuovo gruppo?',
+			title: $_('pages.reserved-area.group.add'),
+			body: $_('pages.reserved-area.group.addQuestion'),
 			value: '',
 			valueAttr: { type: 'text', minlength: 3, maxlength: 50, required: true },
 			response: async (r: string) => await addGroup(r),
-			buttonTextCancel: 'Annulla',
-			buttonTextSubmit: 'Invia',
+			buttonTextCancel: $_('general.back'),
+			buttonTextSubmit: $_('general.confirm'),
 			modalClasses: '!bg-white border border-black rounded-xl'
 		};
 		modalStore.trigger(modal);
@@ -87,15 +92,21 @@
 					class="p-5 pt-3 border border-black
                 rounded-xl hover:bg-slate-100"
 				>
-					<p class="">Gruppo {group.name}</p>
+					<p class="">{group.name}</p>
 				</div>
 			{/each}
 		</div>
 		<div class="absolute bottom-0 right-0">
-			<Paginator bind:settings={page} showPreviousNextButtons={true} separatorText={'di'} />
+			<Paginator
+				bind:settings={page}
+				showPreviousNextButtons={true}
+				separatorText={$_('general.of')}
+			/>
 		</div>
 		<div class="absolute bottom-0 left-0">
-			<button class="btn btn-sm variant-filled" on:click={addGroupModal}>Aggiungi gruppo</button>
+			<button class="btn btn-sm variant-filled" on:click={addGroupModal}
+				>{$_('pages.reserved-area.group.add')}</button
+			>
 		</div>
 	{/if}
 </div>

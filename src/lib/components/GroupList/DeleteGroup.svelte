@@ -4,6 +4,7 @@
 	import { handleToast } from '$lib/utils/toast';
 	import { modalStore } from '@skeletonlabs/skeleton';
 	import { groups } from '../../../stores/guestsGroupReserved';
+	import { _ } from 'svelte-i18n';
 
 	export let group: GuestGroup;
 	export let onBack = () => {};
@@ -12,17 +13,21 @@
 		const { ok } = await fetchPost('group/remove', {
 			id: group.id
 		});
-		handleToast(ok, 'Gruppo cancellato', 'Gruppo non cancellato');
+		handleToast(
+			ok,
+			$_('pages.reserved-area.group.canceled'),
+			$_('pages.reserved-area.group.notCanceled')
+		);
 		$groups = $groups.filter((g) => g.id !== group.id);
 		modalStore.clear();
 	};
 </script>
 
 <div>
-	<h2>Sei sicuro di voler cancellare il gruppo?</h2>
+	<h2>{$_('pages.reserved-area.group.delete')}</h2>
 
 	<div class="flex justify-center mt-5 space-x-3">
-		<button class="btn variant-ghost" on:click={onBack}>Annulla</button>
-		<button class="btn variant-filled" on:click={deleteGroup}>Elimina gruppo</button>
+		<button class="btn variant-ghost" on:click={onBack}>{$_('general.back')}</button>
+		<button class="btn variant-filled" on:click={deleteGroup}>{$_('general.confirm')}</button>
 	</div>
 </div>

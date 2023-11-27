@@ -6,6 +6,7 @@
 		tableMapperValues,
 		type PaginationSettings
 	} from '@skeletonlabs/skeleton';
+	import { _ } from 'svelte-i18n';
 
 	export let guests: Guest[];
 	export let attendance: number;
@@ -38,7 +39,7 @@
 	};
 	$: pageArray = [page1, page2, page3];
 	$: source = {
-		head: ['Nome', 'Cognome'],
+		head: [$_('general.name'), $_('general.surname')],
 		body: tableMapperValues(
 			guestsByAttendance[attendance].slice(
 				pageArray[attendance].offset * pageArray[attendance].limit,
@@ -55,7 +56,7 @@
 		<Paginator
 			bind:settings={pageArray[attendance]}
 			showPreviousNextButtons={true}
-			separatorText={'di'}
+			separatorText={$_('general.of')}
 		/>
 	</div>
 </div>
