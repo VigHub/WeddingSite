@@ -12,23 +12,23 @@
 	import { fetchPost } from '$lib/utils/api';
 	import { handleToast } from '$lib/utils/toast';
 	import { onMount } from 'svelte';
+	import { groups } from '../../../stores/guestsGroupReserved';
 
 	export let groupPerPage: number = 5;
 
-	let groups: GuestGroup[] = [];
 	let loading = true;
 
 	onMount(async () => {
 		const res = await fetchPost('group/all');
-		groups = res.groups;
-		page.size = groups.length;
+		$groups = res.groups;
+		page.size = $groups.length;
 		loading = false;
 	});
 
 	let page: PaginationSettings = {
 		offset: 0,
 		limit: groupPerPage,
-		size: groups.length,
+		size: $groups.length,
 		amounts: []
 	};
 
@@ -50,8 +50,8 @@
 		const ok = await fetchPost('group/add', { groupName });
 		handleToast(ok, 'Gruppo aggiunto', 'Gruppo non aggiunto');
 		if (ok) {
-			groups.push({ id: groups.length, name: groupName });
-			page.size = groups.length;
+			$groups.push({ id: $groups.length, name: groupName });
+			page.size = $groups.length;
 		}
 	};
 
@@ -78,7 +78,7 @@
 		</div>
 	{:else}
 		<div class="flex flex-col space-y-4">
-			{#each groups.slice(page.offset * page.limit, (page.offset + 1) * page.limit) as group}
+			{#each $groups.slice(page.offset * page.limit, (page.offset + 1) * page.limit) as group}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div
 					on:click={() => {

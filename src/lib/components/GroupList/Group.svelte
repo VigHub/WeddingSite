@@ -3,13 +3,23 @@
 	import type { Guest, GuestGroup } from '$lib/utils/interfaces';
 	import { onDestroy, onMount } from 'svelte';
 	import GuestTable from '../GuestTable.svelte';
-	import { Paginator, type PaginationSettings } from '@skeletonlabs/skeleton';
+	import { Paginator, type PaginationSettings, modalStore } from '@skeletonlabs/skeleton';
 	import { _ } from 'svelte-i18n';
 	import SearchGuests from '../SearchGuests.svelte';
-	import guestsForGroup from '../../../stores/guestsGroupReserved';
 	import { handleToast } from '$lib/utils/toast';
+	import UpdateGroupName from './UpdateGroupName.svelte';
+	import DeleteGroup from './DeleteGroup.svelte';
+	import { groups, guestsForGroup } from '../../../stores/guestsGroupReserved';
 
 	export let group: GuestGroup;
+
+	enum PageViewType {
+		List,
+		Add,
+		Delete,
+		Update
+	}
+
 	let loaded = false;
 
 	onMount(async () => {
@@ -30,7 +40,7 @@
 		});
 		$guestsForGroup.push((data as Guest[])[0]);
 		page.size = $guestsForGroup.length;
-		showTable = true;
+		pageView = PageViewType.List;
 		handleToast(ok, 'Invitato inserito in gruppo', 'Invitato non inserito in gruppo');
 	};
 
@@ -41,11 +51,7 @@
 		size: $guestsForGroup.length,
 		amounts: []
 	};
-
-	const clickAdd = () => {
-		showTable = false;
-	};
-	let showTable = true;
+	let pageView: PageViewType = PageViewType.List;
 </script>
 
 <div
@@ -54,13 +60,17 @@ rounded-xl hover:bg-slate-100 bg-white"
 >
 	<h1 class="mb-4">Gruppo {group.name}</h1>
 	<div class="relative min-h-[380px] min-w-[300px]">
-		{#if showTable}
+		{#if pageView === PageViewType.List}
 			<GuestTable {loaded} limit={page.limit} offset={page.offset} />
 			<div class="absolute bottom-0 right-0">
 				<Paginator bind:settings={page} showPreviousNextButtons={true} separatorText={'di'} />
 			</div>
 			<div class="absolute left-0 bottom-0 inline-flex rounded-full space-x-[1px] variant-filled">
-				<button class="btn btn-sm" on:click={clickAdd}
+				<button
+					class="btn btn-sm"
+					on:click={() => {
+						pageView = PageViewType.Add;
+					}}
 					><svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -76,7 +86,11 @@ rounded-xl hover:bg-slate-100 bg-white"
 						/>
 					</svg>
 				</button>
-				<button class="btn btn-sm"
+				<button
+					class="btn btn-sm"
+					on:click={() => {
+						pageView = PageViewType.Update;
+					}}
 					><svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -92,7 +106,11 @@ rounded-xl hover:bg-slate-100 bg-white"
 						/>
 					</svg>
 				</button>
-				<button class="btn btn-sm"
+				<button
+					class="btn btn-sm"
+					on:click={() => {
+						pageView = PageViewType.Delete;
+					}}
 					><svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -105,9 +123,34 @@ rounded-xl hover:bg-slate-100 bg-white"
 					</svg>
 				</button>
 			</div>
-		{:else}
+		{:else if pageView === PageViewType.Add}
 			<div class="max-w-xs md:max-w-2xl mx-auto">
 				<SearchGuests {onClickGuest} withOutGroup />
+			</div>
+		{:else if pageView === PageViewType.Update}
+			<div class="max-w-xs md:max-w-2xl mx-auto">
+				<UpdateGroupName
+					{group}
+					afterUpdate={() => {
+						pageView = PageViewType.List;
+						$groups = $groups.map((g) => {
+							if (g.id === group.id) {
+								return group;
+							}
+							return g;
+						});
+						modalStore.clear();
+					}}
+				/>
+			</div>
+		{:else if pageView === PageViewType.Delete}
+			<div class="max-w-xs md:max-w-2xl mx-auto">
+				<DeleteGroup
+					{group}
+					onBack={() => {
+						pageView = PageViewType.List;
+					}}
+				/>
 			</div>
 		{/if}
 	</div>

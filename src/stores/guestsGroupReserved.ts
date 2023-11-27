@@ -1,6 +1,5 @@
-import type { Guest } from '$lib/utils/interfaces';
+import type { Guest, GuestGroup } from '$lib/utils/interfaces';
 import { writable, type Writable } from 'svelte/store';
 
-const guestsForGroup: Writable<Guest[]> = writable([]);
-
-export default guestsForGroup;
+export const guestsForGroup: Writable<Guest[]> = writable([]);
+export const groups: Writable<GuestGroup[]> = writable([]);

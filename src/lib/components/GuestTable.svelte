@@ -2,7 +2,7 @@
 	import { fetchPost } from '$lib/utils/api';
 	import type { Guest } from '$lib/utils/interfaces';
 	import { tableMapperValues, Table, ProgressRadial } from '@skeletonlabs/skeleton';
-	import guestsForGroup from '../../stores/guestsGroupReserved';
+	import { guestsForGroup } from '../../stores/guestsGroupReserved';
 
 	export let loaded: boolean;
 	export let offset: number;
