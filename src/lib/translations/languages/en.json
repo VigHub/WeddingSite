@@ -32,15 +32,18 @@
 		},
 		"info": {
 			"title": "Information",
+			"when": "When are we getting married?",
 			"church": {
-				"where": "Where are we getting married?",
+				"where": "Where is the ceremony?",
 				"whereAddress": "Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,",
-				"whereAddressPlace": "Ponteranica (BG)"
+				"whereAddressPlace": "Ponteranica (BG)",
+				"when": "From 3 pm"
 			},
 			"celebration": {
 				"where": "Where is the party?",
 				"whereAddress": "Villa Canton,",
-				"whereAddressPlace": "Trescore (BG)"
+				"whereAddressPlace": "Trescore (BG)",
+				"when": "From 5 pm"
 			},
 			"countdown": {
 				"time": "How much time is missing?",

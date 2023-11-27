@@ -32,15 +32,18 @@
 		},
 		"info": {
 			"title": "情報",
+			"when": "私たちはいつ結婚する予定ですか",
 			"church": {
-				"where": "私たちはどこで結婚しますか",
+				"where": "式典はどこですか",
 				"whereAddress": "聖アレクサンダーとヴィンセント教区教会、",
-				"whereAddressPlace": "ポンテラニカ (BG)"
+				"whereAddressPlace": "ポンテラニカ (BG)",
+				"when": "午後3時から"
 			},
 			"celebration": {
 				"where": "パーティーはどこですか",
 				"whereAddress": "ヴィラ カントン、",
-				"whereAddressPlace": "トレススコア(BG)"
+				"whereAddressPlace": "トレススコア(BG)",
+				"when": "午後5時から"
 			},
 			"countdown": {
 				"time": "どれくらい足りないのか",

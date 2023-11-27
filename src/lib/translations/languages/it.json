@@ -32,15 +32,18 @@
 		},
 		"info": {
 			"title": "Informazioni",
+			"when": "Quando ci sposiamo?",
 			"church": {
-				"where": "Dove ci sposiamo?",
+				"where": "Dove è la cerimonia?",
 				"whereAddress": "Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,",
-				"whereAddressPlace": "Ponteranica (BG)"
+				"whereAddressPlace": "Ponteranica (BG)",
+				"when": "Dalle 15:00"
 			},
 			"celebration": {
 				"where": "Dove è la festa?",
 				"whereAddress": "Villa Canton,",
-				"whereAddressPlace": "Trescore (BG)"
+				"whereAddressPlace": "Trescore (BG)",
+				"when": "Dalle 17:00"
 			},
 			"countdown": {
 				"time": "Quanto manca?",
