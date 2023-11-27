@@ -13,7 +13,7 @@
 	let loaded = false;
 
 	onMount(async () => {
-		const res = await fetchPost('guestsSameGroup', { groupId: group.id });
+		const res = await fetchPost('guests/sameGroup', { groupId: group.id });
 		$guestsForGroup = res.guests;
 		page.size = $guestsForGroup.length;
 		loaded = true;
@@ -24,11 +24,12 @@
 	});
 
 	const onClickGuest = async (g: Guest) => {
-		const { ok, data } = await fetchPost('updateGuestInGroup', {
+		const { ok, data } = await fetchPost('guests/updateGroupID', {
 			guestId: g.id,
 			groupId: group.id
 		});
 		$guestsForGroup.push((data as Guest[])[0]);
+		page.size = $guestsForGroup.length;
 		showTable = true;
 		handleToast(ok, 'Invitato inserito in gruppo', 'Invitato non inserito in gruppo');
 	};
@@ -106,7 +107,7 @@ rounded-xl hover:bg-slate-100 bg-white"
 			</div>
 		{:else}
 			<div class="max-w-xs md:max-w-2xl mx-auto">
-				<SearchGuests {onClickGuest} />
+				<SearchGuests {onClickGuest} withOutGroup />
 			</div>
 		{/if}
 	</div>

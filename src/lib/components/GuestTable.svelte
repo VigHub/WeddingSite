@@ -18,7 +18,7 @@
 	};
 
 	const onRowSelected = async (row: CustomEvent<any[]>) => {
-		const { ok, data } = await fetchPost('updateGuestInGroup', {
+		const { ok, data } = await fetchPost('guests/updateGroupID', {
 			guestId: row.detail[2],
 			groupId: null
 		});

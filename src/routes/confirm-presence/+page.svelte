@@ -16,7 +16,7 @@
 	};
 
 	const openModal = async (guest: Guest) => {
-		const guestsGroup = await fetchPost('guestsSameGroup', {
+		const guestsGroup = await fetchPost('guests/sameGroup', {
 			groupId: guest.groupId,
 			guestId: guest.id
 		});

@@ -17,7 +17,7 @@
 	let guestMessages: GuestMessageWithGuest[] = [];
 
 	onMount(async () => {
-		const res = await fetchPost('guestMessages');
+		const res = await fetchPost('guestMessages/all');
 		guestMessages = res.guestMessages;
 		page.size = guestMessages.length;
 		loading = false;

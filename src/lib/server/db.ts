@@ -87,6 +87,13 @@ export const addGroup = async (groupName: string) => {
 	return status === 201;
 };
 
+export const deleteGroup = async (groupId: number) => {
+	const { status } = await supabase.from(GuestGroupTable).delete().eq('id', groupId);
+	if (status !== 200) return false;
+	const res = await supabase.from(GuestTable).update({ groupId: null }).eq('groupId', groupId);
+	return res.status === 200;
+};
+
 export const updateGuestInGroup = async (guestId: number, groupId?: number) => {
 	const { status, data } = await supabase
 		.from(GuestTable)

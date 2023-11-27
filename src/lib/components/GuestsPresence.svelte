@@ -12,7 +12,7 @@
 	let attendance = 0;
 
 	onMount(async () => {
-		const res = await fetchPost('getAllGuests');
+		const res = await fetchPost('guests/all');
 		guests = res.guests;
 		loading = false;
 	});

@@ -5,6 +5,7 @@
 	import { fetchPost } from '$lib/utils/api';
 	import { sendToastError } from '$lib/utils/toast';
 	export let onClickGuest: (guest: Guest) => Promise<void>;
+	export let withOutGroup: boolean = false;
 	export let guests: Guest[] = [];
 	let name = '';
 	let surname = '';
@@ -12,9 +13,10 @@
 
 	const onSearch = async () => {
 		loadingGuest = true;
-		const res = await fetchPost('guestsByNameSurname', {
+		const res = await fetchPost('guests/byNameSurname', {
 			name,
-			surname
+			surname,
+			withOutGroup
 		});
 		guests = res.guests;
 		loadingGuest = false;
@@ -22,6 +24,8 @@
 			toastStore.clear();
 			sendToastError('Nessun invitato trovato con questo nome e/o cognome');
 		}
+		name = '';
+		surname = '';
 	};
 </script>
 
@@ -58,7 +62,9 @@
 
 	<div class="mt-5">
 		{#if loadingGuest}
-			<ProgressRadial width={'w-12 md:w-20'} />
+			<div class="w-full flex justify-center">
+				<ProgressRadial width={'w-12 md:w-20'} />
+			</div>
 		{:else}
 			<ul class="bg-white flex flex-col space-y-3">
 				{#each guests ?? [] as guest}

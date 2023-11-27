@@ -14,7 +14,7 @@
 	let message: string = '';
 	let showGroup = false;
 	const sendAttendance = async (gst: Guest) => {
-		let res = await fetchPost('updateGuestAttendance', {
+		let res = await fetchPost('guests/updateAttendance', {
 			id: gst.id,
 			attendance: gst.attendance
 		});
@@ -51,7 +51,7 @@
 				message,
 				attendance: guest.attendance
 			};
-			isOk = await fetchPost('insertGuestMessage', {
+			isOk = await fetchPost('guestMessage/add', {
 				guestMessage
 			});
 			if (!isOk) {

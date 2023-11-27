@@ -19,7 +19,7 @@
 	let loading = true;
 
 	onMount(async () => {
-		const res = await fetchPost('getAllGroups');
+		const res = await fetchPost('group/all');
 		groups = res.groups;
 		page.size = groups.length;
 		loading = false;
@@ -47,7 +47,7 @@
 
 	const addGroup = async (groupName: string) => {
 		if (groupName === undefined || groupName === '') return;
-		const ok = await fetchPost('addGroup', { groupName });
+		const ok = await fetchPost('group/add', { groupName });
 		handleToast(ok, 'Gruppo aggiunto', 'Gruppo non aggiunto');
 		if (ok) {
 			groups.push({ id: groups.length, name: groupName });
