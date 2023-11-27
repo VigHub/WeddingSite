@@ -1,52 +1,25 @@
 <script lang="ts">
 	import ModalConfirmPresence from '$lib/components/ModalConfirmPresence.svelte';
-	import {
-		modalStore,
-		type ModalSettings,
-		type ModalComponent,
-		type ToastSettings,
-		ProgressRadial
-	} from '@skeletonlabs/skeleton';
-	import { toastStore } from '@skeletonlabs/skeleton';
+	import { modalStore, type ModalSettings, type ModalComponent } from '@skeletonlabs/skeleton';
 	import canAccessReservedArea from '../../stores/reserved';
 	import type { Guest } from '$lib/utils/interfaces';
 	import { fetchPost } from '$lib/utils/api';
 	import { _ } from 'svelte-i18n';
+	import SearchGuests from '$lib/components/SearchGuests.svelte';
 
 	canAccessReservedArea.set(false);
 
 	let guests: Guest[] = [];
-	let loadingGuest = false;
-	let name = '';
-	let surname = '';
-	const toastGuestNotFound: ToastSettings = {
-		message: 'Nessun invitato trovato con questo nome e/o cognome',
-		background: 'variant-filled-error',
-		timeout: 3000
-	};
-
-	const onClick = async () => {
-		loadingGuest = true;
-		const res = await fetchPost('guestsByNameSurname', {
-			name,
-			surname
-		});
-		guests = res.guests;
-		loadingGuest = false;
-		if (guests.length == 0 && (name !== '' || surname !== '')) {
-			toastStore.clear();
-			toastStore.trigger(toastGuestNotFound);
-		}
-	};
 
 	const resetParameters = () => {
-		name = '';
-		surname = '';
 		guests = [];
 	};
 
 	const openModal = async (guest: Guest) => {
-		const guestsGroup = await fetchPost('guestsSameGroup', { guest });
+		const guestsGroup = await fetchPost('guests/sameGroup', {
+			groupId: guest.groupId,
+			guestId: guest.id
+		});
 		const modalComponent: ModalComponent = {
 			// Pass a reference to your custom component
 			ref: ModalConfirmPresence,
@@ -64,6 +37,10 @@
 
 		modalStore.trigger(modal);
 	};
+
+	const onClickGuest = async (guest: Guest) => {
+		await openModal(guest);
+	};
 </script>
 
 <h1 class="text-center text-4xl">Ci accompagni o te lo perdi?</h1>
@@ -75,54 +52,4 @@
 		potete lasciare un messaggio. È opzionale, ma ci farebbe tanto piacere leggerlo!). :)
 	</p>
 </div>
-<form class="lg:w-1/2 w-full">
-	<div class="mb-4 mt-4 md:flex md:space-x-4 w-full">
-		<div class="md:w-1/2">
-			<!-- <label for="name" class="block text-gray-700 font-semibold">Nome:</label> -->
-			<input
-				type="text"
-				id="name"
-				class="w-full p-2 mt-5 border rounded-md"
-				placeholder={$_('general.name')}
-				bind:value={name}
-			/>
-		</div>
-		<div class="md:w-1/2">
-			<!-- <label for="surname" class="block text-gray-700 font-semibold">Cognome:</label> -->
-			<input
-				type="text"
-				id="surname"
-				class="w-full p-2 mt-5 border rounded-md"
-				placeholder={$_('general.surname')}
-				bind:value={surname}
-			/>
-		</div>
-	</div>
-	<div class="flex justify-center">
-		<button type="submit" class="btn variant-filled" on:click={onClick}
-			>{$_('general.search')}</button
-		>
-	</div>
-</form>
-
-<div class="mt-5">
-	{#if loadingGuest}
-		<ProgressRadial width={'w-12 md:w-20'} />
-	{:else}
-		<ul class="bg-white w-screen flex flex-col space-y-3">
-			{#each guests ?? [] as guest}
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<li
-					class="text-lg p-3 items-center md:w-1/3 w-4/5 mx-auto text-center
-				border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900
-				hover:scale-110 transition duration-300 ease-in-out cursor-pointer
-				"
-					on:click={async () => await openModal(guest)}
-				>
-					{guest.name}
-					{guest.surname}
-				</li>
-			{/each}
-		</ul>
-	{/if}
-</div>
+<SearchGuests {guests} {onClickGuest} />

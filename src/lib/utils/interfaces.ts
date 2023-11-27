@@ -4,6 +4,10 @@ export interface CarouselImage {
 	text?: string;
 }
 
+export interface GuestGroup {
+	id: number;
+	name: string;
+}
 export interface Guest {
 	id: number;
 	name: string;

@@ -15,7 +15,7 @@
 		"gift-list": {
 			"title": "Lista Nozze",
 			"thankyou": "Grazie!",
-			"question-japan": "Alcuni dei posti che visiteremo",
+			"question-japan": "Ecco alcuni dei posti che visiteremo",
 			"japan-tab": {
 				"title": "Viaggio in Giappone"
 			},
@@ -32,15 +32,18 @@
 		},
 		"info": {
 			"title": "Informazioni",
+			"when": "Quando ci sposiamo?",
 			"church": {
-				"where": "Dove ci sposiamo?",
+				"where": "Dove è la cerimonia?",
 				"whereAddress": "Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,",
-				"whereAddressPlace": "Ponteranica (BG)"
+				"whereAddressPlace": "Ponteranica (BG)",
+				"when": "Dalle 15:00"
 			},
 			"celebration": {
 				"where": "Dove è la festa?",
 				"whereAddress": "Villa Canton,",
-				"whereAddressPlace": "Trescore (BG)"
+				"whereAddressPlace": "Trescore (BG)",
+				"when": "Dalle 17:00"
 			},
 			"countdown": {
 				"time": "Quanto manca?",
@@ -61,7 +64,27 @@
 		"reserved-area": {
 			"title": "Area Riservata",
 			"msg1": "Inserisci la password dell'area riservata:",
-			"msg2": "solo per gli sposi!"
+			"msg2": "solo per gli sposi!",
+			"wrongPwd": "Password errata, non so se riesci ad indovinarla... 😏",
+			"allMessages": "Tutti i messaggi",
+			"attendance": "Presenze",
+			"groups": "Gruppi",
+			"group": {
+				"delete": "Sei sicuro di voler eliminare questo gruppo?",
+				"canceled": "Gruppo cancellato",
+				"notCanceled": "Gruppo non cancellato",
+				"newName": "Nuovo nome del gruppo",
+				"updated": "Nome del gruppo aggiornato",
+				"notUpdated": "Nome del gruppo non aggiornato",
+				"add": "Aggiungi gruppo",
+				"addQuestion": "Che nome vuoi dare al nuovo gruppo?",
+				"added": "Gruppo aggiunto",
+				"notAdded": "Gruppo non aggiunto",
+				"guestAdded": "Invitato inserito nel gruppo",
+				"guestNotAdded": "Invitato non inserito nel gruppo"
+			},
+			"denied": "Accesso negato! ❌",
+			"deniedMessage": "Non hai accesso a questa schermata, è solo per gli sposi!"
 		}
 	},
 	"general": {
@@ -71,8 +94,10 @@
 		"send": "Invia",
 		"back": "Indietro",
 		"next": "Successivo",
+		"update": "Aggiorna",
 		"confirm": "Conferma",
-		"step": "Step"
+		"step": "Step",
+		"of": "di"
 	},
 	"attendance": {
 		"wait": "In attesa 🤔",

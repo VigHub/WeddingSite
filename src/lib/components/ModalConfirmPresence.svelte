@@ -3,44 +3,31 @@
 	import { getAttendance } from '$lib/utils/guests';
 	import type { Guest, GuestMessage } from '$lib/utils/interfaces';
 	import { _ } from 'svelte-i18n';
-	import {
-		toastStore,
-		type ToastSettings,
-		modalStore,
-		Stepper,
-		Step
-	} from '@skeletonlabs/skeleton';
+	import { modalStore, Stepper, Step } from '@skeletonlabs/skeleton';
 	import GuestConfirm from './GuestConfirm.svelte';
+	import { handleToast } from '$lib/utils/toast';
 
 	export let guest: Guest;
 	export let resetParameters: () => void;
-	let message: string = '';
-
-	const toastOK: ToastSettings = {
-		message: 'Messaggio inviato, grazie!',
-		background: 'variant-filled-success',
-		timeout: 3000
-	};
-
-	const toastError: ToastSettings = {
-		message: "Qualcosa è andato storto nell'invio del messaggio",
-		background: 'variant-filled-error',
-		timeout: 3000
-	};
 	export let guestsGroup: Guest[] = [];
+
+	let message: string = '';
 	let showGroup = false;
 	const sendAttendance = async (gst: Guest) => {
-		let res = await fetchPost('updateGuestAttendance', {
+		let res = await fetchPost('guests/updateAttendance', {
 			id: gst.id,
 			attendance: gst.attendance
 		});
 		return res.ok ?? false;
 	};
 	const close = (isOk: boolean) => {
-		const toast = isOk ? toastOK : toastError;
 		modalStore.clear();
 		resetParameters();
-		toastStore.trigger(toast);
+		handleToast(
+			isOk,
+			'Messaggio inviato, grazie!',
+			"Qualcosa è andato storto nell'invio del messaggio"
+		);
 	};
 
 	const sendAttendanceAndMessage = async () => {
@@ -64,7 +51,7 @@
 				message,
 				attendance: guest.attendance
 			};
-			isOk = await fetchPost('insertGuestMessage', {
+			isOk = await fetchPost('guestMessage/add', {
 				guestMessage
 			});
 			if (!isOk) {

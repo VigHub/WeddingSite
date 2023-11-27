@@ -1,17 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import canAccessReservedArea from '../../stores/reserved';
 	import { fetchPost } from '$lib/utils/api';
 	import { _ } from 'svelte-i18n';
+	import { sendToastError } from '$lib/utils/toast';
 
 	let password = '';
-	const toastPasswordWrong: ToastSettings = {
-		message: 'Password errata, non so se riesci ad indovinarla... 😏',
-		background: 'variant-filled-error',
-		timeout: 3000
-	};
 
 	function sha512(str: string) {
 		return crypto.subtle.digest('SHA-512', new TextEncoder().encode(str)).then((buf) => {
@@ -22,13 +17,14 @@
 	}
 
 	const onClick = async () => {
+		if (password === '') return;
 		const hashed = await sha512(password);
 		const { authenticated } = await fetchPost('auth', { hashed });
 		if (authenticated) {
 			canAccessReservedArea.set(true);
 			goto(`${base}/guest-messages`);
 		} else {
-			toastStore.trigger(toastPasswordWrong);
+			sendToastError($_('pages.reserved-area.wrongPwd'));
 			password = '';
 		}
 	};
