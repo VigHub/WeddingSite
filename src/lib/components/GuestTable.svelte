@@ -9,7 +9,7 @@
 	export let limit: number;
 
 	$: source = {
-		head: ['Nome', 'Cognome', 'Id'],
+		head: ['Nome', 'Cognome', 'ID'],
 		body: tableMapperValues($guestsForGroup.slice(offset * limit, (offset + 1) * limit), [
 			'name',
 			'surname',

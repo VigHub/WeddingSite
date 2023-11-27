@@ -5,13 +5,9 @@
 	import canAccessReservedArea from '../../stores/reserved';
 	import { fetchPost } from '$lib/utils/api';
 	import { _ } from 'svelte-i18n';
+	import { sendToastError } from '$lib/utils/toast';
 
 	let password = '';
-	const toastPasswordWrong: ToastSettings = {
-		message: 'Password errata, non so se riesci ad indovinarla... 😏',
-		background: 'variant-filled-error',
-		timeout: 3000
-	};
 
 	function sha512(str: string) {
 		return crypto.subtle.digest('SHA-512', new TextEncoder().encode(str)).then((buf) => {
@@ -28,7 +24,7 @@
 			canAccessReservedArea.set(true);
 			goto(`${base}/guest-messages`);
 		} else {
-			toastStore.trigger(toastPasswordWrong);
+			sendToastError('Password errata, non so se riesci ad indovinarla... 😏');
 			password = '';
 		}
 	};

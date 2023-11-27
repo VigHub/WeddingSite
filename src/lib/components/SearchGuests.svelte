@@ -3,17 +3,12 @@
 	import { ProgressRadial, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { _ } from 'svelte-i18n';
 	import { fetchPost } from '$lib/utils/api';
+	import { sendToastError } from '$lib/utils/toast';
 	export let onClickGuest: (guest: Guest) => Promise<void>;
 	export let guests: Guest[] = [];
 	let name = '';
 	let surname = '';
-
 	let loadingGuest = false;
-	const toastGuestNotFound: ToastSettings = {
-		message: 'Nessun invitato trovato con questo nome e/o cognome',
-		background: 'variant-filled-error',
-		timeout: 3000
-	};
 
 	const onSearch = async () => {
 		loadingGuest = true;
@@ -25,7 +20,7 @@
 		loadingGuest = false;
 		if (guests.length == 0 && (name !== '' || surname !== '')) {
 			toastStore.clear();
-			toastStore.trigger(toastGuestNotFound);
+			sendToastError('Nessun invitato trovato con questo nome e/o cognome');
 		}
 	};
 </script>

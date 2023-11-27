@@ -11,21 +11,21 @@ const GuestTable = 'Guest';
 const GuestMessageTable = 'GuestMessage';
 const GuestGroupTable = 'GuestGroup';
 
-export const getGuestsbyNameSurname = async (name: string, surname: string, withOutGrop: boolean = false) => {
+export const getGuestsbyNameSurname = async (
+	name: string,
+	surname: string,
+	withOutGrop: boolean = false
+) => {
 	if (name === '' && surname === '') return [];
 	let query = supabase
 		.from(GuestTable)
 		.select('attendance, id, name, surname, groupId')
 		.ilike('name', `${name}%`)
-		.ilike('surname', `${surname}%`)
+		.ilike('surname', `${surname}%`);
 	if (withOutGrop) {
-		query = query.is('groupId', null)
+		query = query.is('groupId', null);
 	}
-	const { data } = await query
-		.order('surname')
-		.order('name')
-		.limit(5)
-		.returns<Guest[]>();
+	const { data } = await query.order('surname').order('name').limit(5).returns<Guest[]>();
 	const guests = data ?? [];
 	return guests;
 };
@@ -82,9 +82,16 @@ export const updateGuestAttendance = async (guestId: number, attendance: number)
 	return status === 201 || status === 204;
 };
 
+export const addGroup = async (groupName: string) => {
+	const { status } = await supabase.from(GuestGroupTable).insert({ name: groupName });
+	return status === 201;
+};
 
 export const updateGuestInGroup = async (guestId: number, groupId?: number) => {
 	const { status, data } = await supabase
-		.from(GuestTable).update({ groupId }).eq('id', guestId).select()
-	return { status, data }
-}
+		.from(GuestTable)
+		.update({ groupId })
+		.eq('id', guestId)
+		.select();
+	return { status, data };
+};
