@@ -7,11 +7,16 @@
 	export let onClickGuest: (guest: Guest) => Promise<void>;
 	export let withOutGroup: boolean = false;
 	export let guests: Guest[] = [];
-	let name = '';
+	let name: string = '';
 	let surname = '';
 	let loadingGuest = false;
 
 	const onSearch = async () => {
+		name = name.trim();
+		surname = surname.trim();
+		if (name === '' && surname === '') {
+			return;
+		}
 		loadingGuest = true;
 		const res = await fetchPost('guests/byNameSurname', {
 			name,
@@ -22,7 +27,7 @@
 		loadingGuest = false;
 		if (guests.length == 0 && (name !== '' || surname !== '')) {
 			toastStore.clear();
-			sendToastError('Nessun invitato trovato con questo nome e/o cognome');
+			sendToastError($_('search.noGuestFound'));
 		}
 		name = '';
 		surname = '';
