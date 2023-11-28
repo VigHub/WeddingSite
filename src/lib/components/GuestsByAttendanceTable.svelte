@@ -57,6 +57,7 @@
 			bind:settings={pageArray[attendance]}
 			showPreviousNextButtons={true}
 			separatorText={$_('general.of')}
+			showFirstLastButtons
 		/>
 	</div>
 </div>
