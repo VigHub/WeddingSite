@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Guest } from '$lib/utils/interfaces';
-	import { ProgressRadial, toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+	import { ProgressRadial, toastStore } from '@skeletonlabs/skeleton';
 	import { _ } from 'svelte-i18n';
 	import { fetchPost } from '$lib/utils/api';
 	import { sendToastError } from '$lib/utils/toast';
@@ -79,8 +79,8 @@
 		border rounded-md border-black relative hover:bg-gray-100 hover:text-gray-900
 		hover:scale-110 transition duration-300 ease-in-out cursor-pointer
 		"
-						on:click={() => {
-							onClickGuest(guest);
+						on:click={async () => {
+							await onClickGuest(guest);
 						}}
 					>
 						{guest.name}
