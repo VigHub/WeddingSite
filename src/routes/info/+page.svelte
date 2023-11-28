@@ -2,19 +2,9 @@
 	import Countdown from '$lib/components/Countdown.svelte';
 	import canAccessReservedArea from '../../stores/reserved';
 	import MapFrame from '$lib/components/MapFrame.svelte';
-	import { _, locale } from 'svelte-i18n';
-	import { format } from 'date-fns';
-	import { it, enUS, ja } from 'date-fns/locale';
+	import { _ } from 'svelte-i18n';
 
 	canAccessReservedArea.set(false);
-	const localesMap = new Map([
-		['it', it],
-		['enUs', enUS],
-		['ja', ja]
-	]);
-	$: weddingDate = format(new Date(2024, 6, 20), 'd MMMM', {
-		locale: localesMap.get($locale ?? 'it')
-	});
 </script>
 
 <h1 class="text-center text-4xl mb-8">{$_('pages.info.title')}</h1>
@@ -26,7 +16,7 @@
 			</div>
 			<div class="flex flex-col ps-1 text-3xl">
 				<p class="my-auto font-semibold">
-					{weddingDate} <span class="hidden md:contents">2024</span>
+					{$_('pages.info.whenDate')} <span class="hidden md:contents">2024</span>
 				</p>
 				<p class="my-auto font-semibold md:hidden">2024</p>
 			</div>

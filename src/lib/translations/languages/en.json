@@ -33,11 +33,12 @@
 		"info": {
 			"title": "Information",
 			"when": "When are we getting married?",
+			"whenDate": "July 20,",
 			"church": {
 				"where": "Where is the ceremony?",
 				"whereAddress": "Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,",
 				"whereAddressPlace": "Ponteranica (BG)",
-				"when": "From 3 pm"
+				"when": "At 3 pm"
 			},
 			"celebration": {
 				"where": "Where is the party?",
@@ -98,6 +99,9 @@
 		"confirm": "Confirm",
 		"step": "Step",
 		"of": "of"
+	},
+	"search": {
+		"noGuestFound": "No guest found with this name and/or surname"
 	},
 	"attendance": {
 		"wait": "Not sure yet 🤔",

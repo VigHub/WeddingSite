@@ -33,11 +33,12 @@
 		"info": {
 			"title": "Informazioni",
 			"when": "Quando ci sposiamo?",
+			"whenDate": "20 luglio",
 			"church": {
 				"where": "Dove è la cerimonia?",
 				"whereAddress": "Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,",
 				"whereAddressPlace": "Ponteranica (BG)",
-				"when": "Dalle 15:00"
+				"when": "Alle 15:00"
 			},
 			"celebration": {
 				"where": "Dove è la festa?",
@@ -98,6 +99,9 @@
 		"confirm": "Conferma",
 		"step": "Step",
 		"of": "di"
+	},
+	"search": {
+		"noGuestFound": "Nessun invitato trovato con questo nome e/o cognome"
 	},
 	"attendance": {
 		"wait": "In attesa 🤔",
