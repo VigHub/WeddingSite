@@ -32,6 +32,7 @@
 		size: $groups.length,
 		amounts: []
 	};
+	$: page.size = $groups.length;
 
 	const onClick = (group: GuestGroup) => {
 		const modalComponent: ModalComponent = {
@@ -47,15 +48,15 @@
 	};
 
 	const addGroup = async (groupName: string) => {
-		if (groupName === undefined || groupName === '') return;
-		const ok = await fetchPost('group/add', { groupName });
+		if (!groupName || groupName === '') return;
+		const { ok, data } = await fetchPost('group/add', { groupName });
 		handleToast(
 			ok,
 			$_('pages.reserved-area.group.added'),
 			$_('pages.reserved-area.group.notAdded')
 		);
-		if (ok) {
-			$groups.push({ id: $groups.length, name: groupName });
+		if (ok && data) {
+			$groups.push(data[0] as GuestGroup);
 			page.size = $groups.length;
 		}
 	};

@@ -23,7 +23,7 @@
 			guestId: row.detail[2],
 			groupId: null
 		});
-		if (ok) {
+		if (ok && data) {
 			$guestsForGroup = $guestsForGroup.filter((g) => {
 				return g.id !== (data as Guest[])[0].id;
 			});

@@ -4,5 +4,5 @@ import { json, type RequestHandler } from '@sveltejs/kit';
 export const POST: RequestHandler = async ({ request }) => {
     const { guestId, groupId } = await request.json();
     const { status, data } = await updateGuestInGroup(guestId, groupId);
-    return json({ ok: status, data });
+    return json({ ok: [200, 201].includes(status), data });
 };

@@ -38,9 +38,11 @@
 			guestId: g.id,
 			groupId: group.id
 		});
-		$guestsForGroup.push((data as Guest[])[0]);
-		page.size = $guestsForGroup.length;
-		pageView = PageViewType.List;
+		if (ok && data) {
+			$guestsForGroup.push((data as Guest[])[0]);
+			page.size = $guestsForGroup.length;
+			pageView = PageViewType.List;
+		}
 		handleToast(
 			ok,
 			$_('pages.reserved-area.group.guestAdded'),

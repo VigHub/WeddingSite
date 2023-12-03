@@ -33,11 +33,12 @@
 		"info": {
 			"title": "情報",
 			"when": "私たちはいつ結婚する予定ですか",
+			"whenDate": "7月20日",
 			"church": {
 				"where": "式典はどこですか",
 				"whereAddress": "聖アレクサンダーとヴィンセント教区教会、",
 				"whereAddressPlace": "ポンテラニカ (BG)",
-				"when": "午後3時から"
+				"when": "3時に"
 			},
 			"celebration": {
 				"where": "パーティーはどこですか",
@@ -98,6 +99,9 @@
 		"confirm": "彼は確認する",
 		"step": "ステップ",
 		"of": "/"
+	},
+	"search": {
+		"noGuestFound": "この名前や姓のゲストは見つかりませんでした"
 	},
 	"attendance": {
 		"wait": "まだ考え中です 🤔",
