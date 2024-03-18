@@ -8,7 +8,12 @@ module.exports = {
 	darkMode: 'class',
 	content: ['./src/**/*.{html,js,svelte,ts}', join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				cormorant: ['Cormorant SC'],
+				aniyah: ['Aniyah'],
+			}
+		},
 	},
 	plugins: [forms,typography,...skeleton()],
 }

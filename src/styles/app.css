@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'Cormorant SC';
+		src: local('Cormorant SC'), local('Cormorant-SC'), local('cormorant sc'), local('cormorant-sc'),
+			url('/fonts/CormorantSC/CormorantSC-Regular.ttf');
+		font-weight: normal;
+		font-display: swap;
+	}
+    @font-face {
+		font-family: 'Aniyah';
+		src: local('Aniyah'), local('aniyah'),
+			url('/fonts/Aniyah/Aniyah.otf');
+		font-weight: normal;
+		font-display: swap;
+	}
+}

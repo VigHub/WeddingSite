@@ -5,6 +5,7 @@
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
+	import "../styles/app.css";
 	import '@fontsource-variable/montserrat';
 	import '@fontsource-variable/manrope';
 	import { AppShell, AppBar, Toast } from '@skeletonlabs/skeleton';
