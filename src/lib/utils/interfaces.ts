@@ -28,3 +28,10 @@ export interface GuestMessageWithGuest {
 	created: Date;
 	guest: Guest;
 }
+
+export interface Contact {
+	name: string;
+	number: string;
+	description?: string;
+	image: string;
+}

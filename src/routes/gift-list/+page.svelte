@@ -7,7 +7,7 @@
 	import Carousel from '$lib/components/Carousel/Carousel.svelte';
 
 	let tabSet = 0;
-	$: images = [
+	$: japanImages = [
 		{ src: 'japan/tokyo-tower.jpg', title: $_('pages.info.japan.tokyo-tower'), text: '東京タワー' },
 		{
 			src: 'japan/tokyo-streets.jpg',
@@ -24,6 +24,17 @@
 			src: 'japan/kyoto-kinkakuji.jpg',
 			title: $_('pages.info.japan.kinkaku-ji'),
 			text: '鹿苑寺'
+		}
+	];
+	$: houseImages = [
+		{
+			src: 'house/out.jpg',
+			title: 'Prima foto dal cantiere'
+		},
+		{ src: 'house/bed.jpg', title: 'Quanto spazio! 😅' },
+		{
+			src: 'house/bath.jpg',
+			title: 'Un sacco di luce! 😍'
 		}
 	];
 	canAccessReservedArea.set(false);
@@ -48,58 +59,50 @@
 					{#if tabSet === 0}
 						<div class="text-center space-y-4">
 							<p>
-								Sogniamo da molto tempo un viaggio in Giappone, e viverlo nel nostro viaggio di
-								nozze lo renderà un'esperienza che ci permetterà di creare ricordi indelebili già
-								dai nostri primi giorni da marito e moglie.
+								Sogniamo da molto tempo un viaggio in Giappone, di questo meraviglioso Paese ci
+								affascina la sua armonia tra tradizione e modernità, e non vediamo l'ora di scoprire
+								tutte le particolarità e le sensazioni uniche che ci regalerà.
 							</p>
 							<p>
-								Del Giappone ci ha sempre affascinato la sua perfetta armonia tra tradizione e
-								modernità, un connubio unico che si riflette nelle sue antiche tradizioni e nei
-								grattacieli futuristici.
+								Vivere tutto questo durante il nostro viaggio di nozze lo renderà un'esperienza che
+								ci porteremo per sempre nel cuore, e che ci permetterà di creare ricordi indelebili
+								già dai nostri primissimi giorni da marito e moglie.
 							</p>
 							<p>
-								La cultura giapponese ci conquista con la sua raffinatezza e il rispetto per la
-								bellezza nella semplicità, creando un mondo straordinario di contrasti armoniosi.
+								Se desiderate contribuire a realizzare questo nostro grande sogno, vi lasciamo il
+								nostro conto bancario per le vostre gentilissime donazioni:
 							</p>
-							<p>
-								La vostra generosa partecipazione a questo nostro sogno sarebbe un regalo davvero
-								significativo e ci accompagnerà mentre esploriamo le bellezze del Giappone insieme.
-							</p>
-							<p>Il nostro conto bancario per le vostre gentili donazioni è il seguente:</p>
 							<div class="flex justify-center">
 								<Iban />
 							</div>
 							<p>
-								Apprezziamo profondamente il vostro affetto e la vostra partecipazione in questo
-								momento speciale della nostra vita. Grazie per essere parte del nostro viaggio e per
-								rendere indimenticabile il nostro inizio insieme.
+								Vi siamo immensamente grati per la vostra partecipazione anche a questo momento
+								speciale della nostra vita. Grazie di essere parte del nostro viaggio e di aiutarci
+								a rendere indimenticabile il nostro inizio insieme!
 							</p>
+							<p>Con tanto affetto,</p>
+							<p>Elisa e Gianluca</p>
 						</div>
 						<div class="w-full mt-10">
 							<p class="text-center text-lg md:text-2xl mb-2">
 								{$_('pages.gift-list.question-japan')}
 							</p>
-							<Carousel {images} />
+							<Carousel images={japanImages} />
 						</div>
 					{:else if tabSet === 1}
 						<div class="text-center space-y-4 w-full">
 							<p>
-								La nostra casa sarà il luogo in cui condivideremo risate, abbracci e momenti
-								indimenticabili.
+								La nostra casa sarà il luogo in cui condivideremo la nostra nuova meravigliosa
+								quotidianità e in cui coltiveremo il nostro amore.
 							</p>
 							<p>
-								Saranno le nostre prime avventure come coppia, e ogni dettaglio renderà questo
-								spazio ancora più speciale.
+								Abbiamo quindi pensato di condividere con voi la creazione di questo spazio unico e
+								magico per noi, iniziando con tutti gli oggetti che useremo giornalmente o nelle
+								occasioni più speciali, quando verrete a trovarci.
 							</p>
 							<p>
-								Abbiamo pensato di condividere con voi la creazione di questo luogo unico, iniziando
-								con il cuore e l'anima di ogni casa: le posate, i piatti e tutte quelle piccole cose
-								che rendono la quotidianità un po' più magica.
-							</p>
-							<p>
-								Se volete contribuire alla costruzione della nostra casa e diventare parte
-								integrante dei nostri inizi, vi invitiamo a dare un'occhiata alla nostra lista nozze
-								presso il negozio
+								Per questo abbiamo creato una lista nozze che potrete consultare chiamando o
+								recandovi presso il negozio
 							</p>
 
 							<div class="flex w-full space-x-5 justify-center">
@@ -115,8 +118,15 @@
 								classStr="h-[200px]"
 							/>
 							<p>
-								Ogni dono rappresenterà un tassello prezioso nel cammino della nostra vita insieme.
+								Ogni vostro dono rappresenta per noi un tassello prezioso della nostra vita insieme.
 							</p>
+							<p>Grazie di aver deciso di prenderne parte!</p>
+							<p>Elisa e Gianluca</p>
+							<br />
+							<div class="mt-10">
+								<p class="text-center text-lg md:text-2xl mb-2">Alcune foto della nostra casina!</p>
+								<Carousel images={houseImages} />
+							</div>
 						</div>
 					{/if}
 					<h2 class="h2 text-center mt-4 w-full">

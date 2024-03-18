@@ -1,7 +1,7 @@
 <script>
 	import { clipboard } from '@skeletonlabs/skeleton';
 
-	const iban = 'IT20P0310411100000000400142';
+	const iban = 'IT74G0301503200000003940092';
 	let copied = false;
 </script>
 

@@ -3,8 +3,23 @@
 	import canAccessReservedArea from '../../stores/reserved';
 	import MapFrame from '$lib/components/MapFrame.svelte';
 	import { _ } from 'svelte-i18n';
+	import Warning from '$lib/components/Warning.svelte';
+	import ContactList from '$lib/components/ContactList.svelte';
+	import type { Contact } from '$lib/utils/interfaces';
 
 	canAccessReservedArea.set(false);
+
+	const contacts: Contact[] = [
+		{ name: 'Elisa', number: '3505277096', image: 'contacts/eli.jpg' },
+		{ name: 'Gianluca', number: '3206232206', image: 'contacts/gianlu.jpg' },
+		{
+			name: 'Paola',
+			description: 'mamma sposa',
+			number: '3402286372',
+			image: 'contacts/paola.jpg'
+		},
+		{ name: 'Roberta', description: 'mamma sposo', number: '3484531748', image: 'favicon.png' }
+	];
 </script>
 
 <h1 class="text-center text-4xl mb-8">{$_('pages.info.title')}</h1>
@@ -43,7 +58,7 @@
 			/>
 		</div>
 	</div>
-	<div class="flex items-center">
+	<div class="flex items-center mb-10">
 		<div class="grid grid-cols-2">
 			<MapFrame
 				title="Villa Canton"
@@ -66,9 +81,28 @@
 			</div>
 		</div>
 	</div>
+	<div class="flex justify-center mb-10">
+		<Warning
+			title="Attenzione"
+			message="Il parcheggio della chiesa è molto piccolo,
+			per questo vi chiediamo la gentilezza di lasciare le macchine nel parcheggio
+			del centro sportivo di Ponteranica, non molto distante, e di 
+			raggiungere poi la chiesa a piedi."
+		/>
+	</div>
 
 	<div class="mt-10">
 		<p class="text-center text-2xl mb-2">{$_('pages.info.countdown.time')}</p>
 		<Countdown target={'2024-07-20T15:00:00+01:00'} />
+	</div>
+
+	<div class="mt-10">
+		<p class="text-center">Avete ancora qualche dubbio?</p>
+		<p class="text-center">
+			Vi lasciamo anche i numeri di telefono di noi sposi e dei nostri genitori!
+		</p>
+		<div class="mt-3">
+			<ContactList {contacts} />
+		</div>
 	</div>
 </div>
