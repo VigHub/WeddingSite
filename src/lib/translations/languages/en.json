@@ -10,17 +10,50 @@
 		"start": "Made with",
 		"end": "by Elisa, Gianluca and"
 	},
+	"error": {
+		"pageNotFound": "Page not found",
+		"message": "We're sorry, but the page you are looking for does not exist 😅",
+		"text1": "Click",
+		"text2": "here",
+		"text3": "to return to the home page."
+	},
 	"pages": {
-		"welcome": {},
+		"welcome": {
+			"title": "Welcome to our wedding site!",
+			"text1": "Hi everyone!! We are Elisa and Gianluca, and, you guessed it, we are getting married!!",
+			"text2": "We couldn't be happier, and we can't wait for July 20th to share with you such an important day for us.",
+			"text3": "While waiting for the big day we tried to take advantage of our IT skills and some graphic ideas (guess whose respectively 😏) to create this site which will give you some more information about our wedding.",
+			"text4": "You will find a section in which you can confirm your presence, one in which we have left you all the useful information, and a page to peek at to consult our wedding list and to find out what our honeymoon will be...",
+			"text5": "Now we let you visit the site, but not before thanking you: if you are reading this message it is because you are important to us, and being able to share our joy with you will make our wedding even more special.",
+			"text6": "Thank you, see you soon,",
+			"text7": "Elisa and Gianluca"
+		},
 		"gift-list": {
 			"title": "Gift List",
 			"thankyou": "Thank You!",
 			"question-japan": "Here are some of the places we will visit",
 			"japan-tab": {
-				"title": "Travel to Japan"
+				"title": "Travel to Japan",
+				"text1": "We have been dreaming of a trip to Japan for a long time, we are fascinated by this wonderful country with its harmony between tradition and modernity, and we can't wait to discover all the peculiarities and unique sensations that it will give us.",
+				"text2": "Experiencing all this during our honeymoon will make it an experience that we will carry in our hearts forever, and which will allow us to create indelible memories from our very first days as husband and wife.",
+				"text3": "If you would like to help make this great dream of ours come true, we leave you our bank account for your very kind donations:",
+				"text4": "We are immensely grateful to you for your participation in this special moment of our lives. Thank you for being part of our journey and for helping us make our start together unforgettable!",
+				"text5": "Much love,",
+				"text6": "Elisa and Gianluca"
 			},
 			"cultery-tab": {
-				"title": "Household items"
+				"title": "Household items",
+				"text1": "Our home will be the place where we will share our wonderful new everyday life and where we will cultivate our love.",
+				"text2": "We therefore thought we would share with you the creation of this unique and magical space for us, starting with all the objects that we will use daily or on the most special occasions, when you come to visit us.",
+				"text3": "For this reason, we have created a wedding list that you can consult by calling or going to the shop",
+				"text4": "Each of your gifts represents for us a precious piece of our life together.",
+				"text5": "Thank you for deciding to take part!",
+				"text6": "Elisa and Gianluca",
+				"text7": "Some photos of our new house!", 
+				"address": "at Via Borfuro, 2, Bergamo",
+				"photo1": "First photo from the construction site",
+				"photo2": "What a space! 😅",
+				"photo3": "Lots of light! 😍"
 			}
 		},
 		"confirm-presence": {
@@ -28,7 +61,10 @@
 			"sendMessageQuestion": "Do you also want to send us a message?",
 			"sendMessagePlaceHolder": "Write your message here (optional)",
 			"msg": "Message:",
-			"set-others": "Also indicates for others"
+			"set-others": "Also indicates for others",
+			"text0": "Confirm your presence",
+			"text1": "To confirm your presence at the wedding, simply write your name and surname and click on Search. Once found, you will only have to tell us whether you will be able to participate at the wedding or not.",
+			"text2": "If you want, you can also leave us a message. It's optional, but we'd love to read it! 😊 (you can also take advantage of this section to inform us of any food allergies or intolerances, so we can think of a tailor-made menu for you!)"
 		},
 		"info": {
 			"title": "Information",
@@ -60,6 +96,22 @@
 				"mount-fuji": "Mount Fuji",
 				"kyoto-shrines": "Kyoto Shrines",
 				"kinkaku-ji": "Kyoto Kinkaku-ji"
+			},
+			"warning": {
+				"title": "Warning",
+				"text": "The church car park is very small, which is why we ask you to kindly leave your cars in the car park of the Ponteranica sports centre, not far away, and then reach the church on foot."
+			},
+			"telephone": {
+				"text1" : "Do you still have any doubts?",
+				"text2" : "We will also leave you the telephone numbers of us, the spouses and our parents!",
+				"contacts" : {
+					"one": "Elisa",
+					"two": "Gianluca",
+					"three": "Paola",
+					"threeDesc": "bride's mother",
+					"four": "Roberta",
+					"fourDesc": "groom's mother"
+				}
 			}
 		},
 		"reserved-area": {
@@ -99,6 +151,10 @@
 		"confirm": "Confirm",
 		"step": "Step",
 		"of": "of"
+	},
+	"iban": {
+		"copy": "Copy",
+		"copied": "Copied!"
 	},
 	"search": {
 		"noGuestFound": "No guest found with this name and/or surname"

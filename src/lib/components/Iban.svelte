@@ -1,5 +1,6 @@
 <script>
 	import { clipboard } from '@skeletonlabs/skeleton';
+	import { _ } from 'svelte-i18n';
 
 	const iban = 'IT74G0301503200000003940092';
 	let copied = false;
@@ -22,7 +23,7 @@
 				setTimeout(() => (copied = false), 1500);
 			}}
 		>
-			{copied ? 'Copiato!' : 'Copia'}
+			{copied ? $_('iban.copied') : $_('iban.copy')}
 		</button>
 	</div>
 </div>

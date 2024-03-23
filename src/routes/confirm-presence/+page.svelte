@@ -43,19 +43,15 @@
 	};
 </script>
 
-<h1 class="text-center text-4xl">Conferma la tua presenza</h1>
+<h1 class="text-center text-4xl">{$_('pages.confirm-presence.text0')}</h1>
 
 <div class="max-w-2xl gap-y-5 text-center">
 	<p class="mt-5">
-		Per confermare la vostra presenza alle nozze vi basterà scrivere il vostro nome e cognome e
-		cliccare su Cerca. Una volta trovati, dovrete solo indicarci se riuscirete a partecipare o meno
-		al matrimonio.
+		{$_('pages.confirm-presence.text1')}
 	</p>
 	<br />
 	<p>
-		Se volete, potete anche lasciarci un messaggio. È opzionale, ma ci farebbe tanto piacere
-		leggerlo! 😊 (potete approfittare di questa sezione anche per indicarci eventuali allergie o
-		intolleranze alimentari, così provvederemo a pensare a un menù su misura per voi!)
+		{$_('pages.confirm-presence.text2')}
 	</p>
 </div>
 <SearchGuests {guests} {onClickGuest} />

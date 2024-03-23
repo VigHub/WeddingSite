@@ -29,12 +29,12 @@
 	$: houseImages = [
 		{
 			src: 'house/out.jpg',
-			title: 'Prima foto dal cantiere'
+			title: $_('pages.gift-list.cultery-tab.photo1')
 		},
-		{ src: 'house/bed.jpg', title: 'Quanto spazio! 😅' },
+		{ src: 'house/bed.jpg', title: $_('pages.gift-list.cultery-tab.photo2') },
 		{
 			src: 'house/bath.jpg',
-			title: 'Un sacco di luce! 😍'
+			title: $_('pages.gift-list.cultery-tab.photo3')
 		}
 	];
 	canAccessReservedArea.set(false);
@@ -58,30 +58,15 @@
 				<svelte:fragment slot="panel">
 					{#if tabSet === 0}
 						<div class="text-center space-y-4">
-							<p>
-								Sogniamo da molto tempo un viaggio in Giappone, di questo meraviglioso Paese ci
-								affascina la sua armonia tra tradizione e modernità, e non vediamo l'ora di scoprire
-								tutte le particolarità e le sensazioni uniche che ci regalerà.
-							</p>
-							<p>
-								Vivere tutto questo durante il nostro viaggio di nozze lo renderà un'esperienza che
-								ci porteremo per sempre nel cuore, e che ci permetterà di creare ricordi indelebili
-								già dai nostri primissimi giorni da marito e moglie.
-							</p>
-							<p>
-								Se desiderate contribuire a realizzare questo nostro grande sogno, vi lasciamo il
-								nostro conto bancario per le vostre gentilissime donazioni:
-							</p>
+							<p>{$_('pages.gift-list.japan-tab.text1')}</p>
+							<p>{$_('pages.gift-list.japan-tab.text2')}</p>
+							<p>{$_('pages.gift-list.japan-tab.text3')}</p>
 							<div class="flex justify-center">
 								<Iban />
 							</div>
-							<p>
-								Vi siamo immensamente grati per la vostra partecipazione anche a questo momento
-								speciale della nostra vita. Grazie di essere parte del nostro viaggio e di aiutarci
-								a rendere indimenticabile il nostro inizio insieme!
-							</p>
-							<p>Con tanto affetto,</p>
-							<p>Elisa e Gianluca</p>
+							<p>{$_('pages.gift-list.japan-tab.text4')}</p>
+							<p>{$_('pages.gift-list.japan-tab.text5')}</p>
+							<p>{$_('pages.gift-list.japan-tab.text6')}</p>
 						</div>
 						<div class="w-full mt-10">
 							<p class="text-center text-lg md:text-2xl mb-2">
@@ -91,23 +76,15 @@
 						</div>
 					{:else if tabSet === 1}
 						<div class="text-center space-y-4 w-full">
-							<p>
-								La nostra casa sarà il luogo in cui condivideremo la nostra nuova meravigliosa
-								quotidianità e in cui coltiveremo il nostro amore.
-							</p>
-							<p>
-								Abbiamo quindi pensato di condividere con voi la creazione di questo spazio unico e
-								magico per noi, iniziando con tutti gli oggetti che useremo giornalmente o nelle
-								occasioni più speciali, quando verrete a trovarci.
-							</p>
-							<p>
-								Per questo abbiamo creato una lista nozze che potrete consultare chiamando o
-								recandovi presso il negozio
-							</p>
+							<p>{$_('pages.gift-list.cultery-tab.text1')}</p>
+							<p>{$_('pages.gift-list.cultery-tab.text2')}</p>
+							<p>{$_('pages.gift-list.cultery-tab.text3')}</p>
 
 							<div class="flex w-full space-x-5 justify-center">
 								<p class="font-bold">Oliva</p>
-								<a href="https://maps.app.goo.gl/P9FfmiTbqJV6wDr68">in Via Borfuro, 2, Bergamo</a>
+								<a href="https://maps.app.goo.gl/P9FfmiTbqJV6wDr68"
+									>{$_('pages.gift-list.cultery-tab.address')}</a
+								>
 							</div>
 
 							<MapFrame
@@ -117,14 +94,14 @@
 								mapClass="w-full h-full"
 								classStr="h-[200px]"
 							/>
-							<p>
-								Ogni vostro dono rappresenta per noi un tassello prezioso della nostra vita insieme.
-							</p>
-							<p>Grazie di aver deciso di prenderne parte!</p>
-							<p>Elisa e Gianluca</p>
+							<p>{$_('pages.gift-list.cultery-tab.text4')}</p>
+							<p>{$_('pages.gift-list.cultery-tab.text5')}</p>
+							<p>{$_('pages.gift-list.cultery-tab.text6')}</p>
 							<br />
 							<div class="mt-10">
-								<p class="text-center text-lg md:text-2xl mb-2">Alcune foto della nostra casina!</p>
+								<p class="text-center text-lg md:text-2xl mb-2">
+									{$_('pages.gift-list.cultery-tab.text7')}
+								</p>
 								<Carousel images={houseImages} />
 							</div>
 						</div>
