@@ -9,16 +9,29 @@
 
 	canAccessReservedArea.set(false);
 
-	const contacts: Contact[] = [
-		{ name: 'Elisa', number: '3505277096', image: 'contacts/eli.jpg' },
-		{ name: 'Gianluca', number: '3206232206', image: 'contacts/gianlu.jpg' },
+	$: contacts = [
 		{
-			name: 'Paola',
-			description: 'mamma sposa',
+			name: $_('pages.info.telephone.contacts.one'),
+			number: '3505277096',
+			image: 'contacts/eli.jpg'
+		},
+		{
+			name: $_('pages.info.telephone.contacts.two'),
+			number: '3206232206',
+			image: 'contacts/gianlu.jpg'
+		},
+		{
+			name: $_('pages.info.telephone.contacts.three'),
+			description: $_('pages.info.telephone.contacts.threeDesc'),
 			number: '3402286372',
 			image: 'contacts/paola.jpg'
 		},
-		{ name: 'Roberta', description: 'mamma sposo', number: '3484531748', image: 'favicon.png' }
+		{
+			name: $_('pages.info.telephone.contacts.four'),
+			description: $_('pages.info.telephone.contacts.fourDesc'),
+			number: '3484531748',
+			image: 'contacts/roberta.jpg'
+		}
 	];
 </script>
 
@@ -82,13 +95,7 @@
 		</div>
 	</div>
 	<div class="flex justify-center mb-10">
-		<Warning
-			title="Attenzione"
-			message="Il parcheggio della chiesa è molto piccolo,
-			per questo vi chiediamo la gentilezza di lasciare le macchine nel parcheggio
-			del centro sportivo di Ponteranica, non molto distante, e di 
-			raggiungere poi la chiesa a piedi."
-		/>
+		<Warning title={$_('pages.info.warning.title')} message={$_('pages.info.warning.text')} />
 	</div>
 
 	<div class="mt-10">
@@ -97,10 +104,8 @@
 	</div>
 
 	<div class="mt-10">
-		<p class="text-center">Avete ancora qualche dubbio?</p>
-		<p class="text-center">
-			Vi lasciamo anche i numeri di telefono di noi sposi e dei nostri genitori!
-		</p>
+		<p class="text-center">{$_('pages.info.telephone.text1')}</p>
+		<p class="text-center">{$_('pages.info.telephone.text2')}</p>
 		<div class="mt-3">
 			<ContactList {contacts} />
 		</div>

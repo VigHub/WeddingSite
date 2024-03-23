@@ -10,17 +10,50 @@
 		"start": "Fatto con il",
 		"end": "da Elisa, Gianluca e"
 	},
+	"error": {
+		"pageNotFound": "Pagina non trovata",
+		"message": "Ci dispiace, ma la pagina che stai cercando non esiste 😅",
+		"text1": "Clicca",
+		"text2": "qui",
+		"text3": "per tornare alla pagina principale."
+	},
 	"pages": {
-		"welcome": {},
+		"welcome": {
+			"title": "Benvenuti sul nostro sito!",
+			"text1": "Ciao a tutti!! Siamo Elisa e Gianluca, e avete sentito bene, ci sposiamo!!",
+			"text2": "Non potremmo essere più felici, e non vediamo l'ora che sia il 20 luglio per condividere con voi una giornata così importante per noi.",
+			"text3": "In attesa del grande giorno abbiamo provato a sfruttare le nostre competenze informatiche e qualche idea grafica (indovinate rispettivamente di chi 😏) per creare questo sito che vi darà qualche informazione in più sul nostro matrimonio.",
+			"text4": "Troverete una sezione nella quale potrete confermare la vostra presenza, una nella quale vi abbiamo lasciato tutte le indicazioni utili, e una pagina da sbirciare per consultare la nostra lista nozze per scoprire quale sarà la nostra luna di miele...",
+			"text5": "Adesso vi lasciamo visitare il sito, ma non prima di ringraziarvi: se state leggendo questo messaggio è perché siete persone importanti per noi, e poter condividere con voi la nostra gioia renderà ancora più speciale il nostro matrimonio.",
+			"text6": "Grazie e a presto,",
+			"text7": "Elisa e Gianluca"
+		},
 		"gift-list": {
 			"title": "Lista Nozze",
 			"thankyou": "Grazie!",
 			"question-japan": "Ecco alcuni dei posti che visiteremo",
 			"japan-tab": {
-				"title": "Viaggio in Giappone"
+				"title": "Viaggio in Giappone",
+				"text1": "Sogniamo da molto tempo un viaggio in Giappone, di questo meraviglioso Paese ci affascina la sua armonia tra tradizione e modernità, e non vediamo l'ora di scoprire tutte le particolarità e le sensazioni uniche che ci regalerà.",
+				"text2": "Vivere tutto questo durante il nostro viaggio di nozze lo renderà un'esperienza che ci porteremo per sempre nel cuore, e che ci permetterà di creare ricordi indelebili già dai nostri primissimi giorni da marito e moglie.",
+				"text3": "Se desiderate contribuire a realizzare questo nostro grande sogno, vi lasciamo le nostre coordinate bancarie per le vostre gentilissime donazioni:",
+				"text4": "Vi siamo immensamente grati per la vostra partecipazione anche a questo momento speciale della nostra vita. Grazie di essere parte del nostro viaggio e di aiutarci a rendere indimenticabile il nostro inizio insieme!",
+				"text5": "Con tanto affetto,",
+				"text6": "Elisa e Gianluca"
 			},
 			"cultery-tab": {
-				"title": "Cose per la casa"
+				"title": "Cose per la casa",
+				"text1": "La nostra casa sarà il luogo in cui condivideremo la nostra nuova meravigliosa quotidianità e in cui coltiveremo il nostro amore.",
+				"text2": "Abbiamo quindi pensato di condividere con voi la creazione di questo spazio unico e magico per noi, iniziando con tutti gli oggetti che useremo giornalmente o nelle occasioni più speciali, quando verrete a trovarci.",
+				"text3": "Per questo abbiamo creato una lista nozze che potrete consultare chiamando o recandovi presso il negozio",
+				"text4": "Ogni vostro dono rappresenta per noi un tassello prezioso della nostra vita insieme.",
+				"text5": "Grazie di aver deciso di prenderne parte!",
+				"text6": "Elisa e Gianluca",
+				"text7": "Alcune foto della nostra casina!",
+				"address": "in Via Borfuro, 2, Bergamo",
+				"photo1": "Prima foto dal cantiere",
+				"photo2": "Quanto spazio! 😅",
+				"photo3": "Un sacco di luce! 😍"
 			}
 		},
 		"confirm-presence": {
@@ -28,7 +61,10 @@
 			"sendMessageQuestion": "Vuoi mandarci anche un messaggio?",
 			"sendMessagePlaceHolder": "Scrivi qui il tuo messaggio (opzionale)",
 			"msg": "Messaggio:",
-			"set-others": "Indica anche per altri"
+			"set-others": "Indica anche per altri",
+			"text0": "Conferma la tua presenza",
+			"text1": "Per confermare la vostra presenza alle nozze vi basterà scrivere il vostro nome e cognome e cliccare su Cerca. Una volta trovati, dovrete solo indicarci se riuscirete a partecipare o meno al matrimonio.",
+			"text2": "Se volete, potete anche lasciarci un messaggio. È opzionale, ma ci farebbe tanto piacere leggerlo! 😊 (potete approfittare di questa sezione anche per indicarci eventuali allergie o intolleranze alimentari, così provvederemo a pensare a un menù su misura per voi!)"
 		},
 		"info": {
 			"title": "Informazioni",
@@ -60,6 +96,22 @@
 				"mount-fuji": "Monte Fuji",
 				"kyoto-shrines": "Santuari a Kyoto",
 				"kinkaku-ji": "Pagoda d'oro a Kyoto"
+			},
+			"warning": {
+				"title": "Attenzione",
+				"text": "Il parcheggio della chiesa è molto piccolo, per questo vi chiediamo la gentilezza di lasciare le macchine nel parcheggio del centro sportivo di Ponteranica, non molto distante, e di raggiungere poi la chiesa a piedi."
+			},
+			"telephone": {
+				"text1" : "Avete ancora qualche dubbio?",
+				"text2" : "Vi lasciamo anche i numeri di telefono di noi sposi e dei nostri genitori!",
+				"contacts" : {
+					"one": "Elisa",
+					"two": "Gianluca",
+					"three": "Paola",
+					"threeDesc": "mamma sposa",
+					"four": "Roberta",
+					"fourDesc": "mamma sposo"
+				}
 			}
 		},
 		"reserved-area": {
@@ -99,6 +151,10 @@
 		"confirm": "Conferma",
 		"step": "Step",
 		"of": "di"
+	},
+	"iban": {
+		"copy": "Copia",
+		"copied": "Copiato!"
 	},
 	"search": {
 		"noGuestFound": "Nessun invitato trovato con questo nome e/o cognome"
