@@ -25,8 +25,8 @@
 		resetParameters();
 		handleToast(
 			isOk,
-			'Messaggio inviato, grazie!',
-			"Qualcosa è andato storto nell'invio del messaggio"
+			$_('pages.confirm-presence.messageSent'),
+			$_('pages.confirm-presence.messageNotSent')
 		);
 	};
 
@@ -51,7 +51,7 @@
 				message,
 				attendance: guest.attendance
 			};
-			isOk = await fetchPost('guestMessage/add', {
+			isOk = await fetchPost('guestMessages/add', {
 				guestMessage
 			});
 			if (!isOk) {
