@@ -64,7 +64,9 @@
 			"set-others": "Also indicates for others",
 			"text0": "Confirm your presence",
 			"text1": "To confirm your presence at the wedding, simply write your name and surname and click on Search. Once found, you will only have to tell us whether you will be able to participate at the wedding or not.",
-			"text2": "If you want, you can also leave us a message. It's optional, but we'd love to read it! 😊 (you can also take advantage of this section to inform us of any food allergies or intolerances, so we can think of a tailor-made menu for you!)"
+			"text2": "If you want, you can also leave us a message. It's optional, but we'd love to read it! 😊 (you can also take advantage of this section to inform us of any food allergies or intolerances, so we can think of a tailor-made menu for you!)",
+			"messageSent": "You have sent the message, thank you!",
+			"messageNotSent": "Something went wrong during the message sending, try again later!"
 		},
 		"info": {
 			"title": "Information",

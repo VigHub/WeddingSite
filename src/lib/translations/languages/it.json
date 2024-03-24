@@ -64,7 +64,9 @@
 			"set-others": "Indica anche per altri",
 			"text0": "Conferma la tua presenza",
 			"text1": "Per confermare la vostra presenza alle nozze vi basterà scrivere il vostro nome e cognome e cliccare su Cerca. Una volta trovati, dovrete solo indicarci se riuscirete a partecipare o meno al matrimonio.",
-			"text2": "Se volete, potete anche lasciarci un messaggio. È opzionale, ma ci farebbe tanto piacere leggerlo! 😊 (potete approfittare di questa sezione anche per indicarci eventuali allergie o intolleranze alimentari, così provvederemo a pensare a un menù su misura per voi!)"
+			"text2": "Se volete, potete anche lasciarci un messaggio. È opzionale, ma ci farebbe tanto piacere leggerlo! 😊 (potete approfittare di questa sezione anche per indicarci eventuali allergie o intolleranze alimentari, così provvederemo a pensare a un menù su misura per voi!)",
+			"messageSent": "Messaggio inviato, grazie!",
+			"messageNotSent": "Qualcosa è andato storto nell'invio del messaggio"
 		},
 		"info": {
 			"title": "Informazioni",
