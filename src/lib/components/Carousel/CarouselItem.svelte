@@ -16,7 +16,7 @@
 		<img
 			src={image.src}
 			in:fade
-			class="block snap-center rounded-container-token object-cover w-full h-80"
+			class="block snap-center rounded-container-token object-cover md:object-center w-full h-80 mx-auto"
 			alt="..."
 		/>
 		{#if image.title || image.text}

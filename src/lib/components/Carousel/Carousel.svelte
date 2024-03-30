@@ -44,7 +44,7 @@
 
 <div
 	id="carouselExampleCaptions"
-	class="relative w-full mx-auto"
+	class="relative w-full md:w-80 mx-auto"
 	data-te-carousel-init
 	data-te-ride="carousel"
 >

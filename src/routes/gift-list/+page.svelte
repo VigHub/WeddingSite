@@ -33,7 +33,7 @@
 		},
 		{ src: 'house/bed.jpg', title: $_('pages.gift-list.cultery-tab.photo2') },
 		{
-			src: 'house/bath.jpg',
+			src: 'house/living.jpg',
 			title: $_('pages.gift-list.cultery-tab.photo3')
 		}
 	];
