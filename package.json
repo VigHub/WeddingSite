@@ -48,6 +48,8 @@
 		"@fontsource/amatic-sc": "^5.0.5",
 		"@supabase/supabase-js": "^2.38.4",
 		"date-fns": "^2.30.0",
+		"moment": "^2.30.1",
+		"moment-timezone": "^0.5.45",
 		"polka": "^0.5.2",
 		"sirv": "^2.0.3",
 		"svelte-i18n": "^4.0.0"

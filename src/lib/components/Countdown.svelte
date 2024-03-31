@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
+	import moment from 'moment-timezone';
 	export let target: string;
 	let targetDate = new Date(target).getTime();
 	let countdown: NodeJS.Timeout;
 
-	$: timeRemaining = targetDate - Date.now();
+	let tz = 'Europe/Rome';
+
+	$: timeRemaining = moment(target).tz(tz).diff(moment().tz(tz));
 
 	const formatTime = (time: number) => {
 		const days = Math.floor(time / (1000 * 60 * 60 * 24));
@@ -20,7 +23,7 @@
 
 	const startCountdown = () => {
 		countdown = setInterval(() => {
-			timeRemaining = targetDate - Date.now();
+			timeRemaining = moment(target).tz(tz).diff(moment().tz(tz));
 			time = formatTime(timeRemaining);
 			if (timeRemaining <= 0) {
 				clearInterval(countdown);
