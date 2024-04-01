@@ -10,14 +10,40 @@
 
 	export let guests: Guest[];
 	export let attendance: number;
+	interface GuestSimpliefied {
+		name: string;
+		surname: string;
+		groupId?: number;
+	}
+
+	let indexOrder = 0;
+	let orderList = ['^', 'A-Z'];
 
 	const guestsByAttendance = [0, 1, 2].map((att) => {
 		return guests
 			.filter((g) => g.attendance === att)
 			.map((g) => {
-				return { name: g.name, surname: g.surname };
+				return { name: g.name, surname: g.surname, groupId: g.groupId } as GuestSimpliefied;
 			});
 	});
+	$: guestsByAttendanceSorted = guestsByAttendance.map((g) =>
+		g.sort((a: GuestSimpliefied, b: GuestSimpliefied) => {
+			if (indexOrder == 0) {
+				if (a.groupId && !b.groupId) return -1;
+				if (!a.groupId && b.groupId) return 1;
+				if (a.groupId && b.groupId) {
+					if (a.groupId === b.groupId) {
+						if (a.surname === b.surname) return a.name.localeCompare(b.name);
+						return a.surname.localeCompare(b.surname);
+					}
+					return a.groupId - b.groupId;
+				}
+			}
+			if (a.surname === b.surname) return a.name.localeCompare(b.name);
+			return a.surname.localeCompare(b.surname);
+		})
+	);
+
 	const messagesPerPage = 5;
 	let page1: PaginationSettings = {
 		offset: 0,
@@ -41,7 +67,7 @@
 	$: source = {
 		head: [$_('general.name'), $_('general.surname')],
 		body: tableMapperValues(
-			guestsByAttendance[attendance].slice(
+			guestsByAttendanceSorted[attendance].slice(
 				pageArray[attendance].offset * pageArray[attendance].limit,
 				(pageArray[attendance].offset + 1) * pageArray[attendance].limit
 			),
@@ -52,6 +78,14 @@
 
 <div class="relative min-h-[380px]">
 	<Table {source} regionBody="bg-gray-50" regionHeadCell="bg-surface-200" interactive={true} />
+	<div class="absolute bottom-0 left-0">
+		<button
+			class="btn btn-sm variant-filled"
+			on:click={() => {
+				indexOrder = (indexOrder + 1) % orderList.length;
+			}}>{orderList[indexOrder]}</button
+		>
+	</div>
 	<div class="absolute bottom-0 right-0">
 		<Paginator
 			bind:settings={pageArray[attendance]}
