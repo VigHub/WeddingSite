@@ -145,6 +145,7 @@
 	"general": {
 		"name": "名前",
 		"surname": "姓",
+		"invite": "招待",
 		"search": "検索",
 		"send": "送信",
 		"back": "後ろ向きに",

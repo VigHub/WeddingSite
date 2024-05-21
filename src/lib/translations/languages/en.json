@@ -145,6 +145,7 @@
 	"general": {
 		"name": "Name",
 		"surname": "Surname",
+		"invite": "Invite",
 		"search": "Search",
 		"send": "Send",
 		"back": "Back",

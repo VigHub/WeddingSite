@@ -8,12 +8,18 @@ export interface GuestGroup {
 	id: number;
 	name: string;
 }
+
+export enum InviteType {
+	ALL_DAY = "ALL_DAY",
+	CAKE = "CAKE"
+}
 export interface Guest {
 	id: number;
 	name: string;
 	surname: string;
 	attendance: number;
 	groupId?: number;
+	inviteType?: InviteType
 }
 
 export interface GuestMessage {
