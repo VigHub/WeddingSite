@@ -33,7 +33,7 @@ export const getGuestsbyNameSurname = async (
 export const getAllGuests = async () => {
 	const { data } = await supabase
 		.from(GuestTable)
-		.select('attendance, id, name, surname, groupId')
+		.select('attendance, id, name, surname, groupId, inviteType')
 		.returns<Guest[]>();
 	const guests = data ?? [];
 	return guests;
@@ -42,7 +42,7 @@ export const getAllGuests = async () => {
 export const getSameGroupGuests = async (groupId: number, guestIdRemove?: number) => {
 	let query = supabase
 		.from(GuestTable)
-		.select('attendance, id, name, surname, groupId')
+		.select('attendance, id, name, surname, groupId, inviteType')
 		.eq('groupId', groupId);
 	if (guestIdRemove) query = query.neq('id', guestIdRemove);
 	const { data } = await query.returns<Guest[]>();

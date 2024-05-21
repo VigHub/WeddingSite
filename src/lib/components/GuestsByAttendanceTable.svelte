@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Guest } from '$lib/utils/interfaces';
+	import { InviteType, type Guest } from '$lib/utils/interfaces';
 	import {
 		Paginator,
 		Table,
@@ -14,34 +14,57 @@
 		name: string;
 		surname: string;
 		groupId?: number;
+		inviteType?: InviteType;
 	}
 
 	let indexOrder = 0;
-	let orderList = ['^', 'A-Z'];
+	// groupId, Alphabetical, ALL DAY, CAKE
+	let orderList = ['^', 'A-Z', 'D', 'C'];
 
 	const guestsByAttendance = [0, 1, 2].map((att) => {
 		return guests
 			.filter((g) => g.attendance === att)
 			.map((g) => {
-				return { name: g.name, surname: g.surname, groupId: g.groupId } as GuestSimpliefied;
+				return {
+					name: g.name,
+					surname: g.surname,
+					groupId: g.groupId,
+					inviteType: g.inviteType
+				} as GuestSimpliefied;
 			});
 	});
-	$: guestsByAttendanceSorted = guestsByAttendance.map((g) =>
-		g.sort((a: GuestSimpliefied, b: GuestSimpliefied) => {
-			if (indexOrder == 0) {
-				if (a.groupId && !b.groupId) return -1;
-				if (!a.groupId && b.groupId) return 1;
-				if (a.groupId && b.groupId) {
-					if (a.groupId === b.groupId) {
-						if (a.surname === b.surname) return a.name.localeCompare(b.name);
-						return a.surname.localeCompare(b.surname);
-					}
-					return a.groupId - b.groupId;
-				}
+	const sortByGroupId = (a: GuestSimpliefied, b: GuestSimpliefied) => {
+		if (a.groupId && !b.groupId) return -1;
+		if (!a.groupId && b.groupId) return 1;
+		if (a.groupId && b.groupId) {
+			if (a.groupId === b.groupId) {
+				if (a.surname === b.surname) return a.name.localeCompare(b.name);
+				return a.surname.localeCompare(b.surname);
 			}
-			if (a.surname === b.surname) return a.name.localeCompare(b.name);
-			return a.surname.localeCompare(b.surname);
-		})
+			return a.groupId - b.groupId;
+		}
+		if (a.surname === b.surname) return a.name.localeCompare(b.name);
+		return a.surname.localeCompare(b.surname);
+	};
+	const filterGuestByInviteType = (guest: GuestSimpliefied, idxOrder: number) => {
+		return (
+			idxOrder === 0 ||
+			idxOrder === 1 ||
+			(guest.inviteType === InviteType.ALL_DAY && idxOrder === 2) ||
+			(guest.inviteType === InviteType.CAKE && idxOrder === 3)
+		);
+	};
+
+	$: guestsByAttendanceSorted = guestsByAttendance.map((guestsList) =>
+		guestsList
+			.filter((g) => filterGuestByInviteType(g, indexOrder))
+			.sort((a: GuestSimpliefied, b: GuestSimpliefied) => {
+				if (indexOrder == 0) {
+					return sortByGroupId(a, b);
+				}
+				if (a.surname === b.surname) return a.name.localeCompare(b.name);
+				return a.surname.localeCompare(b.surname);
+			})
 	);
 
 	const messagesPerPage = 5;
@@ -63,15 +86,25 @@
 		size: guestsByAttendance[2].length,
 		amounts: []
 	};
-	$: pageArray = [page1, page2, page3];
+
+	const filterPageSettings = (page: PaginationSettings, attd: number, idxOrder: number) => {
+		page.size = guestsByAttendance[attd].filter((g) => filterGuestByInviteType(g, idxOrder)).length;
+		return page;
+	};
+
+	$: pageArray = [
+		filterPageSettings(page1, attendance, indexOrder),
+		filterPageSettings(page2, attendance, indexOrder),
+		filterPageSettings(page3, attendance, indexOrder)
+	];
 	$: source = {
-		head: [$_('general.name'), $_('general.surname')],
+		head: [$_('general.name'), $_('general.surname'), $_('general.invite')],
 		body: tableMapperValues(
 			guestsByAttendanceSorted[attendance].slice(
 				pageArray[attendance].offset * pageArray[attendance].limit,
 				(pageArray[attendance].offset + 1) * pageArray[attendance].limit
 			),
-			['name', 'surname']
+			['name', 'surname', 'inviteType']
 		)
 	};
 </script>
