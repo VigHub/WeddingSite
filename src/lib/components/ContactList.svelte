@@ -13,13 +13,13 @@
 				<Avatar src="{base}/{contact.image}" width="w-12" />
 				<div class="flex flex-1 justify-between">
 					<div class="pe-5">
-						<p class="text-base">{contact.name}:</p>
+						<p class="text-base">{contact.name}{contact.description ? '' : ':'}</p>
 						{#if contact.description}
-							<p class="text-base">{contact.description}</p>
+							<p class="text-base">{contact.description}:</p>
 						{/if}
 					</div>
-					<div class="flex">
-						<p class="text-base my-auto">{contact.number}</p>
+					<div class="block place-content-end">
+						<p class="text-base align-bottom">{contact.number}</p>
 					</div>
 				</div>
 			</li>

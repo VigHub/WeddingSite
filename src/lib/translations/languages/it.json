@@ -76,13 +76,13 @@
 				"where": "Dove è la cerimonia?",
 				"whereAddress": "Chiesa Parrocchiale dei SS. Alessandro e Vincenzo,",
 				"whereAddressPlace": "Ponteranica (BG)",
-				"when": "Alle 15:00"
+				"when": "Alle 15"
 			},
 			"celebration": {
 				"where": "Dove è la festa?",
 				"whereAddress": "Villa Canton,",
 				"whereAddressPlace": "Trescore (BG)",
-				"when": "Dalle 17:00"
+				"when": "Per la torta alle 21"
 			},
 			"countdown": {
 				"time": "Quanto manca?",
