@@ -3,12 +3,11 @@
 	import { _ } from 'svelte-i18n';
 	import moment from 'moment-timezone';
 	export let target: string;
-	let targetDate = new Date(target).getTime();
+	export let weddingHappened: boolean;
 	let countdown: NodeJS.Timeout;
 
 	let tz = 'Europe/Rome';
-
-	$: timeRemaining = moment(target).tz(tz).diff(moment().tz(tz));
+	let timeRemaining: number;
 
 	const formatTime = (time: number) => {
 		const days = Math.floor(time / (1000 * 60 * 60 * 24));
@@ -23,7 +22,12 @@
 
 	const startCountdown = () => {
 		countdown = setInterval(() => {
-			timeRemaining = moment(target).tz(tz).diff(moment().tz(tz));
+			let now = moment().tz(tz);
+			let event = moment(target).tz(tz);
+			if (now.isAfter(event)) {
+				timeRemaining = now.diff(event);
+				weddingHappened = true;
+			} else timeRemaining = event.diff(now);
 			time = formatTime(timeRemaining);
 			if (timeRemaining <= 0) {
 				clearInterval(countdown);

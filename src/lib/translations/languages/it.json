@@ -86,6 +86,7 @@
 			},
 			"countdown": {
 				"time": "Quanto manca?",
+				"timeHappened": "Da quanto siamo sposati?",
 				"days": "giorni",
 				"hours": "hh",
 				"minutes": "min",
@@ -104,9 +105,9 @@
 				"text": "Il parcheggio della chiesa è molto piccolo, per questo vi chiediamo la gentilezza di lasciare le macchine nel parcheggio del centro sportivo di Ponteranica, non molto distante, e di raggiungere poi la chiesa a piedi."
 			},
 			"telephone": {
-				"text1" : "Avete ancora qualche dubbio?",
-				"text2" : "Vi lasciamo anche i numeri di telefono di noi sposi e dei nostri genitori!",
-				"contacts" : {
+				"text1": "Avete ancora qualche dubbio?",
+				"text2": "Vi lasciamo anche i numeri di telefono di noi sposi e dei nostri genitori!",
+				"contacts": {
 					"one": "Elisa",
 					"two": "Gianluca",
 					"three": "Paola",

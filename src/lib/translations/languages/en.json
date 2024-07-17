@@ -49,7 +49,7 @@
 				"text4": "Each of your gifts represents for us a precious piece of our life together.",
 				"text5": "Thank you for deciding to take part!",
 				"text6": "Elisa and Gianluca",
-				"text7": "Some photos of our new house!", 
+				"text7": "Some photos of our new house!",
 				"address": "at Via Borfuro, 2, Bergamo",
 				"photo1": "First photo from the construction site",
 				"photo2": "What a space! 😅",
@@ -86,6 +86,7 @@
 			},
 			"countdown": {
 				"time": "How much time is missing?",
+				"timeHappened": "How long have we been married?",
 				"days": "days",
 				"hours": "hh",
 				"minutes": "min",
@@ -104,9 +105,9 @@
 				"text": "The church car park is very small, which is why we ask you to kindly leave your cars in the car park of the Ponteranica sports centre, not far away, and then reach the church on foot."
 			},
 			"telephone": {
-				"text1" : "Do you still have any doubts?",
-				"text2" : "We will also leave you the telephone numbers of us, the spouses and our parents!",
-				"contacts" : {
+				"text1": "Do you still have any doubts?",
+				"text2": "We will also leave you the telephone numbers of us, the spouses and our parents!",
+				"contacts": {
 					"one": "Elisa",
 					"two": "Gianluca",
 					"three": "Paola",

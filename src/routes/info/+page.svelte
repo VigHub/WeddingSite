@@ -5,9 +5,10 @@
 	import { _ } from 'svelte-i18n';
 	import Warning from '$lib/components/Warning.svelte';
 	import ContactList from '$lib/components/ContactList.svelte';
-	import type { Contact } from '$lib/utils/interfaces';
 
 	canAccessReservedArea.set(false);
+	let target = '2024-07-20T15:00:00';
+	let weddingHappened = false;
 
 	$: contacts = [
 		{
@@ -99,8 +100,10 @@
 	</div>
 
 	<div class="mt-10">
-		<p class="text-center text-2xl mb-2">{$_('pages.info.countdown.time')}</p>
-		<Countdown target={'2024-07-20T15:00:00'} />
+		<p class="text-center text-2xl mb-2">
+			{weddingHappened ? $_('pages.info.countdown.timeHappened') : $_('pages.info.countdown.time')}
+		</p>
+		<Countdown {target} bind:weddingHappened />
 	</div>
 
 	<div class="mt-10">
